@@ -5,7 +5,7 @@ import { setLogLevel } from "firebase/firestore";
 import LolSearchResult from "../components/search/LolSearchResult";
 import { searchState, userDataState, searchKeyState } from "../store";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-
+import React from "react";
 const SearchLol = () => {
   const currentSearchKey = useRecoilValue(searchKeyState);
 
@@ -71,7 +71,11 @@ const SearchLol = () => {
     // setUser((userDataState: any) => [...userDataState, userState]);
   }, [currentSearchKey]);
 
-  return <>{currentSearchKey ? <LolSearchResult /> : null}</>;
+  return (
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <>{currentSearchKey ? <LolSearchResult /> : null}</>
+    </React.Suspense>
+  );
 };
 
 export default SearchLol;

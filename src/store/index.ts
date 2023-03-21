@@ -21,19 +21,16 @@ export const searchKeyState = atom<string>({
 })
 
 
-
-
 export interface IlolUser {
     id: string;
     userInfo : object;
     matchInfo: object;
     rankInfo: object;
-  }
+}
 
-  export const userDataState:any = atom<IlolUser>({
+export const userDataState:any = atom<IlolUser>({
     key: "userDataState",
     default: {
-        
         id: "",
         userInfo : {},
         matchInfo : {},
@@ -41,13 +38,13 @@ export interface IlolUser {
     }
 })
 
-// 여기 수정
 export const lolUserDataState = selector({
     key : "lolUserData" ,
-    get:({get}) => {
-
+    get: ({get}) => {
         const userData = get(userDataState)
-        return userData
+        if (userData) {
+            return userData
+        }
     },
 
 })
