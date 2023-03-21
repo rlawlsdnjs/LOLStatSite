@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useRecoilValue, useRecoilValueLoadable } from "recoil";
-import { searchState, userDataState, lolUserDataState } from "../../store";
-import SearchLol from "../../hooks/SearchLol";
-import { searchKeyState } from "../../store";
+import { searchState, userDataState, lolUserDataState } from "../../../store";
+import SearchLol from "../../../hooks/SearchLol";
+import { searchKeyState } from "../../../store";
 import React from "react";
 
 const LolSearchResult = () => {

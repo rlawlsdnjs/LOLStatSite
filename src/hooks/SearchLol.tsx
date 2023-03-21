@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { setLogLevel } from "firebase/firestore";
-import LolSearchResult from "../components/search/LolSearchResult";
+import LolSearchResult from "../components/lol/search/LolSearchResult";
 import { searchState, userDataState, searchKeyState } from "../store";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import React from "react";
