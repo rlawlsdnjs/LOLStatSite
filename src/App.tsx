@@ -4,12 +4,12 @@ import "./App.css";
 import { app, db, auth } from "./api/firebase";
 import { AuthContext } from "./components/sign/context/authContext";
 import { SignUp } from "./components/sign/sign";
-import Header from "./pages/header";
+import Header from "./layouts/header";
 import { loginState, searchKeyState } from "./store";
 import { useRecoilValue } from "recoil";
 import { getAuth } from "firebase/auth";
-import LolResult from "./components/search/LolSearch";
-import LolSearchResult from "./components/search/LolSearchResult";
+import LolResult from "./components/lol/search/LolSearch";
+import LolSearchResult from "./components/lol/search/LolSearchResult";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SearchLol from "./hooks/SearchLol";
 function App() {

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import { setLogLevel } from "firebase/firestore";
-import { searchKeyState } from "../../store";
+import { searchKeyState } from "../../../store";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import SearchLol from "../../hooks/SearchLol";
+import SearchLol from "../../../hooks/SearchLol";
 import LolSearchResult from "./LolSearchResult";
 import { Link } from "react-router-dom";
 
@@ -28,7 +28,6 @@ const LolResult = () => {
           onChange={changehId}
         />
         <button onClick={keywordChange}>검색</button>
-        <button onClick={keywordChange}>전적갱신</button>
       </SearchForm>
     </>
   );

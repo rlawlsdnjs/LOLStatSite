@@ -3,7 +3,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { setLogLevel } from "firebase/firestore";
 import LolSearchResult from "../components/lol/search/LolSearchResult";
-import { searchState, userDataState, searchKeyState } from "../store";
+import {
+  searchState,
+  userDataState,
+  searchKeyState,
+  userMatchState,
+} from "../store";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import React from "react";
 const SearchLol = () => {
@@ -20,7 +25,9 @@ const SearchLol = () => {
   const [userState, setUserState] = useState({});
   //   console.log(LolUser);
 
-  const funk = async () => {
+  // const matchInfo = useRecoilValue(userMatchState);
+
+  const lolAllData = async () => {
     try {
       const userUrl =
         `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${currentSearchKey}` +
@@ -48,6 +55,13 @@ const SearchLol = () => {
         }
       );
       console.log(matchInfo.data);
+
+      const champInfoUrl =
+        `https://kr.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${userId}` +
+        "?api_key=" +
+        riotApi;
+      const champInfo = await remote.get(champInfoUrl);
+      // console.log(champInfo);
       setLolUser({
         id: userInfo.data.id,
         userInfo: userInfo.data,
@@ -65,7 +79,7 @@ const SearchLol = () => {
 
   useEffect(() => {
     if (currentSearchKey) {
-      funk();
+      lolAllData();
     } else return;
 
     // setUser((userDataState: any) => [...userDataState, userState]);
