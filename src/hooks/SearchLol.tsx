@@ -77,19 +77,7 @@ const SearchLol = () => {
     }
   };
 
-  useEffect(() => {
-    if (currentSearchKey) {
-      lolAllData();
-    } else return;
-
-    // setUser((userDataState: any) => [...userDataState, userState]);
-  }, [currentSearchKey]);
-
-  return (
-    <React.Suspense fallback={<div>Loading...</div>}>
-      <>{currentSearchKey ? <LolSearchResult /> : null}</>
-    </React.Suspense>
-  );
+  return <>{currentSearchKey ? <LolSearchResult /> : null}</>;
 };
 
 export default SearchLol;
