@@ -1,6 +1,8 @@
 import { atom, selector } from "recoil";
 import SearchLol from "../hooks/SearchLol";
 import { RecoilValueReadOnly } from "recoil";
+import axios from "axios";
+const riotApi = import.meta.env.VITE_RIOT_API_KEY;
 
 export const loginState = atom({
   key: "loginState",
@@ -45,9 +47,7 @@ export const lolUserDataState = selector({
   },
 });
 
-import axios from "axios";
 import { getDepOptimizationConfig } from "vite";
-const riotApi = import.meta.env.VITE_RIOT_API_KEY;
 
 export const userMatchState: any = selector({
   key: "userMatchState",

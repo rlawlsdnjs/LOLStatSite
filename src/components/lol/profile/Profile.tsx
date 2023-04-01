@@ -5,11 +5,12 @@ import {
   lolUserDataState,
   userMatchState,
 } from "../../../store";
+import tw from "tailwind-styled-components";
 
 const Profile = () => {
   const user = useRecoilValue<any>(lolUserDataState);
   return (
-    <>
+    <ProfileCard>
       {user.id && (
         // 유저 프로필 카드
         <div>
@@ -54,8 +55,14 @@ const Profile = () => {
           )}
         </div>
       )}
-    </>
+    </ProfileCard>
   );
 };
+
+const ProfileCard = tw.div<any>`
+ w-1/3
+ sticky 
+ top-0
+`;
 
 export default Profile;

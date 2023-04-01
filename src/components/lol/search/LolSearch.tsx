@@ -7,7 +7,7 @@ import SearchLol from "../../../hooks/SearchLol";
 import LolSearchResult from "./LolSearchResult";
 import { Link } from "react-router-dom";
 
-const LolResult = () => {
+const LolSearch = () => {
   const [lolSearch, setLolSearch] = useRecoilState(searchKeyState);
   const [userSearch, setUserSearch] = useState("");
   const changehId = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,4 +36,4 @@ const LolResult = () => {
 const SearchForm = styled.div``;
 const Lolresult = styled.div``;
 
-export default LolResult;
+export default LolSearch;

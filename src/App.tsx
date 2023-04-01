@@ -8,24 +8,32 @@ import Header from "./layouts/header";
 import { loginState, searchKeyState } from "./store";
 import { useRecoilValue } from "recoil";
 import { getAuth } from "firebase/auth";
-import LolResult from "./components/lol/search/LolSearch";
+import LolSearch from "./components/lol/search/LolSearch";
 import LolSearchResult from "./components/lol/search/LolSearchResult";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SearchLol from "./hooks/SearchLol";
+import tw from "tailwind-styled-components";
+import styled from "styled-components";
+import { userDataState } from "./store";
 function App() {
   const auth = getAuth();
   const user = auth.currentUser;
 
   const userInfo = useContext(AuthContext);
   const loginValue = useRecoilValue(loginState);
+  const userData = useRecoilValue(userDataState);
 
   console.log(loginValue);
 
   return (
     <BrowserRouter>
       <Header />
-      <LolResult />
-      <SearchLol></SearchLol>
+
+      <LolSearch />
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <SearchLol></SearchLol>
+      </React.Suspense>
+
       <Routes>
         <Route path="/" element={loginValue && <SignUp />} />
       </Routes>
