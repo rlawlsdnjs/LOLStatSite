@@ -1,44 +1,80 @@
 import { useState } from "react";
 import React, { useContext } from "react";
-import "./App.css";
-import { app, db, auth } from "./api/firebase";
 import { AuthContext } from "./components/sign/context/authContext";
 import { SignUp } from "./components/sign/sign";
-import Header from "./layouts/header";
-import { loginState, searchKeyState } from "./store";
+import Header from "./layouts/Header";
+import { loginState, searchKeyState } from "./store/lol";
 import { useRecoilValue } from "recoil";
-import { getAuth } from "firebase/auth";
 import LolSearch from "./components/lol/search/LolSearch";
-import LolSearchResult from "./components/lol/search/LolSearchResult";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SearchLol from "./hooks/SearchLol";
-import tw from "tailwind-styled-components";
+import { BrowserRouter, Routes, Route, useHref } from "react-router-dom";
+import SearchLol from "./service/SearchLol";
 import styled from "styled-components";
-import { userDataState } from "./store";
+import YoutubeOpen from "./components/youtube/YoutubeOpen";
+import Loading from "./components/Loading";
+import Footer from "./layouts/Footer";
+import "./App.css";
+import "./tailwind.css";
+
 function App() {
-  const auth = getAuth();
-  const user = auth.currentUser;
+	const userInfo = useContext(AuthContext);
+	const loginValue = useRecoilValue(loginState);
+	const [favoriteOpen, favoriteSetOpen] = useState(false);
+	const currentSearchKey = useRecoilValue(searchKeyState);
 
-  const userInfo = useContext(AuthContext);
-  const loginValue = useRecoilValue(loginState);
-  const userData = useRecoilValue(userDataState);
+	return (
+		<BrowserRouter>
+			<Wrap
+				className="wrap"
+				// 특정영역 외 클릭 시 즐겨찾기 숨기기
+				onClick={(e) => {
+					e.stopPropagation();
+					const target = e.target as HTMLElement;
+					const element = target.className;
 
-  console.log(loginValue);
+					if (
+						element ==
+							e.currentTarget?.querySelector(".LolSearchInput")?.className ||
+						element ==
+							e.currentTarget?.querySelector(".FavoriteSection")?.className
+					) {
+						favoriteSetOpen(true);
+					} else {
+						favoriteSetOpen(false);
+					}
+				}}
+			>
+				<Header />
 
-  return (
-    <BrowserRouter>
-      <Header />
+				<LolSearch open={favoriteOpen} />
+				<React.Suspense fallback={<Loading />}>
+					<SearchLol />
 
-      <LolSearch />
-      <React.Suspense fallback={<div>Loading...</div>}>
-        <SearchLol></SearchLol>
-      </React.Suspense>
-
-      <Routes>
-        <Route path="/" element={loginValue && <SignUp />} />
-      </Routes>
-    </BrowserRouter>
-  );
+					<YoutubeOpen />
+				</React.Suspense>
+				<Routes>
+					<Route
+						path="/"
+						element={loginValue == true && !userInfo ? <SignUp /> : null}
+					/>
+				</Routes>
+				<Footer />
+			</Wrap>
+		</BrowserRouter>
+	);
 }
+
+const Wrap = styled.div`
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	padding: 2rem;
+`;
 
 export default App;
