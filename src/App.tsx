@@ -48,8 +48,6 @@ function App() {
 				<LolSearch open={favoriteOpen} />
 				<React.Suspense fallback={<Loading />}>
 					<SearchLol />
-
-					<YoutubeOpen />
 				</React.Suspense>
 				<Routes>
 					<Route
