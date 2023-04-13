@@ -1,33 +1,63 @@
-import { useEffect, useState } from "react";
 import { useRecoilValue, useRecoilValueLoadable } from "recoil";
-import { searchState, userDataState, lolUserDataState } from "../../../store";
-import SearchLol from "../../../hooks/SearchLol";
-import { searchKeyState } from "../../../store";
-import React from "react";
-
+import { searchState, userDataState } from "../../../store/lol";
 import Profile from "../profile/Profile";
 import UserMatch from "../match/Match";
-import styled from "styled-components";
-
+import styled, { keyframes } from "styled-components";
 import tw from "tailwind-styled-components";
 
 const LolSearchResult = () => {
-  return (
-    <ResultWrap>
-      <Profile />
-      <UserMatch />
-    </ResultWrap>
-  );
+	const userData = useRecoilValue<any>(userDataState);
+	return (
+		<>
+			<ResultWrap id={userData.id}>
+				<Profile />
+				<UserMatch />
+			</ResultWrap>
+		</>
+	);
 };
+const aniSearch = keyframes`
+	from {
+		opacity:0;
+	}
 
+	to {
+		opacity:1;
+	}
+`;
 const twResultWrap = styled.div<any>`
-  height: 85vh;
-  overflow-y: scroll;
-  display: flex;
+	animation: ${aniSearch} 0.7s linear;
+	max-height: 700px;
+	height: 75vh;
+	display: flex;
+	padding: 3rem;
+	flex-wrap: wrap;
+	box-sizing: border-box;
+	background: rgbA(255, 255, 255, 0.9);
+	border: 2px solid #000;
+	box-shadow: 2px 1px 16px #000;
+	border-radius: 10px;
+	&::-webkit-scrollbar {
+		width: 5px;
+		border-radius: 6px;
+	}
+	&::-webkit-scrollbar-thumb {
+		height: 30%;
+		background: #000;
+
+		border-radius: 10px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: transparent;
+	}
 `;
 
 const ResultWrap = tw(twResultWrap)<any>`
+  overflow-y-scroll
   max-w-screen-xl
+  md:overflow-hidden
   w-full
+  justify-evenly
 `;
 export default LolSearchResult;
