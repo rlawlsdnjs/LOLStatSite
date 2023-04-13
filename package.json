@@ -24,7 +24,8 @@
     "react-dom": "^18.2.0",
     "recoil": "^0.7.6",
     "relative-time-format": "^1.1.6",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "swiper": "^9.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",
