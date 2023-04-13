@@ -8,6 +8,7 @@ import { useRecoilState } from "recoil";
 import tw from "tailwind-styled-components";
 import RuneImg from "./RuneImg";
 import styled, { keyframes } from "styled-components";
+import axios from "axios";
 
 const UserMatch = () => {
 	const matchInfo = useRecoilValue<any>(userMatchState);
@@ -17,6 +18,7 @@ const UserMatch = () => {
 		e.preventDefault();
 		setLolSearch(e.target.textContent);
 	};
+
 	return (
 		<>
 			{matchInfo[0] != undefined ? (

@@ -102,6 +102,5 @@ export const userMatchState: any = selector({
 
 export const favoriteState = atom({
 	key: "favoriteState",
-
 	default: [],
 });

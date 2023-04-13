@@ -7,7 +7,6 @@ interface IUserName {
 }
 const RemoveFavorite = (props: IUserName) => {
 	const frankDocRef = doc(db, "LolUser", `${auth.currentUser?.email}`);
-	console.log(props);
 	const remove = async () => {
 		// 즐겨찾기 삭제
 		await updateDoc(frankDocRef, {
