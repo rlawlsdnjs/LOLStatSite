@@ -37,7 +37,7 @@ const SearchLol = () => {
 				riotApi;
 			const rankInfo = await remote.get(userRankhUrl);
 			const matchInfo = await remote.get(
-				`/lol/match/v5/matches/by-puuid/${userPuuId}/ids?start=0&count=20`,
+				`/api/lol/match/v5/matches/by-puuid/${userPuuId}/ids?start=0&count=20`,
 				{
 					headers: {
 						"X-Riot-Token": riotApi,
