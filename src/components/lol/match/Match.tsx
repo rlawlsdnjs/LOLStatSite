@@ -38,8 +38,8 @@ const UserMatch = (props: any) => {
 					let purpleTeam = match?.data?.info?.participants?.filter(
 						(user: any) => user.teamId == 200
 					);
-
-					if (searchUser?.length != 0) {
+					console.log(searchUser);
+					if (!Array.isArray(searchUser) && searchUser.length !== 0) {
 						return (
 							<OneMatch
 								className="w-full"
