@@ -20,7 +20,6 @@ const Header = () => {
 		signOut(auth);
 		setSign(false);
 	};
-	console.log(1);
 
 	return (
 		<HeaderContainer>
