@@ -28,14 +28,14 @@ const UserMatch = (props: any) => {
 				{props.matchL?.map((match: any | object) => {
 					// 검색 유저 정보
 
-					const searchUser = match?.data?.info?.participants?.filter(
+					const searchUser = match.data.info.participants.filter(
 						(user: any) => user.summonerName == currentSearchKey
 					);
 
-					const blueTeam = match?.data?.info?.participants?.filter(
+					const blueTeam = match.data.info.participants.filter(
 						(user: any) => user.teamId == 100
 					);
-					const purpleTeam = match?.data?.info?.participants?.filter(
+					const purpleTeam = match.data.info.participants.filter(
 						(user: any) => user.teamId == 200
 					);
 					console.log(searchUser);
