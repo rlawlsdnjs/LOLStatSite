@@ -18,31 +18,31 @@ const UserMatch = () => {
 		e.preventDefault();
 		setLolSearch(e.target.textContent);
 	};
-
+	console.log(matchInfo[0]);
 	return (
 		<>
 			{matchInfo[0] != undefined ? (
 				<MatchList>
-					{matchInfo[0].map((match: any | object) => {
+					{matchInfo[0]?.map((match: any | object) => {
 						// 검색 유저 정보
 
-						let searchUser = match.data.info.participants.filter(
+						let searchUser = match?.data?.info?.participants?.filter(
 							(user: any) => user.summonerName == currentSearchKey
 						);
 
-						let blueTeam = match.data.info.participants.filter(
+						let blueTeam = match?.data?.info?.participants?.filter(
 							(user: any) => user.teamId == 100
 						);
-						let purpleTeam = match.data.info.participants.filter(
+						let purpleTeam = match?.data?.info?.participants?.filter(
 							(user: any) => user.teamId == 200
 						);
 
-						if (searchUser.length != 0) {
+						if (searchUser?.length != 0) {
 							return (
 								<OneMatch
 									className="w-full"
 									key={match.data.info.gameId}
-									winlose={searchUser[0].win}
+									winlose={searchUser[0]?.win}
 								>
 									<MatchLeft className="lg:basis-6/12">
 										<div className="flex justify-center items-center text-center flex-col">
