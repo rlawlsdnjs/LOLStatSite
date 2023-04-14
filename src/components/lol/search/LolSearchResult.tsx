@@ -9,16 +9,16 @@ import { useEffect, useState } from "react";
 const LolSearchResult = () => {
 	const userData = useRecoilValue<any>(userDataState);
 	const matchInfo = useRecoilValue<any>(userMatchState);
-	const [gd, setgd] = useState([]);
+	const [matchL, setMatchL] = useState([]);
 	useEffect(() => {
-		setgd(matchInfo[0]);
+		setMatchL(matchInfo[0]);
 	}, [matchInfo]);
 
 	return (
 		<>
 			<ResultWrap id={userData.id}>
 				<Profile />
-				{gd.length != 0 ? <UserMatch /> : null}
+				{matchL.length != 0 ? <UserMatch matchL={matchL} /> : null}
 			</ResultWrap>
 		</>
 	);
