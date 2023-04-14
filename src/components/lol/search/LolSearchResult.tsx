@@ -5,12 +5,13 @@ import UserMatch from "../match/Match";
 import styled, { keyframes } from "styled-components";
 import tw from "tailwind-styled-components";
 import { useEffect, useState } from "react";
+import { useMemo } from "react";
 
 const LolSearchResult = () => {
 	const userData = useRecoilValue<any>(userDataState);
 	const matchInfo = useRecoilValue<any>(userMatchState);
 	const [matchL, setMatchL] = useState([]);
-	useEffect(() => {
+	useMemo(() => {
 		setMatchL(matchInfo[0]);
 	}, [matchInfo]);
 
