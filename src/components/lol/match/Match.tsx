@@ -9,6 +9,8 @@ import tw from "tailwind-styled-components";
 import RuneImg from "./RuneImg";
 import styled, { keyframes } from "styled-components";
 import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const UserMatch = () => {
 	const matchInfo = useRecoilValue<any>(userMatchState);
@@ -18,12 +20,17 @@ const UserMatch = () => {
 		e.preventDefault();
 		setLolSearch(e.target.textContent);
 	};
+	const [matchL, setMatchL] = useState([]);
+	useEffect(() => {
+		setMatchL(matchInfo[0]);
+	}, [matchInfo]);
+	console.log(matchL);
 
 	return (
 		<>
-			{matchInfo[0] != undefined ? (
+			{matchL.length != 0 ? (
 				<MatchList>
-					{matchInfo[0]?.map((match: any | object) => {
+					{matchL?.map((match: any | object) => {
 						// 검색 유저 정보
 
 						let searchUser = match?.data?.info?.participants?.filter(

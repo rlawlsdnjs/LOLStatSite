@@ -13,7 +13,6 @@ const LolSearchResult = () => {
 	useEffect(() => {
 		setgd(matchInfo[0]);
 	}, [matchInfo]);
-	console.log(gd);
 
 	return (
 		<>
