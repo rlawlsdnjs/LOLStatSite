@@ -22,15 +22,6 @@ const SearchLol = () => {
 	const [userState, setUserState] = useState({});
 
 	const lolAllData = async () => {
-		useEffect(() => {
-			const LolKeyword = "LolKeyword";
-			if (currentSearchKey == "null") {
-				return;
-			} else {
-				sessionStorage.setItem(LolKeyword, currentSearchKey);
-				lolAllData();
-			}
-		}, [currentSearchKey]);
 		try {
 			const userUrl =
 				`https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${currentSearchKey}` +
@@ -71,6 +62,16 @@ const SearchLol = () => {
 			console.log(`Error: ${error}`);
 		}
 	};
+
+	useEffect(() => {
+		const LolKeyword = "LolKeyword";
+		if (currentSearchKey == "null") {
+			return;
+		} else {
+			sessionStorage.setItem(LolKeyword, currentSearchKey);
+			lolAllData();
+		}
+	}, [currentSearchKey]);
 
 	return (
 		<>

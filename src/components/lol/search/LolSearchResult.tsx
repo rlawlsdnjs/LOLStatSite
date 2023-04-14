@@ -1,17 +1,25 @@
 import { useRecoilValue, useRecoilValueLoadable } from "recoil";
-import { searchState, userDataState } from "../../../store/lol";
+import { searchState, userDataState, userMatchState } from "../../../store/lol";
 import Profile from "../profile/Profile";
 import UserMatch from "../match/Match";
 import styled, { keyframes } from "styled-components";
 import tw from "tailwind-styled-components";
+import { useEffect, useState } from "react";
 
 const LolSearchResult = () => {
 	const userData = useRecoilValue<any>(userDataState);
+	const matchInfo = useRecoilValue<any>(userMatchState);
+	const [gd, setgd] = useState([]);
+	useEffect(() => {
+		setgd(matchInfo[0]);
+	}, [matchInfo]);
+	console.log(gd);
+
 	return (
 		<>
 			<ResultWrap id={userData.id}>
 				<Profile />
-				<UserMatch />
+				{gd.length != 0 ? <UserMatch /> : null}
 			</ResultWrap>
 		</>
 	);

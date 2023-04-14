@@ -18,7 +18,7 @@ const UserMatch = () => {
 		e.preventDefault();
 		setLolSearch(e.target.textContent);
 	};
-	console.log(matchInfo[0]);
+
 	return (
 		<>
 			{matchInfo[0] != undefined ? (
