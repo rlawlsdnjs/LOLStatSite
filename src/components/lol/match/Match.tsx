@@ -20,6 +20,7 @@ const UserMatch = (props: any) => {
 		e.preventDefault();
 		setLolSearch(e.target.textContent);
 	};
+	console.log(props.matchL);
 
 	return (
 		<>
@@ -38,348 +39,352 @@ const UserMatch = (props: any) => {
 						(user: any) => user.teamId == 200
 					);
 					console.log(searchUser);
-					return (
-						<OneMatch
-							className="w-full"
-							key={match.data.info.gameId}
-							winlose={searchUser[0]?.win}
-						>
-							<MatchLeft className="lg:basis-6/12">
-								<div className="flex justify-center items-center text-center flex-col">
-									<GameMode mode={match.data.info.queueId} />
-									<MatchDuration
-										time={match.data.info.gameDuration}
-										endTime={match.data.info.gameEndTimestamp}
-									></MatchDuration>
-									<div
+					if (searchUser && searchUser?.length != 0) {
+						return (
+							<OneMatch
+								className="w-full"
+								key={match.data.info.gameId}
+								winlose={searchUser[0]?.win}
+							>
+								<MatchLeft className="lg:basis-6/12">
+									<div className="flex justify-center items-center text-center flex-col">
+										<GameMode mode={match.data.info.queueId} />
+										<MatchDuration
+											time={match.data.info.gameDuration}
+											endTime={match.data.info.gameEndTimestamp}
+										></MatchDuration>
+										<div
+											style={{
+												WebkitTextStroke: "1px rgb(0, 0, 0)",
+												color: "transparent",
+												fontSize: "20px",
+											}}
+										>
+											{searchUser[0].win ? <p>Win</p> : <p>Lose</p>}
+										</div>
+									</div>
+
+									{/* 검색 유저 데이터 */}
+									{searchUser.length !== 0 && (
+										<div>
+											<div className="flex items-center justify-between">
+												{/* 검색 유저 챔프 정보 */}
+												<div className="avatar">
+													<div className="w-16 mask mask-squircle">
+														<img
+															src={`http://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/${searchUser[0].championName}.png`}
+															alt="챔프 이미지"
+														/>
+													</div>
+												</div>
+												{/* 스펠/룬 정보 */}
+												<div>
+													<div>
+														<SpellImg
+															spell01={searchUser[0].summoner1Id}
+															spell02={searchUser[0].summoner2Id}
+														></SpellImg>
+													</div>
+													<div className="flex items-center">
+														<RuneImg
+															runes01style={searchUser[0].perks.styles[0].style}
+															runes02style={searchUser[0].perks.styles[1].style}
+															runes01={
+																searchUser[0].perks.styles[0].selections[0].perk
+															}
+															runes02={
+																searchUser[0].perks.styles[1].selections[0].perk
+															}
+														></RuneImg>
+													</div>
+												</div>
+												{/* KDA */}
+												<div className="text-center">
+													<span>{searchUser[0].kills}</span>/
+													<span>{searchUser[0].deaths}</span>/
+													<span>{searchUser[0].assists}</span>
+													<p>K D A</p>
+													<p>{searchUser[0].challenges.kda.toFixed(1)}</p>
+												</div>
+											</div>
+											{/* 아이템 정보 */}
+											<ItemList
+												item01={searchUser[0].item0}
+												item02={searchUser[0].item1}
+												item03={searchUser[0].item2}
+												item04={searchUser[0].item3}
+												item05={searchUser[0].item4}
+												item06={searchUser[0].item5}
+												item07={searchUser[0].item6}
+											></ItemList>
+										</div>
+									)}
+								</MatchLeft>
+								<MatchRight className="lg:basis-5/12">
+									{/* participants */}
+									<ParticipantsList>
+										{match.data.info.participants.map((user: any) => {
+											return (
+												<div
+													className="flex py-1 items-center w-1/2"
+													key={user.summonerName}
+												>
+													<Participants>
+														<div className="w-16 rounded">
+															<img
+																src={`http://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/${user.championName}.png`}
+																alt="챔피언 아이콘"
+															/>
+														</div>
+													</Participants>
+													<p
+														className="truncate w-full"
+														style={{
+															overflow: "hidden",
+															textOverflow: "ellipsis",
+															whiteSpace: "nowrap",
+															cursor: "pointer",
+														}}
+														onClick={keywordChange}
+													>
+														{user.summonerName}
+													</p>
+												</div>
+											);
+										})}
+									</ParticipantsList>
+								</MatchRight>
+
+								{/* 더보기 버튼 */}
+								<MoreBtn className="peer" type="checkbox" />
+
+								{/* 더보기 버튼 클릭 시 게임 정보 */}
+								<MatchInfo>
+									<h3
+										className="text-center"
 										style={{
+											margin: "20px 0",
 											WebkitTextStroke: "1px rgb(0, 0, 0)",
-											color: "transparent",
+											color: "#000",
 											fontSize: "20px",
 										}}
 									>
-										{searchUser[0].win ? <p>Win</p> : <p>Lose</p>}
-									</div>
-								</div>
+										Game Info
+									</h3>
 
-								{/* 검색 유저 데이터 */}
-								{searchUser.length !== 0 && (
-									<div>
-										<div className="flex items-center justify-between">
-											{/* 검색 유저 챔프 정보 */}
-											<div className="avatar">
-												<div className="w-16 mask mask-squircle">
-													<img
-														src={`http://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/${searchUser[0].championName}.png`}
-														alt="챔프 이미지"
-													/>
-												</div>
-											</div>
-											{/* 스펠/룬 정보 */}
-											<div>
-												<div>
-													<SpellImg
-														spell01={searchUser[0].summoner1Id}
-														spell02={searchUser[0].summoner2Id}
-													></SpellImg>
-												</div>
-												<div className="flex items-center">
-													<RuneImg
-														runes01style={searchUser[0].perks.styles[0].style}
-														runes02style={searchUser[0].perks.styles[1].style}
-														runes01={
-															searchUser[0].perks.styles[0].selections[0].perk
-														}
-														runes02={
-															searchUser[0].perks.styles[1].selections[0].perk
-														}
-													></RuneImg>
-												</div>
-											</div>
-											{/* KDA */}
-											<div className="text-center">
-												<span>{searchUser[0].kills}</span>/
-												<span>{searchUser[0].deaths}</span>/
-												<span>{searchUser[0].assists}</span>
-												<p>K D A</p>
-												<p>{searchUser[0].challenges.kda.toFixed(1)}</p>
-											</div>
+									{/* 블루팀 */}
+									<Team winlose={match.data.info.teams[0].win} className="px-5">
+										<div style={{ fontSize: "15px", marginBottom: "10px" }}>
+											<h3 style={{ marginBottom: "5px" }}>Blue Team</h3>
+											{match.data.info.teams[0].win ? <p>Win</p> : <p>Lose</p>}
 										</div>
-										{/* 아이템 정보 */}
-										<ItemList
-											item01={searchUser[0].item0}
-											item02={searchUser[0].item1}
-											item03={searchUser[0].item2}
-											item04={searchUser[0].item3}
-											item05={searchUser[0].item4}
-											item06={searchUser[0].item5}
-											item07={searchUser[0].item6}
-										></ItemList>
-									</div>
-								)}
-							</MatchLeft>
-							<MatchRight className="lg:basis-5/12">
-								{/* participants */}
-								<ParticipantsList>
-									{match.data.info.participants.map((user: any) => {
-										return (
-											<div
-												className="flex py-1 items-center w-1/2"
-												key={user.summonerName}
-											>
-												<Participants>
-													<div className="w-16 rounded">
-														<img
-															src={`http://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/${user.championName}.png`}
-															alt="챔피언 아이콘"
-														/>
+
+										{blueTeam.length != 0 &&
+											blueTeam.map((blueUser: any) => {
+												return (
+													<div
+														className="flex items-center"
+														key={blueUser.summonerName}
+													>
+														<MatchInfoLeft>
+															{/* 유저 데이터 */}
+															<div className="w-full">
+																<div className="flex items-center ">
+																	<div
+																		className="flex justify-start"
+																		style={{
+																			flexBasis: "30%",
+																		}}
+																	>
+																		{/* 검색 유저 챔프 정보 */}
+																		<div className="avatar">
+																			<div className="w- mask mask-squircle">
+																				<img
+																					src={`http://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/${blueUser.championName}.png`}
+																					alt="챔프 이미지"
+																				/>
+																			</div>
+																		</div>
+																		{/* 스펠/룬 정보 */}
+																		<div>
+																			<div>
+																				<SpellImg
+																					spell01={blueUser.summoner1Id}
+																					spell02={blueUser.summoner2Id}
+																				></SpellImg>
+																			</div>
+																			<div className="flex items-center">
+																				<RuneImg
+																					runes01style={
+																						blueUser.perks.styles[0].style
+																					}
+																					runes02style={
+																						blueUser.perks.styles[1].style
+																					}
+																					runes01={
+																						blueUser.perks.styles[0]
+																							.selections[0].perk
+																					}
+																					runes02={
+																						blueUser.perks.styles[1]
+																							.selections[0].perk
+																					}
+																				></RuneImg>
+																			</div>
+																		</div>
+																	</div>
+																	{/* 유저 정보 */}
+																	<div
+																		className="text-center"
+																		style={{
+																			flexBasis: "50%",
+																		}}
+																	>
+																		<p>{blueUser.summonerName}</p>
+																		<p>{blueUser.teamPosition}</p>
+																	</div>
+																	{/* KDA */}
+																	<div
+																		className="text-center"
+																		style={{
+																			flexBasis: "20%",
+																		}}
+																	>
+																		<span>{blueUser.kills}</span>/
+																		<span>{blueUser.deaths}</span>/
+																		<span>{blueUser.assists}</span>
+																		<p>K D A</p>
+																		<p>{blueUser.challenges.kda.toFixed(1)}</p>
+																	</div>
+																</div>
+															</div>
+														</MatchInfoLeft>
+														<MatchInfoRight>
+															{/* 아이템 정보 */}
+															<ItemList
+																item01={blueUser.item0}
+																item02={blueUser.item1}
+																item03={blueUser.item2}
+																item04={blueUser.item3}
+																item05={blueUser.item4}
+																item06={blueUser.item5}
+																item07={blueUser.item6}
+															></ItemList>
+														</MatchInfoRight>
 													</div>
-												</Participants>
-												<p
-													className="truncate w-full"
-													style={{
-														overflow: "hidden",
-														textOverflow: "ellipsis",
-														whiteSpace: "nowrap",
-														cursor: "pointer",
-													}}
-													onClick={keywordChange}
-												>
-													{user.summonerName}
-												</p>
-											</div>
-										);
-									})}
-								</ParticipantsList>
-							</MatchRight>
+												);
+											})}
+									</Team>
 
-							{/* 더보기 버튼 */}
-							<MoreBtn className="peer" type="checkbox" />
+									{/* 퍼플팀 */}
+									<Team winlose={match.data.info.teams[1].win} className="px-5">
+										<div style={{ fontSize: "15px", marginBottom: "10px" }}>
+											<h3 style={{ marginBottom: "5px" }}>Purple Team</h3>
+											{match.data.info.teams[1].win ? <p>Win</p> : <p>Lose</p>}
+										</div>
 
-							{/* 더보기 버튼 클릭 시 게임 정보 */}
-							<MatchInfo>
-								<h3
-									className="text-center"
-									style={{
-										margin: "20px 0",
-										WebkitTextStroke: "1px rgb(0, 0, 0)",
-										color: "#000",
-										fontSize: "20px",
-									}}
-								>
-									Game Info
-								</h3>
-
-								{/* 블루팀 */}
-								<Team winlose={match.data.info.teams[0].win} className="px-5">
-									<div style={{ fontSize: "15px", marginBottom: "10px" }}>
-										<h3 style={{ marginBottom: "5px" }}>Blue Team</h3>
-										{match.data.info.teams[0].win ? <p>Win</p> : <p>Lose</p>}
-									</div>
-
-									{blueTeam.length != 0 &&
-										blueTeam.map((blueUser: any) => {
-											return (
-												<div
-													className="flex items-center"
-													key={blueUser.summonerName}
-												>
-													<MatchInfoLeft>
-														{/* 유저 데이터 */}
-														<div className="w-full">
-															<div className="flex items-center ">
-																<div
-																	className="flex justify-start"
-																	style={{
-																		flexBasis: "30%",
-																	}}
-																>
-																	{/* 검색 유저 챔프 정보 */}
-																	<div className="avatar">
-																		<div className="w- mask mask-squircle">
-																			<img
-																				src={`http://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/${blueUser.championName}.png`}
-																				alt="챔프 이미지"
-																			/>
+										{purpleTeam.length != 0 &&
+											purpleTeam.map((purpleUser: any) => {
+												return (
+													<div
+														className="flex items-center"
+														key={purpleUser.summonerName}
+													>
+														<MatchInfoLeft>
+															{/* 유저 데이터 */}
+															<div className="w-full">
+																<div className="flex items-center ">
+																	<div
+																		className="flex justify-start"
+																		style={{
+																			flexBasis: "30%",
+																		}}
+																	>
+																		{/* 검색 유저 챔프 정보 */}
+																		<div className="avatar">
+																			<div className="w- mask mask-squircle">
+																				<img
+																					src={`http://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/${purpleUser.championName}.png`}
+																					alt="챔프 이미지"
+																				/>
+																			</div>
 																		</div>
-																	</div>
-																	{/* 스펠/룬 정보 */}
-																	<div>
+																		{/* 스펠/룬 정보 */}
 																		<div>
-																			<SpellImg
-																				spell01={blueUser.summoner1Id}
-																				spell02={blueUser.summoner2Id}
-																			></SpellImg>
-																		</div>
-																		<div className="flex items-center">
-																			<RuneImg
-																				runes01style={
-																					blueUser.perks.styles[0].style
-																				}
-																				runes02style={
-																					blueUser.perks.styles[1].style
-																				}
-																				runes01={
-																					blueUser.perks.styles[0].selections[0]
-																						.perk
-																				}
-																				runes02={
-																					blueUser.perks.styles[1].selections[0]
-																						.perk
-																				}
-																			></RuneImg>
+																			<div>
+																				<SpellImg
+																					spell01={purpleUser.summoner1Id}
+																					spell02={purpleUser.summoner2Id}
+																				></SpellImg>
+																			</div>
+																			<div className="flex items-center">
+																				<RuneImg
+																					runes01style={
+																						purpleUser.perks.styles[0].style
+																					}
+																					runes02style={
+																						purpleUser.perks.styles[1].style
+																					}
+																					runes01={
+																						purpleUser.perks.styles[0]
+																							.selections[0].perk
+																					}
+																					runes02={
+																						purpleUser.perks.styles[1]
+																							.selections[0].perk
+																					}
+																				></RuneImg>
+																			</div>
 																		</div>
 																	</div>
-																</div>
-																{/* 유저 정보 */}
-																<div
-																	className="text-center"
-																	style={{
-																		flexBasis: "50%",
-																	}}
-																>
-																	<p>{blueUser.summonerName}</p>
-																	<p>{blueUser.teamPosition}</p>
-																</div>
-																{/* KDA */}
-																<div
-																	className="text-center"
-																	style={{
-																		flexBasis: "20%",
-																	}}
-																>
-																	<span>{blueUser.kills}</span>/
-																	<span>{blueUser.deaths}</span>/
-																	<span>{blueUser.assists}</span>
-																	<p>K D A</p>
-																	<p>{blueUser.challenges.kda.toFixed(1)}</p>
+																	{/* 유저 정보 */}
+																	<div
+																		className="text-center"
+																		style={{
+																			flexBasis: "50%",
+																		}}
+																	>
+																		<p>{purpleUser.summonerName}</p>
+																		<p>{purpleUser.teamPosition}</p>
+																	</div>
+																	{/* KDA */}
+																	<div
+																		className="text-center"
+																		style={{
+																			flexBasis: "20%",
+																		}}
+																	>
+																		<span>{purpleUser.kills}</span>/
+																		<span>{purpleUser.deaths}</span>/
+																		<span>{purpleUser.assists}</span>
+																		<p>K D A</p>
+																		<p>
+																			{purpleUser.challenges.kda.toFixed(1)}
+																		</p>
+																	</div>
 																</div>
 															</div>
-														</div>
-													</MatchInfoLeft>
-													<MatchInfoRight>
-														{/* 아이템 정보 */}
-														<ItemList
-															item01={blueUser.item0}
-															item02={blueUser.item1}
-															item03={blueUser.item2}
-															item04={blueUser.item3}
-															item05={blueUser.item4}
-															item06={blueUser.item5}
-															item07={blueUser.item6}
-														></ItemList>
-													</MatchInfoRight>
-												</div>
-											);
-										})}
-								</Team>
-
-								{/* 퍼플팀 */}
-								<Team winlose={match.data.info.teams[1].win} className="px-5">
-									<div style={{ fontSize: "15px", marginBottom: "10px" }}>
-										<h3 style={{ marginBottom: "5px" }}>Purple Team</h3>
-										{match.data.info.teams[1].win ? <p>Win</p> : <p>Lose</p>}
-									</div>
-
-									{purpleTeam.length != 0 &&
-										purpleTeam.map((purpleUser: any) => {
-											return (
-												<div
-													className="flex items-center"
-													key={purpleUser.summonerName}
-												>
-													<MatchInfoLeft>
-														{/* 유저 데이터 */}
-														<div className="w-full">
-															<div className="flex items-center ">
-																<div
-																	className="flex justify-start"
-																	style={{
-																		flexBasis: "30%",
-																	}}
-																>
-																	{/* 검색 유저 챔프 정보 */}
-																	<div className="avatar">
-																		<div className="w- mask mask-squircle">
-																			<img
-																				src={`http://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/${purpleUser.championName}.png`}
-																				alt="챔프 이미지"
-																			/>
-																		</div>
-																	</div>
-																	{/* 스펠/룬 정보 */}
-																	<div>
-																		<div>
-																			<SpellImg
-																				spell01={purpleUser.summoner1Id}
-																				spell02={purpleUser.summoner2Id}
-																			></SpellImg>
-																		</div>
-																		<div className="flex items-center">
-																			<RuneImg
-																				runes01style={
-																					purpleUser.perks.styles[0].style
-																				}
-																				runes02style={
-																					purpleUser.perks.styles[1].style
-																				}
-																				runes01={
-																					purpleUser.perks.styles[0]
-																						.selections[0].perk
-																				}
-																				runes02={
-																					purpleUser.perks.styles[1]
-																						.selections[0].perk
-																				}
-																			></RuneImg>
-																		</div>
-																	</div>
-																</div>
-																{/* 유저 정보 */}
-																<div
-																	className="text-center"
-																	style={{
-																		flexBasis: "50%",
-																	}}
-																>
-																	<p>{purpleUser.summonerName}</p>
-																	<p>{purpleUser.teamPosition}</p>
-																</div>
-																{/* KDA */}
-																<div
-																	className="text-center"
-																	style={{
-																		flexBasis: "20%",
-																	}}
-																>
-																	<span>{purpleUser.kills}</span>/
-																	<span>{purpleUser.deaths}</span>/
-																	<span>{purpleUser.assists}</span>
-																	<p>K D A</p>
-																	<p>{purpleUser.challenges.kda.toFixed(1)}</p>
-																</div>
-															</div>
-														</div>
-													</MatchInfoLeft>
-													<MatchInfoRight>
-														{/* 아이템 정보 */}
-														<ItemList
-															item01={purpleUser.item0}
-															item02={purpleUser.item1}
-															item03={purpleUser.item2}
-															item04={purpleUser.item3}
-															item05={purpleUser.item4}
-															item06={purpleUser.item5}
-															item07={purpleUser.item6}
-														></ItemList>
-													</MatchInfoRight>
-												</div>
-											);
-										})}
-								</Team>
-							</MatchInfo>
-						</OneMatch>
-					);
+														</MatchInfoLeft>
+														<MatchInfoRight>
+															{/* 아이템 정보 */}
+															<ItemList
+																item01={purpleUser.item0}
+																item02={purpleUser.item1}
+																item03={purpleUser.item2}
+																item04={purpleUser.item3}
+																item05={purpleUser.item4}
+																item06={purpleUser.item5}
+																item07={purpleUser.item6}
+															></ItemList>
+														</MatchInfoRight>
+													</div>
+												);
+											})}
+									</Team>
+								</MatchInfo>
+							</OneMatch>
+						);
+					}
 				})}
 			</MatchList>
 		</>
