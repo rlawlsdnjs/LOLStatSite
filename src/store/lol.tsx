@@ -63,9 +63,7 @@ export const userMatchState: any = selector({
 
 		await Promise.all(matchArr)
 			.then((responses) => {
-				matchResult.push(responses);
-
-				return;
+				return matchResult.push(responses);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -90,7 +88,7 @@ export const userMatchState: any = selector({
 		// }
 		// fetchItems(match);
 		console.log(matchResult);
-		return await matchResult;
+		return matchResult;
 	},
 });
 
