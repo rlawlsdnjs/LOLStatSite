@@ -9,12 +9,6 @@ export const loginState = atom({
 	default: false,
 });
 
-export const searchState = atom({
-	key: "SearchState",
-
-	default: false,
-});
-
 const LolKeyword = "LolKeyword";
 export const searchKeyState = atom<string>({
 	key: "searchKeyState",
@@ -95,7 +89,7 @@ export const userMatchState: any = selector({
 		//   // return console.log(responses.map(response => response));
 		// }
 		// fetchItems(match);
-
+		console.log(matchResult);
 		return matchResult;
 	},
 });

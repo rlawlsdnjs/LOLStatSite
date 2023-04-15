@@ -3,12 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { setLogLevel } from "firebase/firestore";
 import LolSearchResult from "../components/lol/search/LolSearchResult";
-import {
-	searchState,
-	userDataState,
-	searchKeyState,
-	userMatchState,
-} from "../store/lol";
+import { userDataState, searchKeyState, userMatchState } from "../store/lol";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import React from "react";
 import Loading from "../components/Loading";
@@ -63,8 +58,8 @@ const SearchLol = () => {
 		}
 	};
 
+	const LolKeyword = "LolKeyword";
 	useEffect(() => {
-		const LolKeyword = "LolKeyword";
 		if (currentSearchKey == "null") {
 			return;
 		} else {
@@ -73,13 +68,14 @@ const SearchLol = () => {
 		}
 	}, [currentSearchKey]);
 
-	return (
-		<>
-			<React.Suspense fallback={<Loading />}>
-				{currentSearchKey == "null" ? null : <LolSearchResult />}
-			</React.Suspense>
-		</>
-	);
+	console.log(lolUser);
+	// return (
+	// 	<>
+	// 		<React.Suspense fallback={<Loading />}>
+	// 			{currentSearchKey == "null" ? null : <LolSearchResult />}
+	// 		</React.Suspense>
+	// 	</>
+	// );
 };
 
 export default SearchLol;

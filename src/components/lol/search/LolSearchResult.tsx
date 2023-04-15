@@ -1,16 +1,25 @@
 import { useRecoilValue, useRecoilValueLoadable } from "recoil";
-import { searchState, userDataState, userMatchState } from "../../../store/lol";
+import {
+	searchKeyState,
+	userDataState,
+	userMatchState,
+} from "../../../store/lol";
 import Profile from "../profile/Profile";
 import UserMatch from "../match/Match";
 import styled, { keyframes } from "styled-components";
 import tw from "tailwind-styled-components";
 import { useEffect, useState } from "react";
 import { useMemo } from "react";
+import SearchLol from "../../../service/SearchLol";
+import LolSearch from "./LolSearch";
 
 const LolSearchResult = () => {
 	const userData = useRecoilValue<any>(userDataState);
 	const matchInfo = useRecoilValue<any>(userMatchState);
 	const [matchL, setMatchL] = useState([]);
+	const searchKeyword = useRecoilValue(searchKeyState);
+	SearchLol();
+
 	useMemo(() => {
 		setMatchL(matchInfo[0]);
 	}, [matchInfo]);

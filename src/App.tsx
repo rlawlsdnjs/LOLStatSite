@@ -14,6 +14,7 @@ import Loading from "./components/Loading";
 import Footer from "./layouts/Footer";
 import "./App.css";
 import "./tailwind.css";
+import LolSearchResult from "./components/lol/search/LolSearchResult";
 
 function App() {
 	const userInfo = useContext(AuthContext);
@@ -46,8 +47,11 @@ function App() {
 				<Header />
 
 				<LolSearch open={favoriteOpen} />
-				<React.Suspense fallback={<Loading />}>
+				{/* <React.Suspense fallback={<Loading />}>
 					<SearchLol />
+				</React.Suspense> */}
+				<React.Suspense fallback={<Loading />}>
+					{currentSearchKey == "null" ? null : <LolSearchResult />}
 				</React.Suspense>
 				<Routes>
 					<Route

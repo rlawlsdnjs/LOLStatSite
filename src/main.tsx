@@ -6,11 +6,9 @@ import "./reset.css";
 import { RecoilRoot } from "recoil";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-	<React.StrictMode>
-		<RecoilRoot>
-			<AuthProvider>
-				<App />
-			</AuthProvider>
-		</RecoilRoot>
-	</React.StrictMode>
+	<RecoilRoot>
+		<AuthProvider>
+			<App />
+		</AuthProvider>
+	</RecoilRoot>
 );
