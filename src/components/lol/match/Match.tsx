@@ -11,8 +11,9 @@ import styled, { keyframes } from "styled-components";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
-
-const UserMatch = (props: any) => {
+import React from "react";
+import Loading from "../../Loading";
+const UserMatch = () => {
 	const matchInfo = useRecoilValue<any>(userMatchState);
 	const currentSearchKey = useRecoilValue(searchKeyState);
 	const [lolSearch, setLolSearch] = useRecoilState(searchKeyState);
@@ -20,12 +21,11 @@ const UserMatch = (props: any) => {
 		e.preventDefault();
 		setLolSearch(e.target.textContent);
 	};
-	console.log(matchInfo[0]);
-
+	console.log(matchInfo);
 	return (
-		<>
+		<React.Suspense fallback={<Loading></Loading>}>
 			<MatchList>
-				{props.matchL?.map((match: any | object) => {
+				{matchInfo[0].map((match: any | object) => {
 					// 검색 유저 정보
 
 					const searchUser = match.data.info.participants.filter(
@@ -387,7 +387,7 @@ const UserMatch = (props: any) => {
 					}
 				})}
 			</MatchList>
-		</>
+		</React.Suspense>
 	);
 };
 const twMachList = styled.div`

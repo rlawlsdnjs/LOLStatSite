@@ -2,6 +2,7 @@ import { atom, selector } from "recoil";
 import SearchLol from "../service/SearchLol";
 import { RecoilValueReadOnly } from "recoil";
 import axios from "axios";
+import { useEffect } from "react";
 const riotApi = import.meta.env.VITE_RIOT_API_KEY;
 
 export const loginState = atom({
@@ -13,6 +14,15 @@ const LolKeyword = "LolKeyword";
 export const searchKeyState = atom<string>({
 	key: "searchKeyState",
 	default: `${sessionStorage.getItem(LolKeyword)}`,
+});
+export const gd = selector({
+	key: "gd",
+	get: ({ get }) => {
+		const userData = get(searchKeyState);
+		useEffect(() => {
+			SearchLol();
+		}, [userData]);
+	},
 });
 
 export interface IlolUser {
@@ -46,7 +56,6 @@ export const userMatchState: any = selector({
 	key: "userMatchState",
 	get: async ({ get }) => {
 		const userMatchInfo = get<any>(userDataState);
-		console.log(userMatchInfo);
 		const match = Object.values(userMatchInfo.matchInfo);
 		const remote = axios.create();
 		const matchArr: any = [];
@@ -60,20 +69,16 @@ export const userMatchState: any = selector({
 					},
 				})
 			);
-		}
-		if ((matchArr.length = match.length)) {
 			console.log(matchArr);
-
-			await Promise.all(matchArr)
-				.then((responses) => {
-					return matchResult.push(responses);
-				})
-				.catch((error) => {
-					console.log(error);
-				});
-
-			return;
 		}
+
+		await Promise.all(matchArr)
+			.then((responses) => {
+				return matchResult.push(responses);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 
 		// async function fetchItems(match: any) {
 		//   match.map((item: any) => {
@@ -94,10 +99,9 @@ export const userMatchState: any = selector({
 		//   // return console.log(responses.map(response => response));
 		// }
 		// fetchItems(match);
+		console.log(matchResult);
 
-		return matchResult.map((item: any) => {
-			return item;
-		});
+		return matchResult;
 	},
 });
 

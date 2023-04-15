@@ -15,12 +15,13 @@ import Footer from "./layouts/Footer";
 import "./App.css";
 import "./tailwind.css";
 import LolSearchResult from "./components/lol/search/LolSearchResult";
-
+import { useEffect } from "react";
 function App() {
 	const userInfo = useContext(AuthContext);
 	const loginValue = useRecoilValue(loginState);
 	const [favoriteOpen, favoriteSetOpen] = useState(false);
 	const currentSearchKey = useRecoilValue(searchKeyState);
+	SearchLol();
 
 	return (
 		<BrowserRouter>

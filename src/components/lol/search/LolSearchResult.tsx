@@ -16,18 +16,11 @@ import LolSearch from "./LolSearch";
 const LolSearchResult = () => {
 	const userData = useRecoilValue<any>(userDataState);
 	const matchInfo = useRecoilValue<any>(userMatchState);
-	const [matchL, setMatchL] = useState([]);
-	SearchLol();
-
-	useMemo(() => {
-		setMatchL(matchInfo[0]);
-	}, [matchInfo]);
-
 	return (
 		<>
-			<ResultWrap id={userData.id}>
+			<ResultWrap id={matchInfo}>
 				<Profile />
-				{matchL?.length != 0 ? <UserMatch matchL={matchL} /> : null}
+				<UserMatch />
 			</ResultWrap>
 		</>
 	);
