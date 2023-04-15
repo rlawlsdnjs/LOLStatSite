@@ -15,15 +15,6 @@ export const searchKeyState = atom<string>({
 	key: "searchKeyState",
 	default: `${sessionStorage.getItem(LolKeyword)}`,
 });
-export const gd = selector({
-	key: "gd",
-	get: ({ get }) => {
-		const userData = get(searchKeyState);
-		useEffect(() => {
-			SearchLol();
-		}, [userData]);
-	},
-});
 
 export interface IlolUser {
 	id: string;

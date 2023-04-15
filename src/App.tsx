@@ -21,6 +21,10 @@ function App() {
 	const loginValue = useRecoilValue(loginState);
 	const [favoriteOpen, favoriteSetOpen] = useState(false);
 	const currentSearchKey = useRecoilValue(searchKeyState);
+	const LolKeyword = "LolKeyword";
+	const keywordSession = sessionStorage.getItem(LolKeyword);
+	console.log(keywordSession);
+
 	SearchLol();
 
 	return (
@@ -52,7 +56,7 @@ function App() {
 					<SearchLol />
 				</React.Suspense> */}
 				<React.Suspense fallback={<Loading />}>
-					{currentSearchKey == "null" ? null : <LolSearchResult />}
+					{keywordSession == null ? null : <LolSearchResult />}
 				</React.Suspense>
 				<Routes>
 					<Route
