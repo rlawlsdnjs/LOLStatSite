@@ -90,7 +90,7 @@ export const userMatchState: any = selector({
 		// }
 		// fetchItems(match);
 		console.log(matchResult);
-		return matchResult;
+		return await matchResult;
 	},
 });
 

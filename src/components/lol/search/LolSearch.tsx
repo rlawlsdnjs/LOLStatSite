@@ -16,8 +16,9 @@ interface IOpen {
 	open: boolean;
 }
 const LolSearch = (props: IOpen) => {
-	const [lolSearch, setLolSearch] = useRecoilState(searchKeyState);
 	const [userSearch, setUserSearch] = useState("");
+
+	const [lolSearch, setLolSearch] = useRecoilState(searchKeyState);
 	const changehId = (e: React.ChangeEvent<HTMLInputElement>) => {
 		e.preventDefault();
 		setUserSearch(e.target.value);
