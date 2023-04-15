@@ -1,6 +1,5 @@
 import { useRecoilValue, useRecoilValueLoadable } from "recoil";
 import {
-	searchState,
 	userDataState,
 	lolUserDataState,
 	userMatchState,
