@@ -17,14 +17,18 @@ const UserMatch = () => {
 	const matchInfo = useRecoilValue<any>(userMatchState);
 	const currentSearchKey = useRecoilValue(searchKeyState);
 	const [lolSearch, setLolSearch] = useRecoilState(searchKeyState);
+	const [matchData, setMatchData] = useState([]);
 	const keywordChange = (e: any) => {
 		e.preventDefault();
 		setLolSearch(e.target.textContent);
 	};
-	console.log(matchInfo);
+	useEffect(() => {
+		setMatchData(matchInfo[0]);
+	}, [matchInfo]);
+	console.log(matchData);
 	return (
 		<React.Suspense fallback={<Loading></Loading>}>
-			{matchInfo.length != 0 && (
+			{matchData.length < 20 ? null : (
 				<MatchList>
 					{matchInfo[0].map((match: any | object) => {
 						// 검색 유저 정보
