@@ -53,13 +53,16 @@ export const userMatchState: any = selector({
 		const matchResult: any = [];
 
 		for (let i = 0, len = match.length; i < len; i++) {
-			matchArr.push(
-				remote.get(`/api/lol/match/v5/matches/${match[i]}`, {
-					headers: {
-						"X-Riot-Token": riotApi,
-					},
-				})
-			);
+			if (matchArr.length <= match.length) {
+				matchArr.push(
+					remote.get(`/api/lol/match/v5/matches/${match[i]}`, {
+						headers: {
+							"X-Riot-Token": riotApi,
+						},
+					})
+				);
+			}
+			return;
 			console.log("배열푸쉬", matchArr);
 		}
 
