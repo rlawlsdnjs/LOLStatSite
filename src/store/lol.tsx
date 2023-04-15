@@ -59,15 +59,18 @@ export const userMatchState: any = selector({
 					},
 				})
 			);
+			console.log(matchArr);
+		}
+		if ((matchArr.length = match.length)) {
+			await Promise.all(matchArr)
+				.then((responses) => {
+					return matchResult.push(responses);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
 		}
 
-		await Promise.all(matchArr)
-			.then((responses) => {
-				return matchResult.push(responses);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
 		// async function fetchItems(match: any) {
 		//   match.map((item: any) => {
 		//     axios
@@ -87,8 +90,8 @@ export const userMatchState: any = selector({
 		//   // return console.log(responses.map(response => response));
 		// }
 		// fetchItems(match);
-		const setMatchResult = [...new Set(matchResult)];
-		return setMatchResult;
+
+		return matchResult;
 	},
 });
 
