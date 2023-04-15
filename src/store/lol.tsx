@@ -59,9 +59,10 @@ export const userMatchState: any = selector({
 					},
 				})
 			);
-			console.log(matchArr);
 		}
 		if ((matchArr.length = match.length)) {
+			console.log(matchArr);
+
 			await Promise.all(matchArr)
 				.then((responses) => {
 					return matchResult.push(responses);

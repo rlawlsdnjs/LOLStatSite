@@ -28,7 +28,7 @@ const LolSearchResult = () => {
 		<>
 			<ResultWrap id={userData.id}>
 				<Profile />
-				{matchL.length != 0 ? <UserMatch matchL={matchL} /> : null}
+				{matchL?.length != 0 ? <UserMatch matchL={matchL} /> : null}
 			</ResultWrap>
 		</>
 	);
