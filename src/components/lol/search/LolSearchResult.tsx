@@ -14,11 +14,9 @@ import SearchLol from "../../../service/SearchLol";
 import LolSearch from "./LolSearch";
 
 const LolSearchResult = () => {
-	const userData = useRecoilValue<any>(userDataState);
-	const matchInfo = useRecoilValue<any>(userMatchState);
 	return (
 		<>
-			<ResultWrap id={matchInfo}>
+			<ResultWrap>
 				<Profile />
 				<UserMatch />
 			</ResultWrap>

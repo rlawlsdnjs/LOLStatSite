@@ -47,11 +47,11 @@ export const userMatchState: any = selector({
 	key: "userMatchState",
 	get: async ({ get }) => {
 		const userMatchInfo = get<any>(userDataState);
-		const match = Object.values(userMatchInfo.matchInfo);
+		const match = Object.values(userMatchInfo?.matchInfo);
 		const remote = axios.create();
 		const matchArr: any = [];
 		const matchResult: any = [];
-
+		console.log("match", Object.values(userMatchInfo?.matchInfo));
 		if (matchArr.length <= match.length) {
 			for (let i = 0, len = 20; i < len; i++) {
 				matchArr.push(
@@ -93,6 +93,7 @@ export const userMatchState: any = selector({
 		// }
 		// fetchItems(match);
 		console.log("결과", matchResult);
+		console.log(match);
 
 		return matchResult;
 	},
