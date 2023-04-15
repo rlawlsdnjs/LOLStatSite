@@ -60,7 +60,7 @@ export const userMatchState: any = selector({
 					},
 				})
 			);
-			console.log(matchArr);
+			console.log("배열푸쉬", matchArr);
 		}
 
 		await Promise.all(matchArr)
@@ -90,7 +90,7 @@ export const userMatchState: any = selector({
 		//   // return console.log(responses.map(response => response));
 		// }
 		// fetchItems(match);
-		console.log(matchResult);
+		console.log("결과", matchResult);
 
 		return matchResult;
 	},
