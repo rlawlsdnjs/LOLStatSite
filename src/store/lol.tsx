@@ -51,8 +51,9 @@ export const userMatchState: any = selector({
 		const remote = axios.create();
 		const matchArr: any = [];
 		const matchResult: any = [];
+
 		if (matchArr.length <= match.length) {
-			for (let i = 0, len = match.length; i < len; i++) {
+			for (let i = 0, len = 20; i < len; i++) {
 				matchArr.push(
 					remote.get(`/api/lol/match/v5/matches/${match[i]}`, {
 						headers: {
