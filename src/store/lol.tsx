@@ -46,6 +46,7 @@ export const userMatchState: any = selector({
 	key: "userMatchState",
 	get: async ({ get }) => {
 		const userMatchInfo = get<any>(userDataState);
+		console.log(userMatchInfo);
 		const match = Object.values(userMatchInfo.matchInfo);
 		const remote = axios.create();
 		const matchArr: any = [];
@@ -92,7 +93,9 @@ export const userMatchState: any = selector({
 		// }
 		// fetchItems(match);
 
-		return matchResult;
+		return matchResult.map((item: any) => {
+			return item;
+		});
 	},
 });
 

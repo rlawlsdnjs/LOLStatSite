@@ -68,7 +68,6 @@ const SearchLol = () => {
 		}
 	}, [currentSearchKey]);
 
-	console.log(lolUser);
 	// return (
 	// 	<>
 	// 		<React.Suspense fallback={<Loading />}>
