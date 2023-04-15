@@ -87,8 +87,8 @@ export const userMatchState: any = selector({
 		//   // return console.log(responses.map(response => response));
 		// }
 		// fetchItems(match);
-		console.log(matchResult);
-		return matchResult;
+		const setMatchResult = [...new Set(matchResult)];
+		return setMatchResult;
 	},
 });
 
