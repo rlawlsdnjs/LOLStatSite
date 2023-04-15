@@ -92,7 +92,11 @@ export const userMatchState: any = selector({
 		//   // return console.log(responses.map(response => response));
 		// }
 		// fetchItems(match);
-
+		console.log(
+			matchResult.map((item: any) => {
+				return item;
+			})
+		);
 		return matchResult.map((item: any) => {
 			return item;
 		});

@@ -17,7 +17,6 @@ const LolSearchResult = () => {
 	const userData = useRecoilValue<any>(userDataState);
 	const matchInfo = useRecoilValue<any>(userMatchState);
 	const [matchL, setMatchL] = useState([]);
-	const searchKeyword = useRecoilValue(searchKeyState);
 	SearchLol();
 
 	useMemo(() => {
