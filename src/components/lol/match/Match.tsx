@@ -20,7 +20,7 @@ const UserMatch = (props: any) => {
 		e.preventDefault();
 		setLolSearch(e.target.textContent);
 	};
-	console.log(props?.matchL);
+	console.log(matchInfo[0]);
 
 	return (
 		<>
