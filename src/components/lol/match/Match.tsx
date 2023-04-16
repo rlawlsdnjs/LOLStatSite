@@ -32,15 +32,15 @@ const UserMatch = () => {
 				<MatchList>
 					{matchData.map((match: any | object) => {
 						// 검색 유저 정보
-
-						const searchUser = match?.data.info.participants.filter(
+						console.log(match);
+						let searchUser = match?.data.info.participants.filter(
 							(user: any) => user.summonerName == currentSearchKey
 						);
-						console.log(searchUser);
-						const blueTeam = match?.data.info.participants.filter(
+
+						let blueTeam = match?.data.info.participants.filter(
 							(user: any) => user.teamId == 100
 						);
-						const purpleTeam = match?.data.info.participants.filter(
+						let purpleTeam = match?.data.info.participants.filter(
 							(user: any) => user.teamId == 200
 						);
 						console.log(searchUser);
