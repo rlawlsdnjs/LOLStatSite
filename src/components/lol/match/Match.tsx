@@ -25,17 +25,14 @@ const UserMatch = () => {
 	useEffect(() => {
 		setMatchData(matchInfo[0]);
 	}, [matchInfo]);
-	console.log(matchData);
+	let searchUser: any = [];
+
 	return (
 		<React.Suspense fallback={<Loading></Loading>}>
 			{matchData && (
 				<MatchList>
-					{matchData.map((match: any | object) => {
+					{matchData.map((match: any | object, idx: number) => {
 						// 검색 유저 정보
-						console.log(match);
-						let searchUser = match?.data?.info?.participants?.filter(
-							(user: any) => user.summonerName == currentSearchKey
-						);
 
 						let blueTeam = match?.data?.info?.participants?.filter(
 							(user: any) => user.teamId == 100
@@ -43,9 +40,14 @@ const UserMatch = () => {
 						let purpleTeam = match?.data?.info?.participants?.filter(
 							(user: any) => user.teamId == 200
 						);
-						if (searchUser != undefined) {
-							console.log(searchUser);
-						}
+
+						match?.data?.info?.participants.map((user: any) => {
+							if (user.summonerName == currentSearchKey) {
+								searchUser.push(user);
+							}
+						});
+						console.log(searchUser);
+
 						if (searchUser != undefined) {
 							return (
 								<OneMatch
@@ -67,7 +69,7 @@ const UserMatch = () => {
 													fontSize: "20px",
 												}}
 											>
-												{searchUser[0].win ? <p>Win</p> : <p>Lose</p>}
+												{searchUser[idx].win ? <p>Win</p> : <p>Lose</p>}
 											</div>
 										</div>
 
@@ -79,7 +81,7 @@ const UserMatch = () => {
 													<div className="avatar">
 														<div className="w-16 mask mask-squircle">
 															<img
-																src={`http://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/${searchUser[0].championName}.png`}
+																src={`http://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/${searchUser[idx].championName}.png`}
 																alt="챔프 이미지"
 															/>
 														</div>
@@ -88,24 +90,24 @@ const UserMatch = () => {
 													<div>
 														<div>
 															<SpellImg
-																spell01={searchUser[0].summoner1Id}
-																spell02={searchUser[0].summoner2Id}
+																spell01={searchUser[idx].summoner1Id}
+																spell02={searchUser[idx].summoner2Id}
 															></SpellImg>
 														</div>
 														<div className="flex items-center">
 															<RuneImg
 																runes01style={
-																	searchUser[0].perks.styles[0].style
+																	searchUser[idx].perks.styles[0].style
 																}
 																runes02style={
-																	searchUser[0].perks.styles[1].style
+																	searchUser[idx].perks.styles[1].style
 																}
 																runes01={
-																	searchUser[0].perks.styles[0].selections[0]
+																	searchUser[idx].perks.styles[0].selections[0]
 																		.perk
 																}
 																runes02={
-																	searchUser[0].perks.styles[1].selections[0]
+																	searchUser[idx].perks.styles[1].selections[0]
 																		.perk
 																}
 															></RuneImg>
@@ -113,22 +115,22 @@ const UserMatch = () => {
 													</div>
 													{/* KDA */}
 													<div className="text-center">
-														<span>{searchUser[0].kills}</span>/
-														<span>{searchUser[0].deaths}</span>/
-														<span>{searchUser[0].assists}</span>
+														<span>{searchUser[idx].kills}</span>/
+														<span>{searchUser[idx].deaths}</span>/
+														<span>{searchUser[idx].assists}</span>
 														<p>K D A</p>
-														<p>{searchUser[0].challenges.kda.toFixed(1)}</p>
+														<p>{searchUser[idx].challenges.kda.toFixed(1)}</p>
 													</div>
 												</div>
 												{/* 아이템 정보 */}
 												<ItemList
-													item01={searchUser[0].item0}
-													item02={searchUser[0].item1}
-													item03={searchUser[0].item2}
-													item04={searchUser[0].item3}
-													item05={searchUser[0].item4}
-													item06={searchUser[0].item5}
-													item07={searchUser[0].item6}
+													item01={searchUser[idx].item0}
+													item02={searchUser[idx].item1}
+													item03={searchUser[idx].item2}
+													item04={searchUser[idx].item3}
+													item05={searchUser[idx].item4}
+													item06={searchUser[idx].item5}
+													item07={searchUser[idx].item6}
 												></ItemList>
 											</div>
 										)}
