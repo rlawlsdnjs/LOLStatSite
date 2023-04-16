@@ -33,14 +33,14 @@ const UserMatch = () => {
 					{matchData.map((match: any | object) => {
 						// 검색 유저 정보
 						console.log(match);
-						let searchUser = match?.data?.info?.participants.filter(
+						let searchUser = match?.data?.info?.participants?.filter(
 							(user: any) => user.summonerName == currentSearchKey
 						);
 
-						let blueTeam = match?.data?.info?.participants.filter(
+						let blueTeam = match?.data?.info?.participants?.filter(
 							(user: any) => user.teamId == 100
 						);
-						let purpleTeam = match?.data?.info?.participants.filter(
+						let purpleTeam = match?.data?.info?.participants?.filter(
 							(user: any) => user.teamId == 200
 						);
 						console.log(searchUser);
