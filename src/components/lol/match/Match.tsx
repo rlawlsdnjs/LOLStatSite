@@ -18,7 +18,6 @@ const UserMatch = () => {
 	const currentSearchKey = useRecoilValue(searchKeyState);
 	const [lolSearch, setLolSearch] = useRecoilState(searchKeyState);
 	const [matchData, setMatchData] = useState([]);
-	const [searchMatch, setSearchMatch] = useState([]);
 	const keywordChange = (e: any) => {
 		e.preventDefault();
 		setLolSearch(e.target.textContent);
@@ -54,7 +53,7 @@ const UserMatch = () => {
 								{searchUser.length != 0 && (
 									<OneMatch
 										className="w-full"
-										key={match?.data?.info?.gameId}
+										key={idx}
 										winlose={searchUser[idx]?.win}
 									>
 										<MatchLeft className="lg:basis-6/12">
