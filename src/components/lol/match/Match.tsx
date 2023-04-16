@@ -53,14 +53,14 @@ const UserMatch = () => {
 								<OneMatch
 									className="w-full"
 									key={match.data.info.gameId}
-									winlose={searchUser[0]?.win}
+									winlose={searchUser[idx]?.win}
 								>
 									<MatchLeft className="lg:basis-6/12">
 										<div className="flex justify-center items-center text-center flex-col">
-											<GameMode mode={match.data.info.queueId} />
+											<GameMode mode={match?.data?.info?.queueId} />
 											<MatchDuration
-												time={match.data.info.gameDuration}
-												endTime={match.data.info.gameEndTimestamp}
+												time={match?.data?.info?.gameDuration}
+												endTime={match?.data?.info?.gameEndTimestamp}
 											></MatchDuration>
 											<div
 												style={{
