@@ -18,6 +18,7 @@ const UserMatch = () => {
 	const currentSearchKey = useRecoilValue(searchKeyState);
 	const [lolSearch, setLolSearch] = useRecoilState(searchKeyState);
 	const [matchData, setMatchData] = useState([]);
+	const [searchMatch, setSearchMatch] = useState([]);
 	const keywordChange = (e: any) => {
 		e.preventDefault();
 		setLolSearch(e.target.textContent);
@@ -42,18 +43,17 @@ const UserMatch = () => {
 							(user: any) => user.teamId == 200
 						);
 
-						match?.data?.info?.participants.map((user: any) => {
+						match?.data?.info?.participants.forEach((user: any) => {
 							if (user.summonerName == currentSearchKey) {
 								searchUser.push(user);
 							}
 						});
-						console.log(searchUser);
 						return (
 							<>
 								{searchUser.length != 0 && (
 									<OneMatch
 										className="w-full"
-										key={match.data.info.gameId}
+										key={match?.data?.info?.gameId}
 										winlose={searchUser[idx]?.win}
 									>
 										<MatchLeft className="lg:basis-6/12">
@@ -70,12 +70,12 @@ const UserMatch = () => {
 														fontSize: "20px",
 													}}
 												>
-													{searchUser[idx].win ? <p>Win</p> : <p>Lose</p>}
+													{searchUser[idx]?.win ? <p>Win</p> : <p>Lose</p>}
 												</div>
 											</div>
 
 											{/* 검색 유저 데이터 */}
-											{searchUser.length !== 0 && (
+											{searchUser?.length !== 0 && (
 												<div>
 													<div className="flex items-center justify-between">
 														{/* 검색 유저 챔프 정보 */}
@@ -143,12 +143,12 @@ const UserMatch = () => {
 													return (
 														<div
 															className="flex py-1 items-center w-1/2"
-															key={user.summonerName}
+															key={user?.summonerName}
 														>
 															<Participants>
 																<div className="w-16 rounded">
 																	<img
-																		src={`http://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/${user.championName}.png`}
+																		src={`http://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/${user?.championName}.png`}
 																		alt="챔피언 아이콘"
 																	/>
 																</div>
@@ -163,7 +163,7 @@ const UserMatch = () => {
 																}}
 																onClick={keywordChange}
 															>
-																{user.summonerName}
+																{user?.summonerName}
 															</p>
 														</div>
 													);
@@ -190,7 +190,7 @@ const UserMatch = () => {
 
 											{/* 블루팀 */}
 											<Team
-												winlose={match.data.info.teams[0].win}
+												winlose={match?.data?.info?.teams[0]?.win}
 												className="px-5"
 											>
 												<div style={{ fontSize: "15px", marginBottom: "10px" }}>
