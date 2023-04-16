@@ -28,6 +28,7 @@ const UserMatch = () => {
 	}, [matchInfo]);
 
 	let searchUser: any = [];
+	console.log("검색유저", searchUser);
 
 	return (
 		<React.Suspense fallback={<Loading></Loading>}>
