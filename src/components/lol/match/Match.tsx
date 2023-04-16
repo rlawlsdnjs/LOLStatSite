@@ -36,7 +36,7 @@ const UserMatch = () => {
 						const searchUser = match?.data.info.participants.filter(
 							(user: any) => user.summonerName == currentSearchKey
 						);
-
+						console.log(searchUser);
 						const blueTeam = match?.data.info.participants.filter(
 							(user: any) => user.teamId == 100
 						);
