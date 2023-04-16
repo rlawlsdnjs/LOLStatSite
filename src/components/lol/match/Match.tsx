@@ -42,7 +42,7 @@ const UserMatch = () => {
 
 	return (
 		<React.Suspense fallback={<Loading></Loading>}>
-			{matchData && (
+			{userMatch && (
 				<MatchList>
 					{matchData.map((match: any | object, idx: number) => {
 						// 검색 유저 정보
@@ -56,7 +56,7 @@ const UserMatch = () => {
 
 						return (
 							<>
-								{searchUser.length != 0 && (
+								{userMatch.length != 0 && (
 									<OneMatch
 										className="w-full"
 										key={idx}
