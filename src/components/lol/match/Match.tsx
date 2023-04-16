@@ -30,7 +30,7 @@ const UserMatch = () => {
 		<React.Suspense fallback={<Loading></Loading>}>
 			{matchData.length < 20 ? null : (
 				<MatchList>
-					{matchInfo[0].map((match: any | object) => {
+					{matchData.map((match: any | object) => {
 						// 검색 유저 정보
 
 						const searchUser = match.data.info.participants?.filter(
