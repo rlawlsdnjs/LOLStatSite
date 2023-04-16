@@ -28,7 +28,7 @@ const UserMatch = () => {
 	console.log(matchData);
 	return (
 		<React.Suspense fallback={<Loading></Loading>}>
-			{matchData.length < 20 ? null : (
+			{matchData && (
 				<MatchList>
 					{matchData.map((match: any | object) => {
 						// 검색 유저 정보
