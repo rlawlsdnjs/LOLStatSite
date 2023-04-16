@@ -56,7 +56,6 @@ const SearchLol = () => {
 		}
 	};
 	useEffect(() => {
-		console.log(1);
 		const LolKeyword = "LolKeyword";
 		if (currentSearchKey == "null") {
 			return;

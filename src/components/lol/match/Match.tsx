@@ -18,6 +18,7 @@ const UserMatch = () => {
 	const currentSearchKey = useRecoilValue(searchKeyState);
 	const [lolSearch, setLolSearch] = useRecoilState(searchKeyState);
 	const [matchData, setMatchData] = useState([]);
+	const [userMatch, setUserMatch] = useState([]);
 	const keywordChange = (e: any) => {
 		e.preventDefault();
 		setLolSearch(e.target.textContent);
@@ -27,6 +28,16 @@ const UserMatch = () => {
 	}, [matchInfo]);
 
 	let searchUser: any = [];
+
+	if (matchData.length != 0) {
+		matchData.forEach((match: any) => {
+			match?.data?.info?.participants.forEach((user: any) => {
+				if (user.summonerName == currentSearchKey) {
+					searchUser.push(user);
+				}
+			});
+		});
+	}
 	console.log("검색유저", searchUser);
 
 	return (
@@ -43,11 +54,6 @@ const UserMatch = () => {
 							(user: any) => user.teamId == 200
 						);
 
-						match?.data?.info?.participants.forEach((user: any) => {
-							if (user.summonerName == currentSearchKey) {
-								searchUser.push(user);
-							}
-						});
 						return (
 							<>
 								{searchUser.length != 0 && (
