@@ -18,7 +18,7 @@ const Profile = () => {
 
 	return (
 		<ProfileCard>
-			{user.id && (
+			{user?.id && (
 				<>
 					{/*  유저 프로필 카드 */}
 					<ProfileInfo className="relative z-20">
@@ -30,7 +30,7 @@ const Profile = () => {
 								borderRadius: "50%",
 								border: "1px solid #000",
 							}}
-							src={`http://ddragon.leagueoflegends.com/cdn/13.5.1/img/profileicon/${user.userInfo.profileIconId}.png`}
+							src={`http://ddragon.leagueoflegends.com/cdn/13.5.1/img/profileicon/${user?.userInfo?.profileIconId}.png`}
 						></img>
 						{/* 유저 아이디 */}
 						<h3>{user.userInfo.name}</h3>
@@ -42,9 +42,9 @@ const Profile = () => {
 									<img
 										style={{ maxWidth: "60px" }}
 										src={
-											user.rankInfo == undefined
+											user?.rankInfo == undefined
 												? `../../assets/icons/tier-base-icons/provisional.png`
-												: `/public/assets/icons/tier-base-icons/${user.rankInfo.tier}.png`
+												: `/public/assets/icons/tier-base-icons/${user?.rankInfo?.tier}.png`
 										}
 									></img>
 									{/* 전적, 승률 영역*/}
