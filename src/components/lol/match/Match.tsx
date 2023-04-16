@@ -18,7 +18,7 @@ const UserMatch = () => {
 	const currentSearchKey = useRecoilValue(searchKeyState);
 	const [lolSearch, setLolSearch] = useRecoilState(searchKeyState);
 	const [matchData, setMatchData] = useState([]);
-	const [userMatch, setUserMatch] = useState([]);
+	const [userMatch, setUserMatch] = useState<any>([]);
 	const keywordChange = (e: any) => {
 		e.preventDefault();
 		setLolSearch(e.target.textContent);
@@ -33,12 +33,12 @@ const UserMatch = () => {
 		matchData.forEach((match: any) => {
 			match?.data?.info?.participants.forEach((user: any) => {
 				if (user.summonerName == currentSearchKey) {
-					searchUser.push(user);
+					userMatch.push(user);
 				}
 			});
 		});
 	}
-	console.log("검색유저", searchUser);
+	console.log("검색유저", userMatch);
 
 	return (
 		<React.Suspense fallback={<Loading></Loading>}>
