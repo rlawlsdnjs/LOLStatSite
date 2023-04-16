@@ -43,7 +43,9 @@ const UserMatch = () => {
 						let purpleTeam = match?.data?.info?.participants?.filter(
 							(user: any) => user.teamId == 200
 						);
-						console.log(searchUser);
+						if (searchUser != undefined) {
+							console.log(searchUser);
+						}
 						if (searchUser != undefined) {
 							return (
 								<OneMatch
