@@ -23,7 +23,6 @@ function App() {
 	const currentSearchKey = useRecoilValue(searchKeyState);
 	const LolKeyword = "LolKeyword";
 	const keywordSession = sessionStorage.getItem(LolKeyword);
-
 	SearchLol();
 
 	return (
@@ -54,9 +53,9 @@ function App() {
 				{/* <React.Suspense fallback={<Loading />}>
 					<SearchLol />
 				</React.Suspense> */}
-				<React.Suspense fallback={<Loading />}>
+				{/* <React.Suspense fallback={<Loading />}>
 					{keywordSession == null ? null : <LolSearchResult />}
-				</React.Suspense>
+				</React.Suspense> */}
 				<Routes>
 					<Route
 						path="/"

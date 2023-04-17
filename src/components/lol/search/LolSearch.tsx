@@ -11,6 +11,7 @@ import { AuthContext } from "../../sign/context/authContext";
 import { favoriteState } from "../../../store/lol";
 import { doc } from "firebase/firestore";
 import RemoveFavorite from "./RemoveFavorite";
+import SearchLol from "../../../service/SearchLol";
 
 interface IOpen {
 	open: boolean;

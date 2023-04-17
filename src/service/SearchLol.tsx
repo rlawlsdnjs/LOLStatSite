@@ -14,6 +14,9 @@ const SearchLol = () => {
 	const [lolUser, setLolUser] = useRecoilState<any>(userDataState);
 	const setUser = useSetRecoilState(userDataState);
 	const [userState, setUserState] = useState({});
+	const [matchResult, setMatchResult] = useState<any>([]);
+	const currentUserMatch: any = [];
+
 	const lolAllData = async () => {
 		try {
 			const userUrl =
@@ -29,7 +32,7 @@ const SearchLol = () => {
 				"?api_key=" +
 				riotApi;
 			const rankInfo = await remote.get(userRankhUrl);
-			const matchInfo = await remote.get(
+			const matchInfo: any = await remote.get(
 				`/api/lol/match/v5/matches/by-puuid/${userPuuId}/ids?start=0&count=20`,
 				{
 					headers: {
@@ -50,10 +53,74 @@ const SearchLol = () => {
 				matchInfo: matchInfo.data,
 				mostChampInfo: champInfo.data[0].championId,
 			});
+			console.log(matchInfo.data);
+			// const match = Object.values(lolUser?.matchInfo);
+
+			// 매치 별 정보
+			const matchArr: any = [];
+			// console.log("match", Object.values(lolUser?.matchInfo));
+			if (matchArr.length <= matchInfo.data.length) {
+				for (let i = 0, len = 20; i < len; i++) {
+					matchArr.push(
+						remote.get(`/api/lol/match/v5/matches/${matchInfo.data[i]}`, {
+							headers: {
+								"X-Riot-Token": riotApi,
+							},
+						})
+					);
+				}
+				console.log("배열푸쉬", matchArr);
+				await Promise.all(matchArr)
+					.then((responses) => {
+						setMatchResult([responses]);
+						console.log("위결과", matchResult);
+
+						return;
+					})
+					.catch((error) => {
+						console.log(error);
+					});
+			}
+
+			// async function fetchItems(match: any) {
+			//   match.map((item: any) => {
+			//     axios
+			//       .get(`/api/lol/match/v5/matches/${item}`, {
+			//         headers: {
+			//           "X-Riot-Token": riotApi,
+			//         },
+			//       })
+			//       .then((res) => {
+			//         console.log(res);
+			//       });
+			//   });
+
+			//   // const responses = await Promise.all(requests);
+			//   // const responses = await requests
+
+			//   // return console.log(responses.map(response => response));
+			// }
+			// fetchItems(match);
 		} catch (error) {
 			console.log(`Error: ${error}`);
 		}
 	};
+	const currentUser = () => {
+		matchResult[0].forEach((match: any) => {
+			console.log("현재유저 판별", match);
+			match.data.info.participants.forEach((user: any) => {
+				if (user.summonerName == currentSearchKey) {
+					currentUserMatch.push(user);
+				}
+			});
+		});
+	};
+	if (matchResult.length != 0) {
+		currentUser();
+	}
+	console.log("아래결과", matchResult);
+	console.log("검색유저", currentUserMatch);
+
 	useEffect(() => {
 		const LolKeyword = "LolKeyword";
 		if (currentSearchKey == "null") {

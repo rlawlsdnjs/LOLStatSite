@@ -8,19 +8,20 @@ import Profile from "../profile/Profile";
 import UserMatch from "../match/Match";
 import styled, { keyframes } from "styled-components";
 import tw from "tailwind-styled-components";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useMemo } from "react";
 import SearchLol from "../../../service/SearchLol";
 import LolSearch from "./LolSearch";
+import Loading from "../../Loading";
 
 const LolSearchResult = () => {
 	return (
-		<>
+		<React.Suspense fallback={<Loading></Loading>}>
 			<ResultWrap>
 				<Profile />
-				<UserMatch />
+				{/* <UserMatch /> */}
 			</ResultWrap>
-		</>
+		</React.Suspense>
 	);
 };
 const aniSearch = keyframes`

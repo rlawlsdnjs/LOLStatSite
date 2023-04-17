@@ -33,12 +33,11 @@ const UserMatch = () => {
 		matchData.forEach((match: any) => {
 			match?.data?.info?.participants.forEach((user: any) => {
 				if (user.summonerName == currentSearchKey) {
-					userMatch.push(user);
+					searchUser.push(user);
 				}
 			});
 		});
 	}
-	// console.log("검색유≈저", userMatch);
 
 	return (
 		<React.Suspense fallback={<Loading></Loading>}>
