@@ -108,7 +108,7 @@ const SearchLol = () => {
 	const currentUser = (matchResult: any) => {
 		console.log("함수안 ", matchResult);
 		matchResult[0]?.forEach((match: any) => {
-			match?.data.info.participants.forEach((user: any) => {
+			match?.data?.info?.participants?.forEach((user: any) => {
 				if (user.summonerName == currentSearchKey) {
 					currentUserMatch.push(user);
 				}
@@ -116,7 +116,7 @@ const SearchLol = () => {
 		});
 		console.log("검색유저", currentUserMatch);
 	};
-	if (matchResult.length > 0 && matchResult.length <= 20) {
+	if (matchResult.length != 0) {
 		currentUser(matchResult);
 	}
 	console.log("아래결과", matchResult);
