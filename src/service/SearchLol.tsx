@@ -107,7 +107,7 @@ const SearchLol = () => {
 	};
 	const currentUser = (matchResult: any) => {
 		console.log("함수안 ", matchResult);
-		matchResult[0].forEach((match: any) => {
+		matchResult[0]?.forEach((match: any) => {
 			match.data.info.participants.forEach((user: any) => {
 				if (user.summonerName == currentSearchKey) {
 					currentUserMatch.push(user);
