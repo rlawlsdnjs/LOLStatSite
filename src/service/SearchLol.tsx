@@ -13,7 +13,7 @@ const SearchLol = () => {
 	const remote = axios.create();
 	const [lolUser, setLolUser] = useRecoilState<any>(userDataState);
 	const setUser = useSetRecoilState(userDataState);
-	const [userState, setUserState] = useState({});
+	// const [userState, setUserState] = useState({});
 	let matchResult: any = [];
 	const currentUserMatch: any = [];
 
@@ -57,33 +57,33 @@ const SearchLol = () => {
 			// const match = Object.values(lolUser?.matchInfo);
 
 			// 매치 별 정보
-			const matchArr: any = [];
+			// const matchArr: any = [];
 			// console.log("match", Object.values(lolUser?.matchInfo));
-			if (matchArr.length <= matchInfo.data.length) {
-				for (let i = 0, len = 20; i < len; i++) {
-					matchArr.push(
-						remote.get(`/api/lol/match/v5/matches/${matchInfo.data[i]}`, {
-							headers: {
-								"X-Riot-Token": riotApi,
-							},
-						})
-					);
-				}
-				console.log("배열푸쉬", matchArr);
-				await Promise.all(matchArr)
-					.then((responses: any) => {
-						matchResult.push(responses);
-						console.log("위결과", matchResult);
-						if (matchResult.length != 0) {
-							currentUser(matchResult);
-						}
-					})
-					.catch((error) => {
-						console.log(error);
-					});
+			// if (matchArr.length <= matchInfo.data.length) {
+			// 	for (let i = 0, len = 20; i < len; i++) {
+			// 		matchArr.push(
+			// 			remote.get(`/api/lol/match/v5/matches/${matchInfo.data[i]}`, {
+			// 				headers: {
+			// 					"X-Riot-Token": riotApi,
+			// 				},
+			// 			})
+			// 		);
+			// 	}
+			// 	console.log("배열푸쉬", matchArr);
+			// 	await Promise.all(matchArr)
+			// 		.then((responses: any) => {
+			// 			matchResult.push(responses);
+			// 			console.log("위결과", matchResult);
+			// 			if (matchResult.length != 0) {
+			// 				currentUser(matchResult);
+			// 			}
+			// 		})
+			// 		.catch((error) => {
+			// 			console.log(error);
+			// 		});
 
-				return;
-			}
+			// 	return;
+			// }
 
 			// async function fetchItems(match: any) {
 			//   match.map((item: any) => {
@@ -108,31 +108,31 @@ const SearchLol = () => {
 			console.log(`Error: ${error}`);
 		}
 	};
-	const currentUser = (matchResult: any) => {
-		console.log("함수안 ", matchResult[0][0]?.data.info.gameCreation);
-		const currentMatch = matchResult[0].map((match: any) => {
-			return match.data?.info?.participants;
-		});
-		currentUserMatch.push(currentMatch);
-		// gd.forEach((user: any) => {
-		// 	if (user.summonerName == currentSearchKey) {
-		// 		currentUserMatch.push(user);
-		// 	}
-		// });
-		// const gd = (currentMatch: any) => {
-		// 	currentMatch.forEach((user: any) => {
-		// 		let blueTeam = user?.filter(
-		// 			(user: any) => user.summonerName == currentSearchKey
-		// 		);
-		// 		return currentUserMatch.push(blueTeam);
-		// 	});
-		// 	console.log("검색유저", currentUserMatch);
-		// };
-		// gd(currentMatch);
-	};
+	// const currentUser = (matchResult: any) => {
+	// 	console.log("함수안 ", matchResult[0][0]?.data.info.gameCreation);
+	// 	const currentMatch = matchResult[0].map((match: any) => {
+	// 		return match.data?.info?.participants;
+	// 	});
+	// 	currentUserMatch.push(currentMatch);
+	// 	// gd.forEach((user: any) => {
+	// 	// 	if (user.summonerName == currentSearchKey) {
+	// 	// 		currentUserMatch.push(user);
+	// 	// 	}
+	// 	// });
+	// 	// const gd = (currentMatch: any) => {
+	// 	// 	currentMatch.forEach((user: any) => {
+	// 	// 		let blueTeam = user?.filter(
+	// 	// 			(user: any) => user.summonerName == currentSearchKey
+	// 	// 		);
+	// 	// 		return currentUserMatch.push(blueTeam);
+	// 	// 	});
+	// 	// 	console.log("검색유저", currentUserMatch);
+	// 	// };
+	// 	// gd(currentMatch);
+	// };
 
-	console.log("아래결과", matchResult);
-	console.log("검색유저", currentUserMatch);
+	// console.log("아래결과", matchResult);
+	// console.log("검색유저", currentUserMatch);
 
 	useEffect(() => {
 		const LolKeyword = "LolKeyword";

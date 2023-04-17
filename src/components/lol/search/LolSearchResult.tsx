@@ -15,6 +15,9 @@ import LolSearch from "./LolSearch";
 import Loading from "../../Loading";
 
 const LolSearchResult = () => {
+	const matchInfo = useRecoilValue<any>(userMatchState);
+	console.log(matchInfo[0][0].data.info.gameCreation);
+
 	return (
 		<React.Suspense fallback={<Loading></Loading>}>
 			<ResultWrap>

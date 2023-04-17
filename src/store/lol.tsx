@@ -55,67 +55,54 @@ export const lolUserDataState = selector({
 export const userMatchState: any = selector({
 	key: "userMatchState",
 	get: async ({ get }) => {
-		// const userMatchInfo = get<any>(userDataState);
-		// const match = Object.values(userMatchInfo?.matchInfo);
-		// const remote = axios.create();
-		// const matchArr: any = [];
+		const userMatchInfo = get<any>(userDataState);
+		const match = Object.values(userMatchInfo?.matchInfo);
+		const remote = axios.create();
+		const matchArr: any = [];
 		const matchResult: any = [];
-		// const currentSearchKey = useRecoilValue(searchKeyState);
 
-		// console.log("match", Object.values(userMatchInfo?.matchInfo));
-		// if (matchArr.length <= match.length) {
-		// 	for (let i = 0, len = 20; i < len; i++) {
-		// 		matchArr.push(
-		// 			remote.get(`/api/lol/match/v5/matches/${match[i]}`, {
-		// 				headers: {
-		// 					"X-Riot-Token": riotApi,
-		// 				},
-		// 			})
-		// 		);
-		// 	}
-		// 	console.log("배열푸쉬", matchArr);
+		console.log("match", Object.values(userMatchInfo?.matchInfo));
+		if (matchArr.length <= match.length) {
+			for (let i = 0, len = 20; i < len; i++) {
+				matchArr.push(
+					remote.get(`/api/lol/match/v5/matches/${match[i]}`, {
+						headers: {
+							"X-Riot-Token": riotApi,
+						},
+					})
+				);
+			}
+			console.log("배열푸쉬", matchArr);
+		}
+
+		await Promise.all(matchArr)
+			.then((responses) => {
+				return matchResult.push(responses);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+
+		// async function fetchItems(match: any) {
+		//   match.map((item: any) => {
+		//     axios
+		//       .get(`/api/lol/match/v5/matches/${item}`, {
+		//         headers: {
+		//           "X-Riot-Token": riotApi,
+		//         },
+		//       })
+		//       .then((res) => {
+		//         console.log(res);
+		//       });
+		//   });
+
+		//   // const responses = await Promise.all(requests);
+		//   // const responses = await requests
+
+		//   // return console.log(responses.map(response => response));
 		// }
+		// fetchItems(match);
 
-		// await Promise.all(matchArr)
-		// 	.then((responses) => {
-		// 		return matchResult.push(responses);
-		// 	})
-		// 	.catch((error) => {
-		// 		console.log(error);
-		// 	});
-
-		// // async function fetchItems(match: any) {
-		// //   match.map((item: any) => {
-		// //     axios
-		// //       .get(`/api/lol/match/v5/matches/${item}`, {
-		// //         headers: {
-		// //           "X-Riot-Token": riotApi,
-		// //         },
-		// //       })
-		// //       .then((res) => {
-		// //         console.log(res);
-		// //       });
-		// //   });
-
-		// //   // const responses = await Promise.all(requests);
-		// //   // const responses = await requests
-
-		// //   // return console.log(responses.map(response => response));
-		// // }
-		// // fetchItems(match);
-		// console.log("결과", matchResult);
-		// const gd: any = [];
-		// if ( matchResult.length == 20 ) {
-
-		// }
-		// matchResult?.forEach((match: any) => {
-		// 	match?.data?.info?.participants.forEach((user: any) => {
-		// 		if (user.summonerName == currentSearchKey) {
-		// 			gd.push(user);
-		// 		}
-		// 	});
-		// });
-		// console.log("검색유저", gd);
 		return matchResult;
 	},
 });
