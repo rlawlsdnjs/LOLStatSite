@@ -110,22 +110,22 @@ const SearchLol = () => {
 		const currentMatch = matchResult[0]?.map((match: any) => {
 			return match.data?.info?.participants;
 		});
-
+		currentUserMatch.push(currentMatch);
 		// gd.forEach((user: any) => {
 		// 	if (user.summonerName == currentSearchKey) {
 		// 		currentUserMatch.push(user);
 		// 	}
 		// });
-		const gd = (currentMatch: any) => {
-			currentMatch.forEach((user: any) => {
-				let blueTeam = user?.filter(
-					(user: any) => user.summonerName == currentSearchKey
-				);
-				return currentUserMatch.push(blueTeam);
-			});
-			console.log("검색유저", currentUserMatch);
-		};
-		gd(currentMatch);
+		// const gd = (currentMatch: any) => {
+		// 	currentMatch.forEach((user: any) => {
+		// 		let blueTeam = user?.filter(
+		// 			(user: any) => user.summonerName == currentSearchKey
+		// 		);
+		// 		return currentUserMatch.push(blueTeam);
+		// 	});
+		// 	console.log("검색유저", currentUserMatch);
+		// };
+		// gd(currentMatch);
 	};
 	if (matchResult.length != 0) {
 		currentUser(matchResult);
