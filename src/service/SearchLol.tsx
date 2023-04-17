@@ -14,7 +14,7 @@ const SearchLol = () => {
 	const [lolUser, setLolUser] = useRecoilState<any>(userDataState);
 	const setUser = useSetRecoilState(userDataState);
 	const [userState, setUserState] = useState({});
-	const [matchResult, setMatchResult] = useState<any>([]);
+	let matchResult: any = [];
 	const currentUserMatch: any = [];
 
 	const lolAllData = async () => {
@@ -71,15 +71,18 @@ const SearchLol = () => {
 				}
 				console.log("배열푸쉬", matchArr);
 				await Promise.all(matchArr)
-					.then((responses) => {
-						setMatchResult([responses]);
+					.then((responses: any) => {
+						matchResult.push(responses);
 						console.log("위결과", matchResult);
-
-						return;
+						if (matchResult.length != 0) {
+							currentUser(matchResult);
+						}
 					})
 					.catch((error) => {
 						console.log(error);
 					});
+
+				return;
 			}
 
 			// async function fetchItems(match: any) {
@@ -106,8 +109,8 @@ const SearchLol = () => {
 		}
 	};
 	const currentUser = (matchResult: any) => {
-		console.log("함수안 ", matchResult[0][0].data.info.gameCreation);
-		const currentMatch = matchResult[0]?.map((match: any) => {
+		console.log("함수안 ", matchResult[0][0]?.data.info.gameCreation);
+		const currentMatch = matchResult[0].map((match: any) => {
 			return match.data?.info?.participants;
 		});
 		currentUserMatch.push(currentMatch);
@@ -127,9 +130,7 @@ const SearchLol = () => {
 		// };
 		// gd(currentMatch);
 	};
-	if (matchResult.length != 0) {
-		currentUser(matchResult);
-	}
+
 	console.log("아래결과", matchResult);
 	console.log("검색유저", currentUserMatch);
 
