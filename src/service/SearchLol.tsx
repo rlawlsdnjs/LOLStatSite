@@ -106,22 +106,21 @@ const SearchLol = () => {
 		}
 	};
 	const currentUser = (matchResult: any) => {
+		console.log("함수안 ", matchResult);
 		matchResult[0].forEach((match: any) => {
-			console.log("현재유저 판별", match);
 			match.data.info.participants.forEach((user: any) => {
 				if (user.summonerName == currentSearchKey) {
 					currentUserMatch.push(user);
 				}
 			});
 		});
+		console.log("검색유저", currentUserMatch);
 	};
 	if (matchResult.length > 0 && matchResult.length <= 20) {
 		currentUser(matchResult);
 	}
 	console.log("아래결과", matchResult);
-	if (currentUserMatch.length == 20) {
-		console.log("검색유저", currentUserMatch);
-	}
+	console.log("검색유저", currentUserMatch);
 
 	useEffect(() => {
 		const LolKeyword = "LolKeyword";
