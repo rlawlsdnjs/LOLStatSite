@@ -30,6 +30,7 @@ export interface IlolUser {
 	userInfo: object;
 	matchInfo: object;
 	rankInfo: object;
+	matchID: object;
 }
 
 export const userDataState: any = atom<IlolUser>({
@@ -39,6 +40,7 @@ export const userDataState: any = atom<IlolUser>({
 		userInfo: {},
 		matchInfo: {},
 		rankInfo: {},
+		matchID: {},
 	},
 });
 
@@ -52,35 +54,59 @@ export const lolUserDataState = selector({
 	},
 });
 
-export const userMatchValuesState: any = selector({
-	key: "userMatchValuesState",
-
-	get: ({ get }) => {
-		const userMatchInfo = get<any>(userDataState);
-
-		const matchValue = Object.values(userMatchInfo.matchInfo);
-
-		//   match.map((item: any) => {
-		//     axios
-		//       .get(`/api/lol/match/v5/matches/${item}`, {
-		//         headers: {
-		//           "X-Riot-Token": riotApi,
-		//         },
-		//       })
-		//       .then((res) => {
-		//         console.log(res);
-		//       });
-		//   });
-
-		//   // const responses = await Promise.all(requests);
-		//   // const responses = await requests
-
-		//   // return console.log(responses.map(response => response));
-		// }
-		// fetchItems(match);
-
-		return matchValue;
+export const userMatchState: any = selector({
+	key: "userMatchState",
+	get: async ({ get }) => {
+		const matchArr = get<any>(userDataState);
+		const matchValue = Object.values(matchArr.matchID);
+		return await Promise.all(matchValue)
+			.then((responses) => {
+				return responses;
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	},
+});
+export const currentMatchParticipantsState: any = selector({
+	key: "currentMatchParticipantsState",
+	get: ({ get }) => {
+		const currentUserMatch = get<any>(userMatchState);
+
+		return currentUserMatch.map((match: any) => {
+			return match.data?.info?.participants;
+		});
+	},
+});
+
+export const currentUserMatchState: any = selector({
+	key: "currentUserMatchState",
+	get: ({ get }) => {
+		const currentSearchKey = get(searchKeyState);
+		const currentUserMatch = get<any>(currentMatchParticipantsState);
+		// const currentMatch =
+		// currentUserMatchArr.push(currentMatch);
+		// currentUserMatchArr.forEach((user: any) => {
+		// 	if (user.summonerName == currentSearchKey) {
+		// 		currentResultArr.push(user);
+		// 	}
+		// });
+		const matchValue = Object.values(userMatchState);
+		const currentUserMatchInfo: any = [];
+		currentUserMatch.forEach((user: any) => {
+			console.log(user);
+			const userFilter = user.filter(
+				(user: any) => user.summonerName == currentSearchKey
+			);
+			currentUserMatchInfo.push(userFilter);
+		});
+		return currentUserMatchInfo;
+	},
+});
+
+export const favoriteState = atom({
+	key: "favoriteState",
+	default: [],
 });
 
 // export const userMatchUrlState: any = selector({
@@ -126,81 +152,3 @@ export const userMatchValuesState: any = selector({
 // 		return matchArr;
 // 	},
 // });
-
-// export const userMatchState: any = selector({
-// 	key: "userMatchState",
-// 	get: async ({ get }) => {
-// 		const matchArr = get<any>(userMatchUrlState);
-// 		return await Promise.all(matchArr)
-// 			.then((responses) => {
-// 				return responses;
-// 			})
-// 			.catch((error) => {
-// 				console.log(error);
-// 			});
-// 		// async function fetchItems(match: any) {
-// 		//   match.map((item: any) => {
-// 		//     axios
-// 		//       .get(`/api/lol/match/v5/matches/${item}`, {
-// 		//         headers: {
-// 		//           "X-Riot-Token": riotApi,
-// 		//         },
-// 		//       })
-// 		//       .then((res) => {
-// 		//         console.log(res);
-// 		//       });
-// 		//   });
-
-// 		//   // const responses = await Promise.all(requests);
-// 		//   // const responses = await requests
-
-// 		//   // return console.log(responses.map(response => response));
-// 		// }
-// 		// fetchItems(match);
-// 	},
-// });
-// export const currentMatchParticipantsState: any = selector({
-// 	key: "currentMatchParticipantsState",
-// 	get: ({ get }) => {
-// 		const currentUserMatch = get<any>(userMatchState);
-// 		// const currentMatch =
-// 		// currentUserMatchArr.push(currentMatch);
-// 		// currentUserMatchArr.forEach((user: any) => {
-// 		// 	if (user.summonerName == currentSearchKey) {
-// 		// 		currentResultArr.push(user);
-// 		// 	}
-// 		// });
-// 		// const gd = currentMatch.forEach((user: any) => {
-// 		// 	user.filter((user: any) => user.summonerName == currentSearchKey);
-// 		// });
-
-// 		return currentUserMatch.map((match: any) => {
-// 			return match.data?.info?.participants;
-// 		});
-// 	},
-// });
-
-// export const currentUserMatchState: any = selector({
-// 	key: "currentUserMatchState",
-// 	get: ({ get }) => {
-// 		const currentSearchKey = get(searchKeyState);
-// 		const currentUserMatch = get<any>(currentMatchParticipantsState);
-// 		// const currentMatch =
-// 		// currentUserMatchArr.push(currentMatch);
-// 		// currentUserMatchArr.forEach((user: any) => {
-// 		// 	if (user.summonerName == currentSearchKey) {
-// 		// 		currentResultArr.push(user);
-// 		// 	}
-// 		// });
-// 		const matchValue = Object.values(userMatchState);
-// 		console.log(matchValue);
-// 		return currentUserMatch.forEach((user: any) => {
-// 			user.filter((user: any) => user.summonerName == currentSearchKey);
-// 		});
-// 	},
-// });
-
-export const favoriteState = atom({
-	key: "favoriteState",
-	default: [],
-});
