@@ -19,6 +19,8 @@ const UserMatch = () => {
 	const [lolSearch, setLolSearch] = useRecoilState(searchKeyState);
 	const [matchData, setMatchData] = useState([]);
 	const [userMatch, setUserMatch] = useState<any>([]);
+	let searchUser: any = [];
+
 	const keywordChange = (e: any) => {
 		e.preventDefault();
 		setLolSearch(e.target.textContent);
@@ -26,8 +28,6 @@ const UserMatch = () => {
 	useEffect(() => {
 		setMatchData(matchInfo[0]);
 	}, [matchInfo]);
-
-	let searchUser: any = [];
 
 	if (matchData.length != 0) {
 		matchData.forEach((match: any) => {
@@ -38,7 +38,7 @@ const UserMatch = () => {
 			});
 		});
 	}
-	console.log("검색유저", userMatch);
+	// console.log("검색유≈저", userMatch);
 
 	return (
 		<React.Suspense fallback={<Loading></Loading>}>

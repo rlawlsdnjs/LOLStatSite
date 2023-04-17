@@ -23,7 +23,6 @@ function App() {
 	const currentSearchKey = useRecoilValue(searchKeyState);
 	const LolKeyword = "LolKeyword";
 	const keywordSession = sessionStorage.getItem(LolKeyword);
-	console.log(keywordSession);
 
 	SearchLol();
 

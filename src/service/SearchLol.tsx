@@ -13,7 +13,6 @@ const SearchLol = () => {
 	const remote = axios.create();
 	const [lolUser, setLolUser] = useRecoilState<any>(userDataState);
 	const setUser = useSetRecoilState(userDataState);
-	const userData = useRecoilValue<any>(userDataState);
 	const [userState, setUserState] = useState({});
 	const lolAllData = async () => {
 		try {
@@ -61,8 +60,8 @@ const SearchLol = () => {
 			return;
 		} else {
 			sessionStorage.setItem(LolKeyword, currentSearchKey);
+			lolAllData();
 		}
-		lolAllData();
 	}, [currentSearchKey]);
 
 	// return (

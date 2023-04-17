@@ -16,6 +16,15 @@ export const searchKeyState = atom<string>({
 	default: `${sessionStorage.getItem(LolKeyword)}`,
 });
 
+export const lolSearchChange = selector({
+	key: "lolSearchChange",
+	get: ({ get }) => {
+		const currentSearchKey = get<string>(searchKeyState);
+		console.log(currentSearchKey);
+		return console.log(1);
+	},
+});
+
 export interface IlolUser {
 	id: string;
 	userInfo: object;
@@ -93,7 +102,6 @@ export const userMatchState: any = selector({
 		// }
 		// fetchItems(match);
 		console.log("결과", matchResult);
-		console.log(match);
 
 		return matchResult;
 	},
