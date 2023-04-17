@@ -116,14 +116,16 @@ const SearchLol = () => {
 		// 		currentUserMatch.push(user);
 		// 	}
 		// });
-		const gd = currentMatch.forEach((user: any) => {
-			let blueTeam = user?.filter(
-				(user: any) => user.summonerName == currentSearchKey
-			);
-			return currentUserMatch.push(blueTeam);
-		});
-		console.log(gd);
-		console.log("검색유저", currentUserMatch);
+		const gd = (currentMatch: any) => {
+			currentMatch.forEach((user: any) => {
+				let blueTeam = user?.filter(
+					(user: any) => user.summonerName == currentSearchKey
+				);
+				return currentUserMatch.push(blueTeam);
+			});
+			console.log("검색유저", currentUserMatch);
+		};
+		gd(currentMatch);
 	};
 	if (matchResult.length != 0) {
 		currentUser(matchResult);
