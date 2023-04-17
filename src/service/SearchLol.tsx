@@ -115,11 +115,13 @@ const SearchLol = () => {
 			});
 		});
 	};
-	if (matchResult.length != 0) {
+	if (matchResult.length > 0 && matchResult.length <= 20) {
 		currentUser();
 	}
 	console.log("아래결과", matchResult);
-	console.log("검색유저", currentUserMatch);
+	if (currentUserMatch.length == 20) {
+		console.log("검색유저", currentUserMatch);
+	}
 
 	useEffect(() => {
 		const LolKeyword = "LolKeyword";
