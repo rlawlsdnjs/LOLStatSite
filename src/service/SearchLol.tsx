@@ -106,7 +106,7 @@ const SearchLol = () => {
 		}
 	};
 	const currentUser = (matchResult: any) => {
-		console.log("함수안 ", matchResult);
+		console.log("함수안 ", matchResult[0][0].data.info.gameCreation);
 		const currentMatch = matchResult[0]?.map((match: any) => {
 			return match.data?.info?.participants;
 		});
