@@ -107,13 +107,22 @@ const SearchLol = () => {
 	};
 	const currentUser = (matchResult: any) => {
 		console.log("함수안 ", matchResult);
-		matchResult[0]?.forEach((match: any) => {
-			match?.data?.info?.participants?.forEach((user: any) => {
-				if (user.summonerName == currentSearchKey) {
-					currentUserMatch.push(user);
-				}
-			});
+		const currentMatch = matchResult[0]?.map((match: any) => {
+			return match.data?.info?.participants;
 		});
+
+		// gd.forEach((user: any) => {
+		// 	if (user.summonerName == currentSearchKey) {
+		// 		currentUserMatch.push(user);
+		// 	}
+		// });
+		const gd = currentMatch.forEach((user: any) => {
+			let blueTeam = user?.filter(
+				(user: any) => user.summonerName == currentSearchKey
+			);
+			return currentUserMatch.push(blueTeam);
+		});
+		console.log(gd);
 		console.log("검색유저", currentUserMatch);
 	};
 	if (matchResult.length != 0) {
