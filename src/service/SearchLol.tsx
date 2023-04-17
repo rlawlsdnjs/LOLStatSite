@@ -7,14 +7,12 @@ import { userDataState, searchKeyState } from "../store/lol";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import React from "react";
 import Loading from "../components/Loading";
-const SearchLol = (currentSearchKey: any) => {
+const SearchLol = () => {
+	const currentSearchKey = useRecoilValue(searchKeyState);
 	const riotApi = import.meta.env.VITE_RIOT_API_KEY;
 	const remote = axios.create();
 	const [lolUser, setLolUser] = useRecoilState<any>(userDataState);
-	const setUser = useSetRecoilState(userDataState);
 	// const [userState, setUserState] = useState({});
-	let matchResult: any = [];
-	const currentUserMatch: any = [];
 
 	const lolAllData = async () => {
 		try {
@@ -45,12 +43,27 @@ const SearchLol = (currentSearchKey: any) => {
 				"?api_key=" +
 				riotApi;
 			const champInfo = await remote.get(champInfoUrl);
+			const matchValue = Object.values(matchInfo.data);
+
+			const matchArr: any = [];
+
+			for (let i = 0, len = 20; i < len; i++) {
+				matchArr.push(
+					remote.get(`/api/lol/match/v5/matches/${matchValue[i]}`, {
+						headers: {
+							"X-Riot-Token": riotApi,
+						},
+					})
+				);
+			}
+			console.log(matchArr);
 			setLolUser({
 				id: userInfo.data.id,
 				userInfo: userInfo.data,
 				rankInfo: rankInfo.data[0],
 				matchInfo: matchInfo.data,
 				mostChampInfo: champInfo.data[0].championId,
+				matchID: matchArr,
 			});
 			// const match = Object.values(lolUser?.matchInfo);
 
@@ -106,31 +119,6 @@ const SearchLol = (currentSearchKey: any) => {
 			console.log(`Error: ${error}`);
 		}
 	};
-	// const currentUser = (matchResult: any) => {
-	// 	console.log("함수안 ", matchResult[0][0]?.data.info.gameCreation);
-	// 	const currentMatch = matchResult[0].map((match: any) => {
-	// 		return match.data?.info?.participants;
-	// 	});
-	// 	currentUserMatch.push(currentMatch);
-	// 	// gd.forEach((user: any) => {
-	// 	// 	if (user.summonerName == currentSearchKey) {
-	// 	// 		currentUserMatch.push(user);
-	// 	// 	}
-	// 	// });
-	// 	// const gd = (currentMatch: any) => {
-	// 	// 	currentMatch.forEach((user: any) => {
-	// 	// 		let blueTeam = user?.filter(
-	// 	// 			(user: any) => user.summonerName == currentSearchKey
-	// 	// 		);
-	// 	// 		return currentUserMatch.push(blueTeam);
-	// 	// 	});
-	// 	// 	console.log("검색유저", currentUserMatch);
-	// 	// };
-	// 	// gd(currentMatch);
-	// };
-
-	// console.log("아래결과", matchResult);
-	// console.log("검색유저", currentUserMatch);
 
 	useEffect(() => {
 		const LolKeyword = "LolKeyword";

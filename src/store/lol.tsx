@@ -83,98 +83,120 @@ export const userMatchValuesState: any = selector({
 	},
 });
 
-export const userMatchUrlState: any = selector({
-	key: "userMatchUrlState",
-	get: ({ get }) => {
-		const matchValue = get<any>(userMatchValuesState);
-		const remote = axios.create();
-		const matchArr: any = [];
-		const matchResult: any = [];
-
-		for (let i = 0, len = 20; i < len; i++) {
-			matchArr.push(
-				remote.get(`/api/lol/match/v5/matches/${matchValue[i]}`, {
-					headers: {
-						"X-Riot-Token": riotApi,
-					},
-				})
-			);
-		}
-
-		// async function fetchItems(match: any) {
-		//   match.map((item: any) => {
-		//     axios
-		//       .get(`/api/lol/match/v5/matches/${item}`, {
-		//         headers: {
-		//           "X-Riot-Token": riotApi,
-		//         },
-		//       })
-		//       .then((res) => {
-		//         console.log(res);
-		//       });
-		//   });
-
-		//   // const responses = await Promise.all(requests);
-		//   // const responses = await requests
-
-		//   // return console.log(responses.map(response => response));
-		// }
-		// fetchItems(match);
-
-		return matchArr;
-	},
-});
-
-export const userMatchState: any = selector({
-	key: "userMatchState",
-	get: async ({ get }) => {
-		const matchArr = get<any>(userMatchUrlState);
-		return await Promise.all(matchArr)
-			.then((responses) => {
-				return responses;
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-		// async function fetchItems(match: any) {
-		//   match.map((item: any) => {
-		//     axios
-		//       .get(`/api/lol/match/v5/matches/${item}`, {
-		//         headers: {
-		//           "X-Riot-Token": riotApi,
-		//         },
-		//       })
-		//       .then((res) => {
-		//         console.log(res);
-		//       });
-		//   });
-
-		//   // const responses = await Promise.all(requests);
-		//   // const responses = await requests
-
-		//   // return console.log(responses.map(response => response));
-		// }
-		// fetchItems(match);
-	},
-});
-// export const currentUserMatchState: any = selector({
-// 	key: "currentUserMatchState",
+// export const userMatchUrlState: any = selector({
+// 	key: "userMatchUrlState",
 // 	get: ({ get }) => {
-// 		const currentSearchKey = get(searchKeyState);
+// 		const userMatchInfo = get<any>(userDataState);
+
+// 		const matchValue = Object.values(userMatchInfo.matchInfo);
+// 		console.log(matchValue);
+// 		const remote = axios.create();
+// 		const matchArr: any = [];
+
+// 		for (let i = 0, len = 20; i < len; i++) {
+// 			matchArr.push(
+// 				remote.get(`/api/lol/match/v5/matches/${matchValue[i]}`, {
+// 					headers: {
+// 						"X-Riot-Token": riotApi,
+// 					},
+// 				})
+// 			);
+// 		}
+
+// 		// async function fetchItems(match: any) {
+// 		//   match.map((item: any) => {
+// 		//     axios
+// 		//       .get(`/api/lol/match/v5/matches/${item}`, {
+// 		//         headers: {
+// 		//           "X-Riot-Token": riotApi,
+// 		//         },
+// 		//       })
+// 		//       .then((res) => {
+// 		//         console.log(res);
+// 		//       });
+// 		//   });
+
+// 		//   // const responses = await Promise.all(requests);
+// 		//   // const responses = await requests
+
+// 		//   // return console.log(responses.map(response => response));
+// 		// }
+// 		// fetchItems(match);
+
+// 		return matchArr;
+// 	},
+// });
+
+// export const userMatchState: any = selector({
+// 	key: "userMatchState",
+// 	get: async ({ get }) => {
+// 		const matchArr = get<any>(userMatchUrlState);
+// 		return await Promise.all(matchArr)
+// 			.then((responses) => {
+// 				return responses;
+// 			})
+// 			.catch((error) => {
+// 				console.log(error);
+// 			});
+// 		// async function fetchItems(match: any) {
+// 		//   match.map((item: any) => {
+// 		//     axios
+// 		//       .get(`/api/lol/match/v5/matches/${item}`, {
+// 		//         headers: {
+// 		//           "X-Riot-Token": riotApi,
+// 		//         },
+// 		//       })
+// 		//       .then((res) => {
+// 		//         console.log(res);
+// 		//       });
+// 		//   });
+
+// 		//   // const responses = await Promise.all(requests);
+// 		//   // const responses = await requests
+
+// 		//   // return console.log(responses.map(response => response));
+// 		// }
+// 		// fetchItems(match);
+// 	},
+// });
+// export const currentMatchParticipantsState: any = selector({
+// 	key: "currentMatchParticipantsState",
+// 	get: ({ get }) => {
 // 		const currentUserMatch = get<any>(userMatchState);
-// 		const currentMatch = currentUserMatch[0][0].map((match: any) => {
-// 			return match.data?.info?.participants;
-// 		});
+// 		// const currentMatch =
 // 		// currentUserMatchArr.push(currentMatch);
 // 		// currentUserMatchArr.forEach((user: any) => {
 // 		// 	if (user.summonerName == currentSearchKey) {
 // 		// 		currentResultArr.push(user);
 // 		// 	}
 // 		// });
-// 		const gd = currentMatch.forEach((user: any) => {
-// 			user?.filter((user: any) => user.summonerName == currentSearchKey);
+// 		// const gd = currentMatch.forEach((user: any) => {
+// 		// 	user.filter((user: any) => user.summonerName == currentSearchKey);
+// 		// });
+
+// 		return currentUserMatch.map((match: any) => {
+// 			return match.data?.info?.participants;
 // 		});
-// 		return gd;
+// 	},
+// });
+
+// export const currentUserMatchState: any = selector({
+// 	key: "currentUserMatchState",
+// 	get: ({ get }) => {
+// 		const currentSearchKey = get(searchKeyState);
+// 		const currentUserMatch = get<any>(currentMatchParticipantsState);
+// 		// const currentMatch =
+// 		// currentUserMatchArr.push(currentMatch);
+// 		// currentUserMatchArr.forEach((user: any) => {
+// 		// 	if (user.summonerName == currentSearchKey) {
+// 		// 		currentResultArr.push(user);
+// 		// 	}
+// 		// });
+// 		const matchValue = Object.values(userMatchState);
+// 		console.log(matchValue);
+// 		return currentUserMatch.forEach((user: any) => {
+// 			user.filter((user: any) => user.summonerName == currentSearchKey);
+// 		});
 // 	},
 // });
 

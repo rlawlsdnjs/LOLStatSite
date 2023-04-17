@@ -24,7 +24,7 @@ function App() {
 	const LolKeyword = "LolKeyword";
 	const keywordSession = sessionStorage.getItem(LolKeyword);
 
-	SearchLol(currentSearchKey);
+	SearchLol();
 
 	return (
 		<BrowserRouter>
