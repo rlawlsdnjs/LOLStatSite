@@ -3,12 +3,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { setLogLevel } from "firebase/firestore";
 import LolSearchResult from "../components/lol/search/LolSearchResult";
-import { userDataState, searchKeyState, userMatchState } from "../store/lol";
+import { userDataState, searchKeyState } from "../store/lol";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import React from "react";
 import Loading from "../components/Loading";
-const SearchLol = () => {
-	const currentSearchKey = useRecoilValue(searchKeyState);
+const SearchLol = (currentSearchKey: any) => {
 	const riotApi = import.meta.env.VITE_RIOT_API_KEY;
 	const remote = axios.create();
 	const [lolUser, setLolUser] = useRecoilState<any>(userDataState);
@@ -53,7 +52,6 @@ const SearchLol = () => {
 				matchInfo: matchInfo.data,
 				mostChampInfo: champInfo.data[0].championId,
 			});
-			console.log(matchInfo.data);
 			// const match = Object.values(lolUser?.matchInfo);
 
 			// 매치 별 정보

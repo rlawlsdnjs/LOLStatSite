@@ -23,7 +23,8 @@ function App() {
 	const currentSearchKey = useRecoilValue(searchKeyState);
 	const LolKeyword = "LolKeyword";
 	const keywordSession = sessionStorage.getItem(LolKeyword);
-	SearchLol();
+
+	SearchLol(currentSearchKey);
 
 	return (
 		<BrowserRouter>
