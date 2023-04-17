@@ -105,7 +105,7 @@ const SearchLol = () => {
 			console.log(`Error: ${error}`);
 		}
 	};
-	const currentUser = () => {
+	const currentUser = (matchResult: any) => {
 		matchResult[0].forEach((match: any) => {
 			console.log("현재유저 판별", match);
 			match.data.info.participants.forEach((user: any) => {
@@ -116,7 +116,7 @@ const SearchLol = () => {
 		});
 	};
 	if (matchResult.length > 0 && matchResult.length <= 20) {
-		currentUser();
+		currentUser(matchResult);
 	}
 	console.log("아래결과", matchResult);
 	if (currentUserMatch.length == 20) {
