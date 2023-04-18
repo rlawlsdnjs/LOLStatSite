@@ -19,7 +19,7 @@ import Loading from "../../Loading";
 
 const LolSearchResult = () => {
 	const currentMatch = useRecoilValue<any>(userDataState);
-	console.log(currentMatch.allMatch[0].data.info.gameCreation);
+	console.log(currentMatch);
 
 	// const currentMatchParticipants = useRecoilValue(
 	// 	currentMatchParticipantsState

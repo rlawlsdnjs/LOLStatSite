@@ -67,9 +67,13 @@ const SearchLol = () => {
 				});
 			console.log("allmatch", allMatch);
 
-			// const participants = allMatch.map((match: any) => {
-			// 	return match.data.info.participants;
-			// });
+			const participants = (allMatch: any) => {
+				const gd = allMatch.map((match: any) => {
+					return match.data.info.participants;
+				});
+				console.log(gd);
+			};
+			participants(allMatch);
 			// const gd: any = [];
 			// const currentUserMatchInfo: any = participants?.forEach(
 			// 	(user: any, idx: number) => {
