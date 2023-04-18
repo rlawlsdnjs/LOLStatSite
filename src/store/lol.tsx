@@ -31,7 +31,6 @@ export interface IlolUser {
 	matchInfo: object;
 	rankInfo: object;
 	matchID: object;
-	allMatch: object;
 }
 
 export const userDataState: any = atom<IlolUser>({
@@ -42,7 +41,6 @@ export const userDataState: any = atom<IlolUser>({
 		matchInfo: {},
 		rankInfo: {},
 		matchID: {},
-		allMatch: {},
 	},
 });
 

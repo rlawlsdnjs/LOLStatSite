@@ -58,20 +58,25 @@ const SearchLol = () => {
 			}
 			console.log(matchArr);
 
-			const allMatch: any = await Promise.all(matchArr)
+			await Promise.all(matchArr)
 				.then((responses) => {
+					const participants = responses.map((match: any) => {
+						return match.data.info.participants;
+					});
+					console.log(participants);
+					setLolUser({
+						id: userInfo.data.id,
+						userInfo: userInfo.data,
+						rankInfo: rankInfo.data[0],
+						matchInfo: matchInfo.data,
+						mostChampInfo: champInfo.data[0].championId,
+						matchID: matchArr,
+					});
 					return responses;
 				})
 				.catch((error) => {
 					console.log(error);
 				});
-			console.log("allmatch", allMatch);
-			if (allMatch.length != 0) {
-				const participants = allMatch.map((match: any) => {
-					return match.data.info.participants;
-				});
-				console.log(participants);
-			}
 
 			// const gd: any = [];
 			// const currentUserMatchInfo: any = participants?.forEach(
@@ -87,15 +92,6 @@ const SearchLol = () => {
 
 			// console.log(gd);
 
-			setLolUser({
-				id: userInfo.data.id,
-				userInfo: userInfo.data,
-				rankInfo: rankInfo.data[0],
-				matchInfo: matchInfo.data,
-				mostChampInfo: champInfo.data[0].championId,
-				matchID: matchArr,
-				allMatch: allMatch,
-			});
 			// const match = Object.values(lolUser?.matchInfo);
 
 			// 매치 별 정보
