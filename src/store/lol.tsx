@@ -31,6 +31,7 @@ export interface IlolUser {
 	matchInfo: object;
 	rankInfo: object;
 	matchID: object;
+	allMatch: object;
 }
 
 export const userDataState: any = atom<IlolUser>({
@@ -41,6 +42,7 @@ export const userDataState: any = atom<IlolUser>({
 		matchInfo: {},
 		rankInfo: {},
 		matchID: {},
+		allMatch: {},
 	},
 });
 
@@ -54,55 +56,51 @@ export const lolUserDataState = selector({
 	},
 });
 
-export const userMatchState: any = selector({
-	key: "userMatchState",
-	get: async ({ get }) => {
-		const matchArr = get<any>(userDataState);
-		const matchValue = Object.values(matchArr.matchID);
-		return await Promise.all(matchValue)
-			.then((responses) => {
-				return responses;
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	},
-});
-export const currentMatchParticipantsState: any = selector({
-	key: "currentMatchParticipantsState",
-	get: ({ get }) => {
-		const currentUserMatch = get<any>(userMatchState);
+// export const userMatchState: any = selector({
+// 	key: "userMatchState",
+// 	get: async ({ get }) => {
+// 		const matchArr = get<any>(userDataState);
+// 		const matchValue = Object.values(matchArr.matchID);
+// 		return await Promise.all(matchValue)
+// 			.then((responses) => {
+// 				return responses;
+// 			})
+// 			.catch((error) => {
+// 				console.log(error);
+// 			});
+// 	},
+// });
+// export const currentMatchParticipantsState: any = selector({
+// 	key: "currentMatchParticipantsState",
+// 	get: async ({ get }) => {
+// 		const currentUserMatch = get<any>(userDataState);
+// 		console.log("recoil", currentUserMatch);
+// 		return currentUserMatch?.allMatch.map((match: any) => {
+// 			return match?.data?.info?.participants;
+// 		});
+// 	},
+// });
 
-		return currentUserMatch?.map((match: any) => {
-			console.log(match);
-			return match?.data?.info?.participants;
-		});
-	},
-});
+// export const currentUserMatchState: any = selector({
+// 	key: "currentUserMatchState",
+// 	get: ({ get }) => {
+// 		const currentSearchKey = get(searchKeyState);
+// 		const currentUserMatch = get<any>(currentMatchParticipantsState);
+// 		const gd: any = [];
+// 		const currentUserMatchInfo: any = currentUserMatch?.forEach(
+// 			(user: any, idx: number) => {
+// 				user.reduce((ac: any, name: any) => {
+// 					if (name.summonerName == currentSearchKey) {
+// 						gd.push(name);
+// 					}
+// 				});
+// 				return;
+// 			}
+// 		);
 
-export const currentUserMatchState: any = selector({
-	key: "currentUserMatchState",
-	get: ({ get }) => {
-		const currentSearchKey = get(searchKeyState);
-		const currentUserMatch = get<any>(currentMatchParticipantsState);
-		// const currentMatch =
-		// currentUserMatchArr.push(currentMatch);
-		// currentUserMatchArr.forEach((user: any) => {
-		// 	if (user.summonerName == currentSearchKey) {
-		// 		currentResultArr.push(user);
-		// 	}
-		// });
-		const matchValue = Object.values(userMatchState);
-		const currentUserMatchInfo: any = [];
-		currentUserMatch?.forEach((user: any) => {
-			const userFilter = user?.filter(
-				(name: any) => name?.summonerName == currentSearchKey
-			);
-			currentUserMatchInfo.push(userFilter);
-		});
-		return currentUserMatchInfo;
-	},
-});
+// 		return gd;
+// 	},
+// });
 
 export const favoriteState = atom({
 	key: "favoriteState",

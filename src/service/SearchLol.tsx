@@ -66,11 +66,13 @@ const SearchLol = () => {
 					console.log(error);
 				});
 			console.log("allmatch", allMatch);
+			if (allMatch.length != 0) {
+				const participants = allMatch.map((match: any) => {
+					return match.data.info.participants;
+				});
+				console.log(participants);
+			}
 
-			const participants = allMatch.map((match: any) => {
-				return match?.data?.info?.participants;
-			});
-			console.log(participants);
 			// const gd: any = [];
 			// const currentUserMatchInfo: any = participants?.forEach(
 			// 	(user: any, idx: number) => {

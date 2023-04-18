@@ -2,10 +2,10 @@ import { useRecoilValue, useRecoilValueLoadable } from "recoil";
 import {
 	searchKeyState,
 	userDataState,
-	userMatchState,
+	// userMatchState,
 	// userMatchUrlState,
-	currentMatchParticipantsState,
-	currentUserMatchState,
+	// currentMatchParticipantsState,
+	// currentUserMatchState,
 } from "../../../store/lol";
 import Profile from "../profile/Profile";
 import UserMatch from "../match/Match";
@@ -21,6 +21,13 @@ const LolSearchResult = () => {
 	const currentMatch = useRecoilValue(userDataState);
 	console.log(currentMatch);
 
+	// const currentMatchParticipants = useRecoilValue(
+	// 	currentMatchParticipantsState
+	// );
+	// console.log(currentMatchParticipants);
+
+	// const currentUserMatch = useRecoilValue(currentUserMatchState);
+	// console.log(currentUserMatch);
 	return (
 		<React.Suspense fallback={<Loading></Loading>}>
 			<ResultWrap>
