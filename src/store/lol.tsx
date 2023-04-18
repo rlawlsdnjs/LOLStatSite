@@ -94,9 +94,8 @@ export const currentUserMatchState: any = selector({
 		const matchValue = Object.values(userMatchState);
 		const currentUserMatchInfo: any = [];
 		currentUserMatch.forEach((user: any) => {
-			console.log(user);
 			const userFilter = user.filter(
-				(user: any) => user.summonerName == currentSearchKey
+				(name: any) => name.summonerName == currentSearchKey
 			);
 			currentUserMatchInfo.push(userFilter);
 		});
