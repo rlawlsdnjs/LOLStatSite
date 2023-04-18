@@ -58,7 +58,7 @@ const SearchLol = () => {
 			}
 			console.log(matchArr);
 
-			const allMatch = await Promise.all(matchArr)
+			const allMatch: any = await Promise.all(matchArr)
 				.then((responses) => {
 					return responses;
 				})
@@ -67,10 +67,10 @@ const SearchLol = () => {
 				});
 			console.log("allmatch", allMatch);
 
-			// const participants = allMatch?.map((match: any) => {
-			// 	return match?.data?.info?.participants;
-			// });
-			// console.log(participants?.length);
+			const participants = allMatch.map((match: any) => {
+				return match?.data?.info?.participants;
+			});
+			console.log(participants);
 			// const gd: any = [];
 			// const currentUserMatchInfo: any = participants?.forEach(
 			// 	(user: any, idx: number) => {
