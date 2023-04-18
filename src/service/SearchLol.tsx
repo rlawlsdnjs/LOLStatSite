@@ -60,7 +60,7 @@ const SearchLol = () => {
 
 			await Promise.all(matchArr)
 				.then((responses) => {
-					const participants = responses?.map((match: any) => {
+					const participants = responses.map((match: any) => {
 						return match?.data?.info?.participants;
 					});
 					console.log(participants);
