@@ -19,8 +19,15 @@ import Loading from "../../Loading";
 
 const LolSearchResult = () => {
 	const currentMatch = useRecoilValue<any>(userDataState);
-	console.log("전체", currentMatch.id);
-
+	console.log("전체", currentMatch);
+	const [participants, setParticipants] = useState<any>([]);
+	useEffect(() => {
+		setParticipants(currentMatch.allMatch);
+	}, [currentMatch]);
+	console.log("참가자", participants);
+	if (participants.length != 0) {
+		console.log(participants[0].data.info.gameCreation);
+	}
 	// const currentMatchParticipants = useRecoilValue(
 	// 	currentMatchParticipantsState
 	// );
