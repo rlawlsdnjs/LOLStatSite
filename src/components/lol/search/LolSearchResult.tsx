@@ -24,10 +24,7 @@ const LolSearchResult = () => {
 	useEffect(() => {
 		setParticipants(currentMatch.allMatch);
 	}, [currentMatch]);
-	console.log("참가자", participants);
-	if (participants.length != 0) {
-		console.log(participants[0].data.info.gameCreation);
-	}
+
 	// const currentMatchParticipants = useRecoilValue(
 	// 	currentMatchParticipantsState
 	// );
