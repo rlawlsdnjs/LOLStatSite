@@ -65,7 +65,7 @@ const SearchLol = () => {
 				.catch((error) => {
 					console.log(error);
 				});
-			console.log("allmatch", allMatch[0].data.info.gameCreation);
+			console.log("allmatch", allMatch);
 
 			// const participants = allMatch.map((match: any) => {
 			// 	return match.data.info.participants;
