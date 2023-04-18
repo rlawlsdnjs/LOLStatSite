@@ -66,6 +66,19 @@ const SearchLol = () => {
 					console.log(error);
 				});
 			console.log("allmatch", allMatch);
+
+			const participants = allMatch?.map((match: any) => {
+				return match?.data?.info?.participants;
+			});
+
+			const currentUserMatchInfo: any = [];
+			participants?.forEach((user: any) => {
+				const userFilter = user?.filter(
+					(name: any) => name?.summonerName == currentSearchKey
+				);
+				currentUserMatchInfo.push(userFilter);
+			});
+			console.log("검색유저", currentUserMatchInfo);
 			setLolUser({
 				id: userInfo.data.id,
 				userInfo: userInfo.data,

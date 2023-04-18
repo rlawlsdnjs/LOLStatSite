@@ -21,14 +21,6 @@ const LolSearchResult = () => {
 	// const currentMatch = useRecoilValue(userMatchUrlState);
 	// console.log(currentMatch);
 
-	const gd = useRecoilValue(userMatchState);
-	console.log(gd);
-
-	const dd = useRecoilValue(currentMatchParticipantsState);
-	console.log(dd);
-
-	const tt = useRecoilValue(currentUserMatchState);
-	console.log(tt);
 	return (
 		<React.Suspense fallback={<Loading></Loading>}>
 			<ResultWrap>
