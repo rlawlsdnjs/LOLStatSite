@@ -67,23 +67,23 @@ const SearchLol = () => {
 				});
 			console.log("allmatch", allMatch);
 
-			const participants = allMatch?.map((match: any) => {
-				return match?.data?.info?.participants;
-			});
-			console.log(participants?.length);
-			const gd: any = [];
-			const currentUserMatchInfo: any = participants?.forEach(
-				(user: any, idx: number) => {
-					user.reduce((ac: any, name: any) => {
-						if (name.summonerName == currentSearchKey) {
-							gd.push(name);
-						}
-					});
-					return;
-				}
-			);
+			// const participants = allMatch?.map((match: any) => {
+			// 	return match?.data?.info?.participants;
+			// });
+			// console.log(participants?.length);
+			// const gd: any = [];
+			// const currentUserMatchInfo: any = participants?.forEach(
+			// 	(user: any, idx: number) => {
+			// 		user.reduce((ac: any, name: any) => {
+			// 			if (name.summonerName == currentSearchKey) {
+			// 				gd.push(name);
+			// 			}
+			// 		});
+			// 		return;
+			// 	}
+			// );
 
-			console.log(gd);
+			// console.log(gd);
 
 			setLolUser({
 				id: userInfo.data.id,
@@ -92,6 +92,7 @@ const SearchLol = () => {
 				matchInfo: matchInfo.data,
 				mostChampInfo: champInfo.data[0].championId,
 				matchID: matchArr,
+				allMatch: allMatch,
 			});
 			// const match = Object.values(lolUser?.matchInfo);
 

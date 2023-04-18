@@ -18,8 +18,8 @@ import LolSearch from "./LolSearch";
 import Loading from "../../Loading";
 
 const LolSearchResult = () => {
-	// const currentMatch = useRecoilValue(userMatchUrlState);
-	// console.log(currentMatch);
+	const currentMatch = useRecoilValue(userDataState);
+	console.log(currentMatch);
 
 	return (
 		<React.Suspense fallback={<Loading></Loading>}>
