@@ -74,7 +74,8 @@ export const currentMatchParticipantsState: any = selector({
 		const currentUserMatch = get<any>(userMatchState);
 
 		return currentUserMatch.map((match: any) => {
-			return match.data?.info?.participants;
+			console.log(match);
+			return match.data.info.participants;
 		});
 	},
 });
