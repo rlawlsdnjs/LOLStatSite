@@ -19,7 +19,7 @@ import Loading from "../../Loading";
 
 const LolSearchResult = () => {
 	const currentMatch = useRecoilValue<any>(userDataState);
-	console.log(currentMatch);
+	console.log("전체", currentMatch.id);
 
 	// const currentMatchParticipants = useRecoilValue(
 	// 	currentMatchParticipantsState
