@@ -75,7 +75,7 @@ export const currentMatchParticipantsState: any = selector({
 
 		return currentUserMatch?.map((match: any) => {
 			console.log(match);
-			return match.data.info.participants;
+			return match?.data?.info?.participants;
 		});
 	},
 });
