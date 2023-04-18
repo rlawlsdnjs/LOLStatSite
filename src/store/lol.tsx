@@ -98,7 +98,7 @@ export const currentUserMatchState: any = selector({
 			const userFilter = user?.filter(
 				(name: any) => name?.summonerName == currentSearchKey
 			);
-			currentUserMatchInfo?.push(userFilter);
+			currentUserMatchInfo.push(userFilter);
 		});
 		return currentUserMatchInfo;
 	},
