@@ -68,7 +68,7 @@ const SearchLol = () => {
 			console.log("allmatch", allMatch);
 
 			const participants = allMatch?.map((match: any) => {
-				return match.data.info.participants;
+				return match?.data?.info?.participants;
 			});
 			console.log(participants?.length);
 			const gd: any = [];
