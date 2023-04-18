@@ -57,6 +57,15 @@ const SearchLol = () => {
 				);
 			}
 			console.log(matchArr);
+
+			const allMatch = await Promise.all(matchArr)
+				.then((responses) => {
+					return responses;
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+			console.log("allmatch", allMatch);
 			setLolUser({
 				id: userInfo.data.id,
 				userInfo: userInfo.data,
