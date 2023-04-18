@@ -18,7 +18,7 @@ import LolSearch from "./LolSearch";
 import Loading from "../../Loading";
 
 const LolSearchResult = () => {
-	const currentMatch = useRecoilValue(userDataState);
+	const currentMatch = useRecoilValue<any>(userDataState);
 	console.log(currentMatch);
 
 	// const currentMatchParticipants = useRecoilValue(
