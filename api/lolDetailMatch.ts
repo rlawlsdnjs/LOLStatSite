@@ -6,7 +6,7 @@ const URL_ASIA_RIOT = 'https://asia.api.riotgames.com';
 export default async function getDetailMatch(data:string) {
   try {
 
-    const res = await fetch(`${URL_ASIA_RIOT}/lol/match/v5/matches/${data}?${KEY}`);
+    const res = await fetch(`${URL_ASIA_RIOT}/lol/match/v5/matches/${data}?api_key=${KEY}`);
 
     const result = await res.json().then((data) => data);
 
