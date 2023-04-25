@@ -7,6 +7,8 @@ import { userDataState, searchKeyState } from "../store/lol";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import React from "react";
 import Loading from "../components/Loading";
+
+import getDetailMatch from "../../api/lolDetailMatch";
 const SearchLol = () => {
 	const currentSearchKey = useRecoilValue(searchKeyState);
 	const riotApi = import.meta.env.VITE_RIOT_API_KEY;
@@ -57,7 +59,9 @@ const SearchLol = () => {
 				);
 			}
 			console.log(matchArr);
-
+			const data = "KR6035610292";
+			const gd = await getDetailMatch(data);
+			console.log(gd);
 			const allMatch: any = await Promise.all(matchArr)
 				.then((responses) => {
 					return responses;
@@ -70,7 +74,7 @@ const SearchLol = () => {
 			const participants = allMatch.map((match: any) => {
 				return match.data.info.participants;
 			});
-			console.log(participants);
+
 			// const gd: any = [];
 			// const currentUserMatchInfo: any = participants?.forEach(
 			// 	(user: any, idx: number) => {

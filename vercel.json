@@ -1,3 +1,9 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "functions": {
+    "api/lolDetailMatch.ts": {
+      "memory": 1024, 
+      "maxDuration": 10 
+    }
+  }
 }
