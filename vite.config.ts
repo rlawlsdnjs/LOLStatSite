@@ -18,11 +18,7 @@ export default defineConfig({
     outDir: 'dist',
     target: 'esnext',
     ssr: false,
-    lib: {
-      entry: 'index.tsx',
-      formats: ['es'],
-      fileName: 'index',
-    },
+
     rollupOptions: {
       external: ['react', 'react-dom'],
       output: {
