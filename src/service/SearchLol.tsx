@@ -59,7 +59,7 @@ const SearchLol = () => {
 				);
 			}
 			console.log(matchArr);
-			// const gdgd = "KR6035610292";
+			const gdgd = "KR6035610292";
 			// const gd = await getDetailMatch(gdgd);
 			// console.log(gd);
 			const allMatch: any = await Promise.all(matchArr)
