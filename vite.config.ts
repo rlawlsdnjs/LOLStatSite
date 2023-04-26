@@ -14,5 +14,24 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    outDir: 'dist',
+    target: 'esnext',
+    ssr: false,
+    lib: {
+      entry: 'index.tsx',
+      formats: ['es'],
+      fileName: 'index',
+    },
+    rollupOptions: {
+      external: ['react', 'react-dom'],
+      output: {
+        globals: {
+          react: 'React',
+          'react-dom': 'ReactDOM',
+        },
+      },
+    },
+  },
 
 })
