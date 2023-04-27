@@ -68,7 +68,7 @@ const SearchLol = () => {
 			const postTodo = async () => {
 				const response = await fetch("/api/lolDetailMatch", options);
 				const result = response.json();
-				console.log(result);
+				console.log("serverless", result);
 				return result;
 			};
 			postTodo();
