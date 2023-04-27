@@ -65,9 +65,15 @@ const SearchLol = () => {
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(gdgd),
 			};
-			const response = await fetch("/api/lolDetailMatch", options);
-			const result = await response.json();
-			console.log("serverless", result);
+			const postTodo = async () => {
+				const response = await fetch("/api/lolDetailMatch", options);
+				const result = await response.json();
+				console.log("serverless", result);
+				return result;
+			};
+
+			postTodo();
+
 			// console.log(gd);
 			const allMatch: any = await Promise.all(matchArr)
 				.then((responses) => {
