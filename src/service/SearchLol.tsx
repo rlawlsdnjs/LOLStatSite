@@ -63,9 +63,7 @@ const SearchLol = () => {
 			const postTodo = async () => {
 				const response = await fetch("/api/lolDetailMatch", {
 					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
+
 					body: gdgd,
 				});
 				const result = response.json();
