@@ -59,8 +59,16 @@ const SearchLol = () => {
 				);
 			}
 			console.log(matchArr);
-			// const gdgd = "KR6035610292";
-			// const gd = await getDetailMatch(gdgd);
+			const gdgd = "KR6035610292";
+			const postTodo = async () => {
+				const response = await fetch("/api/lolDetailMatch", {
+					body: gdgd,
+				});
+				const result = response.json();
+				console.log(result);
+				return result;
+			};
+			postTodo();
 			// console.log(gd);
 			const allMatch: any = await Promise.all(matchArr)
 				.then((responses) => {
