@@ -62,6 +62,10 @@ const SearchLol = () => {
 			const gdgd = "KR6035610292";
 			const postTodo = async () => {
 				const response = await fetch("/api/lolDetailMatch", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
 					body: gdgd,
 				});
 				const result = response.json();
