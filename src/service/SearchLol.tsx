@@ -59,11 +59,13 @@ const SearchLol = () => {
 				);
 			}
 			console.log(matchArr);
-			const gd = "KR_6465224477";
+			const gd = {
+				data: "KR_6465224477",
+			};
 			const options: RequestInit = {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ data: gd }),
+				body: JSON.stringify(gd),
 			};
 			const postTodo = async () => {
 				const response = await fetch("/api/lolDetailMatch", options);
