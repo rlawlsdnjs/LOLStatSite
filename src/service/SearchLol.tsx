@@ -62,7 +62,7 @@ const SearchLol = () => {
 			const data = {
 				data: "KR_6465224477",
 			};
-			const options = {
+			const options: RequestInit = {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({ data: "KR_6465224477" }),
