@@ -73,7 +73,7 @@ const SearchLol = () => {
 				return result;
 			};
 			const userMatch = {
-				data: userPuuId,
+				data: `${userPuuId}`,
 			};
 			const matchOptions: RequestInit = {
 				method: "POST",
