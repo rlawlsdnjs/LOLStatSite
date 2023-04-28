@@ -24,6 +24,7 @@ const SearchLol = () => {
 			const userInfo = await remote.get(userUrl);
 			const userAccountId = userInfo.data.accountId;
 			const userPuuId = userInfo.data.puuid;
+			console.log(userPuuId);
 			const userId = userInfo.data.id;
 			const userRankhUrl =
 				`https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/${userId}` +
