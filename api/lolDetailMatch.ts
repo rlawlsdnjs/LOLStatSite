@@ -27,7 +27,7 @@ export default async function getDetailMatch(request: VercelRequest, response: V
       );
     }
 
-    const results = await Promise.all(matchArr);
+    const results = await Promise.all(matchArr).then((data) => data);;
 
     response.status(200).json({ results });
   } catch (err) {
