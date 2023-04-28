@@ -59,14 +59,12 @@ const SearchLol = () => {
 				);
 			}
 			console.log(matchArr);
-			const data = {
-				data: "KR_6465224477",
-			};
+			const gd = "KR_6465224477";
 			const options: RequestInit = {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
-					data: "KR_6469203293",
+					data: gd,
 				}),
 			};
 			const postTodo = async () => {
