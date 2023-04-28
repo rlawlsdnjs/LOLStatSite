@@ -73,6 +73,7 @@ const SearchLol = () => {
 			console.log("serverlessPuu", userMatchListResult);
 
 			const matchList = Object.values(userMatchListResult.result);
+			console.log("matchList", matchList);
 			const options: RequestInit = {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
