@@ -12,7 +12,7 @@ export default async function getUserMatch(request: VercelRequest, response: Ver
     const { body } = request;
     const payload = body.data;
     const { data } = payload;
-    const res = await fetch(`${URL_ASIA_RIOT}/lol/match/v5/matches/by-puuid/BHAu4Cqiyy5hqjhSlmr_ZcUb-40iDfH71fxVJERMcvJA4hkb_j6WIH5c9aaDoEKIocbKqlsTaf_hjg/ids?start=0&count=20?${KEY}`);
+    const res = await fetch(`${URL_ASIA_RIOT}/lol/match/v5/matches/by-puuid/${payload}/ids?start=0&count=20&${KEY}`);
     const result = await res.json().then((data) => data);
 
     response.status(200).json({
