@@ -59,41 +59,22 @@ const SearchLol = () => {
 				);
 			}
 			console.log(matchArr);
-			// const data = {
-			// 	data: "KR_6465224477",
-			// };
-			// const options = {
-			// 	method: "POST",
-			// 	headers: { "Content-Type": "application/json" },
-			// 	body: JSON.stringify(data),
-			// };
-			// const postTodo = async () => {
-			// 	const response = await fetch("/api/lolDetailMatch", options);
-			// 	const result = await response.json();
-			// 	console.log("serverless", result);
-			// 	return result;
-			// };
-
-			// postTodo();
-
 			const data = {
 				data: "KR_6465224477",
 			};
-
 			const options = {
 				method: "POST",
-				url: "/api/lolDetailMatch",
-				data: JSON.stringify(data),
 				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(data.data),
+			};
+			const postTodo = async () => {
+				const response = await fetch("/api/lolDetailMatch", options);
+				const result = await response.json();
+				console.log("serverless", result);
+				return result;
 			};
 
-			axios(options)
-				.then((response) => {
-					console.log(response.data);
-				})
-				.catch((error) => {
-					console.error(error);
-				});
+			postTodo();
 
 			// console.log(gd);
 			const allMatch: any = await Promise.all(matchArr)

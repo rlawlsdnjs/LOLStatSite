@@ -13,7 +13,7 @@ export default async function getDetailMatch(request: VercelRequest, response: V
     const { body } = request;
     const payload = body.data;
     const { data } = payload;
-    const res = await fetch(`${URL_ASIA_RIOT}/lol/match/v5/matches/KR_6465224477?${KEY}`);
+    const res = await fetch(`${URL_ASIA_RIOT}/lol/match/v5/matches/${data}?${KEY}`);
 
     const result = await res.json().then((data) => data);
 
