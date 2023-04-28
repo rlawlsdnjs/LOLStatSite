@@ -66,7 +66,7 @@ const SearchLol = () => {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
-					data: "KR_6465224477",
+					data: "KR_6469203293",
 				}),
 			};
 			const postTodo = async () => {
