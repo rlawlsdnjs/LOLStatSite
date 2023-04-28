@@ -45,98 +45,48 @@ const SearchLol = () => {
 				"?api_key=" +
 				riotApi;
 			const champInfo = await remote.get(champInfoUrl);
-			const matchValue = Object.values(matchInfo.data);
 
-			const matchArr: any = [];
-
-			for (let i = 0, len = 20; i < len; i++) {
-				matchArr.push(
-					remote.get(`/api/lol/match/v5/matches/${matchValue[i]}`, {
-						headers: {
-							"X-Riot-Token": riotApi,
-						},
-					})
-				);
-			}
-			console.log(matchArr);
-
-			const userMatch = {
+			const userPuu = {
 				data: `${userPuuId}`,
 			};
 			const matchOptions: RequestInit = {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(userMatch),
+				body: JSON.stringify(userPuu),
 			};
+
+			// serverless functions 요청
 			const userMatchList = await fetch("/api/lolUserMatch", matchOptions);
 			const userMatchListResult = await userMatchList.json();
 			console.log("serverlessPuu", userMatchListResult);
 
-			const requestBody = {
-				GameIds: [
-					"KR_6469738818",
-					"KR_6469710974",
-					"KR_6469695550",
-					"KR_6468756233",
-					"KR_6467699859",
-					"KR_6467671245",
-					"KR_6467603799",
-					"KR_6467576322",
-					"KR_6467543184",
-					"KR_6459255544",
-					"KR_6459207339",
-					"KR_6459155321",
-					"KR_6459106385",
-					"KR_6459048918",
-					"KR_6459015726",
-					"KR_6458977834",
-					"KR_6458960148",
-					"KR_6458912605",
-					"KR_6458868315",
-					"KR_6458840284",
-				],
-			};
-			const options: RequestInit = {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(requestBody),
-			};
-			const postTodo = async () => {
-				const response = await fetch("/api/lolDetailMatch", options);
-				const result = await response.json();
-				console.log("serverless", result);
-				return result;
-			};
-			postTodo();
+			// promiseall로 기존 코드
 
-			// console.log(gd);
-			console.log(matchArr);
-			const allMatch: any = await Promise.all(matchArr)
-				.then((responses) => {
-					return responses;
-				})
-				.catch((error) => {
-					console.log(error);
-				});
-			console.log("allmatch", allMatch);
-			console.log(true);
-			const participants = allMatch.map((match: any) => {
-				return match.data.info.participants;
-			});
+			// const matchArr: any = [];
+			// const matchValue = Object.values(matchInfo.data);
 
-			// const gd: any = [];
-			// const currentUserMatchInfo: any = participants?.forEach(
-			// 	(user: any, idx: number) => {
-			// 		user.reduce((ac: any, name: any) => {
-			// 			if (name.summonerName == currentSearchKey) {
-			// 				gd.push(name);
-			// 			}
-			// 		});
-			// 		return;
-			// 	}
-			// );
-
-			// console.log(gd);
+			// for (let i = 0, len = 20; i < len; i++) {
+			// 	matchArr.push(
+			// 		remote.get(`/api/lol/match/v5/matches/${matchValue[i]}`, {
+			// 			headers: {
+			// 				"X-Riot-Token": riotApi,
+			// 			},
+			// 		})
+			// 	);
+			// }
+			// console.log(matchArr);
+			// const allMatch: any = await Promise.all(matchArr)
+			// 	.then((responses) => {
+			// 		return responses;
+			// 	})
+			// 	.catch((error) => {
+			// 		console.log(error);
+			// 	});
+			// console.log("allmatch", allMatch);
+			// console.log(true);
+			// const participants = allMatch.map((match: any) => {
+			// 	return match.data.info.participants;
+			// });
 
 			setLolUser({
 				id: userInfo.data.id,
@@ -144,8 +94,7 @@ const SearchLol = () => {
 				rankInfo: rankInfo.data[0],
 				matchInfo: matchInfo.data,
 				mostChampInfo: champInfo.data[0].championId,
-				matchID: matchArr,
-				allMatch: allMatch,
+				allMatch: userMatchListResult,
 			});
 			// const match = Object.values(lolUser?.matchInfo);
 
