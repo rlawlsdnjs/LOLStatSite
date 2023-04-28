@@ -10,6 +10,7 @@ const KEY = `api_key=${process.env.VITE_RIOT_API_KEY}`;
 
 export default async function getDetailMatch(request: VercelRequest, response: VercelResponse) {
   try {
+    console.log(request)
     const { body } = request;
     const payload = body.data;
     const { data } = payload;
