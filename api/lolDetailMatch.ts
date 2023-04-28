@@ -24,8 +24,8 @@ export default async function getDetailMatch(request: VercelRequest, response: V
     }
 
     const allMatch: any = await Promise.all(matchArr)
-    .then((responses) => {
-      return responses;
+    .then((data) => {
+      return data;
     })
     .catch((error) => {
       console.log(error);

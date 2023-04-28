@@ -62,17 +62,7 @@ const SearchLol = () => {
 			const gd = {
 				data: "KR_6465224477",
 			};
-			const options: RequestInit = {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(gd),
-			};
-			const postTodo = async () => {
-				const response = await fetch("/api/lolDetailMatch", options);
-				const result = await response.json();
-				console.log("serverless", result);
-				return result;
-			};
+
 			const userMatch = {
 				data: `${userPuuId}`,
 			};
@@ -83,11 +73,23 @@ const SearchLol = () => {
 			};
 			const userMatchList = await fetch("/api/lolUserMatch", matchOptions);
 			const userMatchListResult = await userMatchList.json();
-			console.log("serverless", userMatchListResult);
+			console.log("serverlessPuu", userMatchListResult);
 
+			const options: RequestInit = {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(userMatchListResult.result),
+			};
+			const postTodo = async () => {
+				const response = await fetch("/api/lolDetailMatch", options);
+				const result = await response.json();
+				console.log("serverless", result);
+				return result;
+			};
 			postTodo();
 
 			// console.log(gd);
+			console.log(matchArr);
 			const allMatch: any = await Promise.all(matchArr)
 				.then((responses) => {
 					return responses;
