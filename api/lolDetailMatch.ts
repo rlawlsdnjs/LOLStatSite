@@ -34,7 +34,7 @@ export default async function getDetailMatch(request: VercelRequest, response: V
     const result = await allMatch.json().then((data) => data);
 
     response.status(200).json({
-      result,
+      allMatch,
     });
   } catch (err) {
     console.log(err);
