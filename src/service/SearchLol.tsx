@@ -9,6 +9,7 @@ import React from "react";
 import Loading from "../components/Loading";
 
 import getDetailMatch from "../../api/lolDetailMatch";
+import { json } from "react-router-dom";
 const SearchLol = () => {
 	const currentSearchKey = useRecoilValue(searchKeyState);
 	const riotApi = import.meta.env.VITE_RIOT_API_KEY;
@@ -59,11 +60,13 @@ const SearchLol = () => {
 				);
 			}
 			console.log(matchArr);
-			const gdgd = "KR_6465224477";
+			const data = {
+				data: "KR_6465224477",
+			};
 			const options = {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: gdgd,
+				body: JSON.stringify(data),
 			};
 			const postTodo = async () => {
 				const response = await fetch("/api/lolDetailMatch", options);
