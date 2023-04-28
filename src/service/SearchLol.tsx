@@ -72,10 +72,34 @@ const SearchLol = () => {
 			const userMatchListResult = await userMatchList.json();
 			console.log("serverlessPuu", userMatchListResult);
 
+			const requestBody = {
+				GameIds: [
+					"KR_6469738818",
+					"KR_6469710974",
+					"KR_6469695550",
+					"KR_6468756233",
+					"KR_6467699859",
+					"KR_6467671245",
+					"KR_6467603799",
+					"KR_6467576322",
+					"KR_6467543184",
+					"KR_6459255544",
+					"KR_6459207339",
+					"KR_6459155321",
+					"KR_6459106385",
+					"KR_6459048918",
+					"KR_6459015726",
+					"KR_6458977834",
+					"KR_6458960148",
+					"KR_6458912605",
+					"KR_6458868315",
+					"KR_6458840284",
+				],
+			};
 			const options: RequestInit = {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(userMatchListResult.result),
+				body: JSON.stringify(requestBody),
 			};
 			const postTodo = async () => {
 				const response = await fetch("/api/lolDetailMatch", options);

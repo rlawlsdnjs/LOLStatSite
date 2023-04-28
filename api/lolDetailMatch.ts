@@ -9,9 +9,9 @@ const URL_ASIA_RIOT = 'https://asia.api.riotgames.com';
 const KEY = `api_key=${process.env.VITE_RIOT_API_KEY}`;
 export default async function getDetailMatch(request: VercelRequest, response: VercelResponse) {
   try {
-    const {body } = request;
-    const payload = body.data;
-    const promises = payload.map((gameId: string) =>
+    const { gameIds } = request.body;
+ 
+    const promises = gameIds.map((gameId: string) =>
       fetch(`${URL_ASIA_RIOT}/lol/match/v5/matches/${gameId}?${KEY}`)
         .then((res) => res.json())
     );
