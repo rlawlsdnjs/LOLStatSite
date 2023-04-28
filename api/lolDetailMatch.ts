@@ -2,6 +2,7 @@
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import fetch from 'node-fetch';
+import axios from 'axios';
 
 const URL_ASIA_RIOT = 'https://asia.api.riotgames.com';
 
@@ -12,10 +13,29 @@ export default async function getDetailMatch(request: VercelRequest, response: V
 
     const { body } = request;
     const payload = body.data;
-    const { data } = payload;
-    const res = await fetch(`${URL_ASIA_RIOT}/lol/match/v5/matches/${payload}?${KEY}`);
 
-    const result = await res.json().then((data) => data);
+
+    const matchValue = Object.values(payload);
+
+    const matchArr: any = [];
+    const remote = axios.create();
+    for (let i = 0, len = 20; i < len; i++) {
+      matchArr.push(
+        remote.get(`/api/lol/match/v5/matches/${matchValue[i]}?${KEY}`, {
+      
+        })
+      );
+    }
+
+    const allMatch: any = await Promise.all(matchArr)
+    .then((responses) => {
+      return responses;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+    const result = await allMatch.json().then((data) => data);
 
     response.status(200).json({
       result,
