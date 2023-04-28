@@ -59,9 +59,6 @@ const SearchLol = () => {
 				);
 			}
 			console.log(matchArr);
-			const gd = {
-				data: "KR_6465224477",
-			};
 
 			const userMatch = {
 				data: `${userPuuId}`,
@@ -75,10 +72,11 @@ const SearchLol = () => {
 			const userMatchListResult = await userMatchList.json();
 			console.log("serverlessPuu", userMatchListResult);
 
+			const matchList = Object.values(userMatchListResult.result);
 			const options: RequestInit = {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(userMatchListResult.result),
+				body: JSON.stringify({ matchList }),
 			};
 			const postTodo = async () => {
 				const response = await fetch("/api/lolDetailMatch", options);

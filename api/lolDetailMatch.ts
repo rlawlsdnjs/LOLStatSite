@@ -9,34 +9,18 @@ const URL_ASIA_RIOT = 'https://asia.api.riotgames.com';
 const KEY = `api_key=${process.env.VITE_RIOT_API_KEY}`;
 export default async function getDetailMatch(request: VercelRequest, response: VercelResponse) {
   try {
+    const { gameIds } = request.body;
 
-    const { body } = request;
-    const payload = body.data;
+    const promises = gameIds.map((gameId: string) =>
+      fetch(`${URL_ASIA_RIOT}/lol/match/v5/matches/${gameId}?${KEY}`)
+        .then((res) => res.json())
+    );
 
+    const results = await Promise.all(promises);
 
-    const matchValue = Object.values(payload);
-
-    const matchArr: any = [];
-    for (let i = 0, len = 20; i < len; i++) {
-      matchArr.push(
-        await fetch(`${URL_ASIA_RIOT}/lol/match/v5/matches/${matchValue[i]}?${KEY}`)
-      );
-    }
-
-    const allMatch: any = await Promise.all(matchArr)
-    .then((data) => {
-      return data;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-
-    const result = await allMatch.json().then((data) => data);
-
-    response.status(200).json({
-      allMatch,
-    });
+    response.status(200).json({ results });
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    response.status(500).json({ message: "Internal server error" });
   }
 }
