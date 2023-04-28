@@ -4,6 +4,10 @@
     "api/lolDetailMatch.ts": {
       "memory": 1024, 
       "maxDuration": 10 
+    },
+    "api/lolUserMatch.ts": {
+      "memory": 1024, 
+      "maxDuration": 10 
     }
   }
 
