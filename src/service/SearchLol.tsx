@@ -8,7 +8,6 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import React from "react";
 import Loading from "../components/Loading";
 
-import getDetailMatch from "../../api/lolDetailMatch";
 const SearchLol = () => {
 	const currentSearchKey = useRecoilValue(searchKeyState);
 	const riotApi = import.meta.env.VITE_RIOT_API_KEY;
@@ -73,8 +72,23 @@ const SearchLol = () => {
 				console.log("serverless", result);
 				return result;
 			};
+			const userMatch = {
+				data: userPuuId,
+			};
+			const matchOptions: RequestInit = {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(gd),
+			};
+			const postTodo2 = async () => {
+				const response = await fetch("/api/lolUserMatch", matchOptions);
+				const result = await response.json();
+				console.log("serverless", result);
+				return result;
+			};
 
 			postTodo();
+			postTodo2();
 
 			// console.log(gd);
 			const allMatch: any = await Promise.all(matchArr)
