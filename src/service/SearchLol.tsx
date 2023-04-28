@@ -72,12 +72,10 @@ const SearchLol = () => {
 			const userMatchListResult = await userMatchList.json();
 			console.log("serverlessPuu", userMatchListResult);
 
-			const matchList = Object.values(userMatchListResult.result);
-			console.log("matchList", matchList);
 			const options: RequestInit = {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ matchList }),
+				body: JSON.stringify(userMatchListResult.result),
 			};
 			const postTodo = async () => {
 				const response = await fetch("/api/lolDetailMatch", options);
