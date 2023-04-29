@@ -24,7 +24,7 @@ const LolSearchResult = () => {
 	// );
 	// console.log(currentMatchParticipants);
 
-	const currentUserMatch = useRecoilValueLoadable(userDataState);
+	const currentUserMatch = useRecoilValue(userDataState);
 	console.log(currentUserMatch);
 
 	return (

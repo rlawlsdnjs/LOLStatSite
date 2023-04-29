@@ -16,21 +16,13 @@ export const searchKeyState = atom<string>({
 	default: `${sessionStorage.getItem(LolKeyword)}`,
 });
 
-export const lolSearchChange = selector({
-	key: "lolSearchChange",
-	get: ({ get }) => {
-		const currentSearchKey = get<string>(searchKeyState);
-		console.log(currentSearchKey);
-		return console.log(1);
-	},
-});
-
 export interface IlolUser {
 	id: string;
 	userInfo: object;
 	matchInfo: object;
 	rankInfo: object;
 	matchID: object;
+	allMatch: object;
 }
 
 export const userDataState: any = atom<IlolUser>({
@@ -41,6 +33,7 @@ export const userDataState: any = atom<IlolUser>({
 		matchInfo: {},
 		rankInfo: {},
 		matchID: {},
+		allMatch: {},
 	},
 });
 
