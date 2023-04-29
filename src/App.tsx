@@ -51,10 +51,6 @@ function App() {
 				<LolSearch open={favoriteOpen} />
 				{currentSearchKey && <SearchLol />}
 
-				<Suspense fallback={<Loading />}>
-					<YoutubeOpen />
-				</Suspense>
-
 				{loginValue == true && !userInfo ? <SignUp /> : null}
 
 				<Footer />
