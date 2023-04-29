@@ -28,12 +28,10 @@ const LolSearchResult = () => {
 	console.log(currentUserMatch);
 
 	return (
-		<Suspense fallback={<Loading />}>
-			<ResultWrap className={currentUserMatch.rankInfo.leagueId}>
-				<Profile />
-				<UserMatch />
-			</ResultWrap>
-		</Suspense>
+		<ResultWrap className={currentUserMatch.rankInfo.leagueId}>
+			<Profile />
+			<UserMatch />
+		</ResultWrap>
 	);
 };
 const aniSearch = keyframes`
