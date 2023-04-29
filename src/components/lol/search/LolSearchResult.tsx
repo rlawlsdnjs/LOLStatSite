@@ -2,6 +2,7 @@ import { useRecoilValue, useRecoilValueLoadable } from "recoil";
 import {
 	searchKeyState,
 	userDataState,
+	lolUserDataState,
 	// userMatchState,
 	// userMatchUrlState,
 	// currentMatchParticipantsState,
@@ -24,7 +25,7 @@ const LolSearchResult = () => {
 	// );
 	// console.log(currentMatchParticipants);
 	const UserMatch = React.lazy(() => import("../match/Match"));
-	const currentUserMatch = useRecoilValueLoadable<any>(userDataState);
+	const currentUserMatch = useRecoilValueLoadable<any>(lolUserDataState);
 	console.log("loadlable", currentUserMatch);
 
 	return (
