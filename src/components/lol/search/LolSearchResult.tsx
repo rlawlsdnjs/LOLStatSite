@@ -9,7 +9,7 @@ import {
 	// currentUserMatchState,
 } from "../../../store/lol";
 import Profile from "../profile/Profile";
-// import UserMatch from "../match/Match";
+import UserMatch from "../match/Match";
 import styled, { keyframes } from "styled-components";
 import tw from "tailwind-styled-components";
 import React, { useEffect, useState } from "react";
@@ -24,17 +24,14 @@ const LolSearchResult = () => {
 	// 	currentMatchParticipantsState
 	// );
 	// console.log(currentMatchParticipants);
-	const UserMatch = React.lazy(() => import("../match/Match"));
 	const currentUserMatch = useRecoilValueLoadable<any>(lolUserDataState);
 	console.log("loadlable", currentUserMatch);
 
 	return (
-		<Suspense fallback={<Loading />}>
-			<ResultWrap>
-				<Profile />
-				<UserMatch />
-			</ResultWrap>
-		</Suspense>
+		<ResultWrap>
+			<Profile />
+			<UserMatch />
+		</ResultWrap>
 	);
 };
 const aniSearch = keyframes`

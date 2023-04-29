@@ -25,33 +25,37 @@ function App() {
 	const LolKeyword = "LolKeyword";
 	const keywordSession = sessionStorage.getItem(LolKeyword);
 
+	const SearchLol = React.lazy(() => import("../src/service/SearchLol"));
+
 	return (
 		<BrowserRouter>
 			<Wrap
 				className="wrap"
 				// 특정영역 외 클릭 시 즐겨찾기 숨기기
-				// onClick={(e) => {
-				// 	e.stopPropagation();
-				// 	const target = e.target as HTMLElement;
-				// 	const element = target.className;
+				onClick={(e) => {
+					e.stopPropagation();
+					const target = e.target as HTMLElement;
+					const element = target.className;
 
-				// 	if (
-				// 		element ==
-				// 			e.currentTarget?.querySelector(".LolSearchInput")?.className ||
-				// 		element ==
-				// 			e.currentTarget?.querySelector(".FavoriteSection")?.className
-				// 	) {
-				// 		favoriteSetOpen(true);
-				// 	} else {
-				// 		favoriteSetOpen(false);
-				// 	}
-				// }}
+					if (
+						element ==
+							e.currentTarget?.querySelector(".LolSearchInput")?.className ||
+						element ==
+							e.currentTarget?.querySelector(".FavoriteSection")?.className
+					) {
+						favoriteSetOpen(true);
+					} else {
+						favoriteSetOpen(false);
+					}
+				}}
 			>
 				<Header />
+				<Suspense fallback={<Loading />}>
+					{currentSearchKey && <SearchLol />}
+				</Suspense>
 
 				<LolSearch open={favoriteOpen} />
 
-				{currentSearchKey && <SearchLol />}
 				{loginValue == true && !userInfo ? <SignUp /> : null}
 				<YoutubeOpen />
 
