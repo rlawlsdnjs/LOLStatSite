@@ -52,16 +52,10 @@ function App() {
 					<Header />
 
 					<LolSearch open={favoriteOpen} />
-					{/* <React.Suspense fallback={<Loading />}>
-					<SearchLol />
-				</React.Suspense> */}
+
 					{keywordSession == null ? null : <LolSearchResult />}
-					<Routes>
-						<Route
-							path="/"
-							element={loginValue == true && !userInfo ? <SignUp /> : null}
-						/>
-					</Routes>
+					{loginValue == true && !userInfo ? <SignUp /> : null}
+					<YoutubeOpen />
 					<Footer />
 				</Wrap>
 			</React.Suspense>
