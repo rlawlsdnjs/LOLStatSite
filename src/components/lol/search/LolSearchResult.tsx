@@ -8,7 +8,7 @@ import {
 	// currentUserMatchState,
 } from "../../../store/lol";
 import Profile from "../profile/Profile";
-import UserMatch from "../match/Match";
+// import UserMatch from "../match/Match";
 import styled, { keyframes } from "styled-components";
 import tw from "tailwind-styled-components";
 import React, { useEffect, useState } from "react";
@@ -23,15 +23,17 @@ const LolSearchResult = () => {
 	// 	currentMatchParticipantsState
 	// );
 	// console.log(currentMatchParticipants);
-
+	const UserMatch = React.lazy(() => import("../match/Match"));
 	const currentUserMatch = useRecoilValue<any>(userDataState);
 	console.log(currentUserMatch);
 
 	return (
-		<ResultWrap className={currentUserMatch.rankInfo.leagueId}>
-			<Profile />
-			<UserMatch />
-		</ResultWrap>
+		<Suspense fallback={<Loading />}>
+			<ResultWrap className={currentUserMatch.rankInfo.leagueId}>
+				<Profile />
+				<UserMatch />
+			</ResultWrap>
+		</Suspense>
 	);
 };
 const aniSearch = keyframes`
