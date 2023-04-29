@@ -48,7 +48,7 @@ const UserMatch = () => {
 					{currentMatch.allMatch.matchData.map(
 						(match: any | object, idx: number) => {
 							// 검색 유저 정보
-							let searchUser = match.info.participants.fiter(
+							let searchUser = match.info.participants.filter(
 								(user: any) => user.summonerName == currentSearchKey
 							);
 							let blueTeam = match?.info?.participants?.filter(
