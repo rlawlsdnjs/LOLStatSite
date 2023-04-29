@@ -91,7 +91,7 @@ const UserMatch = () => {
 														<div className="avatar">
 															<div className="w-16 mask mask-squircle">
 																<img
-																	src={`http://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/${searchUser[idx].championName}.png`}
+																	src={`http://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/${searchUser.championName}.png`}
 																	alt="챔프 이미지"
 																/>
 															</div>
