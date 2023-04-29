@@ -67,8 +67,8 @@ const UserMatch = () => {
 								<>
 									<OneMatch
 										className="w-full"
-										key={idx}
-										winlose={searchUser?.win}
+										key={match.info.gameId}
+										winlose={searchUser[0]?.win}
 									>
 										<MatchLeft className="lg:basis-6/12">
 											<div className="flex justify-center items-center text-center flex-col">
@@ -84,7 +84,7 @@ const UserMatch = () => {
 														fontSize: "20px",
 													}}
 												>
-													{searchUser?.win ? <p>Win</p> : <p>Lose</p>}
+													{searchUser[0]?.win ? <p>Win</p> : <p>Lose</p>}
 												</div>
 											</div>
 
@@ -105,24 +105,24 @@ const UserMatch = () => {
 														<div>
 															<div>
 																<SpellImg
-																	spell01={searchUser.summoner1Id}
-																	spell02={searchUser.summoner2Id}
+																	spell01={searchUser[0].summoner1Id}
+																	spell02={searchUser[0].summoner2Id}
 																></SpellImg>
 															</div>
 															<div className="flex items-center">
 																<RuneImg
 																	runes01style={
-																		searchUser.perks.styles[0].style
+																		searchUser[0].perks.styles[0].style
 																	}
 																	runes02style={
-																		searchUser.perks.styles[1].style
+																		searchUser[0].perks.styles[1].style
 																	}
 																	runes01={
-																		searchUser.perks.styles[0].selections[0]
+																		searchUser[0].perks.styles[0].selections[0]
 																			.perk
 																	}
 																	runes02={
-																		searchUser.perks.styles[1].selections[0]
+																		searchUser[0].perks.styles[1].selections[0]
 																			.perk
 																	}
 																></RuneImg>
@@ -130,22 +130,22 @@ const UserMatch = () => {
 														</div>
 														{/* KDA */}
 														<div className="text-center">
-															<span>{searchUser.kills}</span>/
-															<span>{searchUser.deaths}</span>/
-															<span>{searchUser.assists}</span>
+															<span>{searchUser[0].kills}</span>/
+															<span>{searchUser[0].deaths}</span>/
+															<span>{searchUser[0].assists}</span>
 															<p>K D A</p>
-															<p>{searchUser.challenges.kda.toFixed(1)}</p>
+															<p>{searchUser[0].challenges.kda.toFixed(1)}</p>
 														</div>
 													</div>
 													{/* 아이템 정보 */}
 													<ItemList
-														item01={searchUser.item0}
-														item02={searchUser.item1}
-														item03={searchUser.item2}
-														item04={searchUser.item3}
-														item05={searchUser.item4}
-														item06={searchUser.item5}
-														item07={searchUser.item6}
+														item01={searchUser[0].item0}
+														item02={searchUser[0].item1}
+														item03={searchUser[0].item2}
+														item04={searchUser[0].item3}
+														item05={searchUser[0].item4}
+														item06={searchUser[0].item5}
+														item07={searchUser[0].item6}
 													></ItemList>
 												</div>
 											)}
