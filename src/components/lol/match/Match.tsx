@@ -32,7 +32,7 @@ const UserMatch = () => {
 	// }, [matchInfo]);
 
 	currentMatch.allMatch.matchData.forEach((match: any) => {
-		match?.data?.info?.participants.forEach((user: any) => {
+		match?.info?.participants.forEach((user: any) => {
 			if (user.summonerName == currentSearchKey) {
 				searchUser.push(user);
 			}
