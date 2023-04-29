@@ -50,11 +50,11 @@ function App() {
 				}}
 			>
 				<Header />
+				<LolSearch open={favoriteOpen} />
+
 				<Suspense fallback={<Loading />}>
 					{currentSearchKey && <SearchLol />}
 				</Suspense>
-
-				<LolSearch open={favoriteOpen} />
 
 				{loginValue == true && !userInfo ? <SignUp /> : null}
 				<YoutubeOpen />
