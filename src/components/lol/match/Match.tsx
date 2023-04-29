@@ -1,4 +1,4 @@
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilValueLoadable } from "recoil";
 import { searchKeyState, userDataState } from "../../../store/lol";
 import MatchDuration from "./MatchDuration";
 import GameMode from "./GameMode";
@@ -14,7 +14,7 @@ import { useEffect } from "react";
 import React from "react";
 import Loading from "../../Loading";
 const UserMatch = () => {
-	const currentMatch = useRecoilValue<any>(userDataState);
+	const currentMatch = useRecoilValueLoadable<any>(userDataState);
 	// const matchInfo = useRecoilValue<any>(userMatchState);
 	const currentSearchKey = useRecoilValue(searchKeyState);
 	const [lolSearch, setLolSearch] = useRecoilState(searchKeyState);
