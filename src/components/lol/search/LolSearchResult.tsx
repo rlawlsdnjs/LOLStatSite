@@ -24,8 +24,9 @@ const LolSearchResult = () => {
 	// );
 	// console.log(currentMatchParticipants);
 
-	// const currentUserMatch = useRecoilValue(currentUserMatchState);
-	// console.log(currentUserMatch);
+	const currentUserMatch = useRecoilValue(userDataState);
+	console.log(currentUserMatch);
+
 	return (
 		<Suspense fallback={<Loading />}>
 			<ResultWrap>
