@@ -49,7 +49,9 @@ function App() {
 			>
 				<Header />
 				<LolSearch open={favoriteOpen} />
-				{currentSearchKey && <SearchLol />}
+				<Suspense fallback={<Loading />}>
+					{currentSearchKey && <SearchLol />}
+				</Suspense>
 
 				{loginValue == true && !userInfo ? <SignUp /> : null}
 
