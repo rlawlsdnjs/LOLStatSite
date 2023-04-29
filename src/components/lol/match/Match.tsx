@@ -42,13 +42,13 @@ const UserMatch = () => {
 	// }
 
 	return (
-		<React.Suspense fallback={<Loading />}>
+		<>
 			{currentMatch && (
 				<MatchList>
 					{currentMatch.allMatch.matchData.map(
 						(match: any | object, idx: number) => {
 							// 검색 유저 정보
-							let searchUser = match.info.participants.filter(
+							let searchUser = match?.info?.participants?.filter(
 								(user: any) => user.summonerName == currentSearchKey
 							);
 
@@ -424,7 +424,7 @@ const UserMatch = () => {
 					)}
 				</MatchList>
 			)}
-		</React.Suspense>
+		</>
 	);
 };
 const twMachList = styled.div`
