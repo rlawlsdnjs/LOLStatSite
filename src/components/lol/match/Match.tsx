@@ -67,10 +67,10 @@ const UserMatch = () => {
 									>
 										<MatchLeft className="lg:basis-6/12">
 											<div className="flex justify-center items-center text-center flex-col">
-												<GameMode mode={match?.data?.info?.queueId} />
+												<GameMode mode={match?.info?.queueId} />
 												<MatchDuration
-													time={match?.data?.info?.gameDuration}
-													endTime={match?.data?.info?.gameEndTimestamp}
+													time={match?.info?.gameDuration}
+													endTime={match?.info?.gameEndTimestamp}
 												></MatchDuration>
 												<div
 													style={{
@@ -148,7 +148,7 @@ const UserMatch = () => {
 										<MatchRight className="lg:basis-5/12">
 											{/* participants */}
 											<ParticipantsList>
-												{match.data.info.participants.map((user: any) => {
+												{match.info.participants.map((user: any) => {
 													return (
 														<div
 															className="flex py-1 items-center w-1/2"
@@ -199,16 +199,12 @@ const UserMatch = () => {
 
 											{/* 블루팀 */}
 											<Team
-												winlose={match?.data?.info?.teams[0]?.win}
+												winlose={match?.info?.teams[0]?.win}
 												className="px-5"
 											>
 												<div style={{ fontSize: "15px", marginBottom: "10px" }}>
 													<h3 style={{ marginBottom: "5px" }}>Blue Team</h3>
-													{match.data.info.teams[0].win ? (
-														<p>Win</p>
-													) : (
-														<p>Lose</p>
-													)}
+													{match.info.teams[0].win ? <p>Win</p> : <p>Lose</p>}
 												</div>
 
 												{blueTeam.length != 0 &&
@@ -311,17 +307,10 @@ const UserMatch = () => {
 											</Team>
 
 											{/* 퍼플팀 */}
-											<Team
-												winlose={match.data.info.teams[1].win}
-												className="px-5"
-											>
+											<Team winlose={match.info.teams[1].win} className="px-5">
 												<div style={{ fontSize: "15px", marginBottom: "10px" }}>
 													<h3 style={{ marginBottom: "5px" }}>Purple Team</h3>
-													{match.data.info.teams[1].win ? (
-														<p>Win</p>
-													) : (
-														<p>Lose</p>
-													)}
+													{match.info.teams[1].win ? <p>Win</p> : <p>Lose</p>}
 												</div>
 
 												{purpleTeam.length != 0 &&
