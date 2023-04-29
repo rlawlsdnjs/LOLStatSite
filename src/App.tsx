@@ -53,9 +53,7 @@ function App() {
 
 				{currentSearchKey && <SearchLol />}
 				{loginValue == true && !userInfo ? <SignUp /> : null}
-				<Suspense fallback={<Loading />}>
-					<YoutubeOpen />
-				</Suspense>
+				<YoutubeOpen />
 
 				<Footer />
 			</Wrap>

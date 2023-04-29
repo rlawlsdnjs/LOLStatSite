@@ -27,14 +27,7 @@ export interface IlolUser {
 
 export const userDataState: any = atom<IlolUser>({
 	key: "userDataState",
-	default: {
-		id: "",
-		userInfo: {},
-		matchInfo: {},
-		rankInfo: {},
-		matchID: {},
-		allMatch: {},
-	},
+	default: {},
 });
 
 export const lolUserDataState = selector({
