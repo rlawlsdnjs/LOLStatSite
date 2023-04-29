@@ -24,12 +24,12 @@ const LolSearchResult = () => {
 	// );
 	// console.log(currentMatchParticipants);
 
-	const currentUserMatch = useRecoilValue(userDataState);
+	const currentUserMatch = useRecoilValue<any>(userDataState);
 	console.log(currentUserMatch);
 
 	return (
 		<Suspense fallback={<Loading />}>
-			<ResultWrap>
+			<ResultWrap className={currentUserMatch.rankInfo.leagueId}>
 				<Profile />
 				<UserMatch />
 			</ResultWrap>
