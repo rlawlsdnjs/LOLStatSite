@@ -27,37 +27,38 @@ function App() {
 
 	return (
 		<BrowserRouter>
-			<Suspense fallback={<Loading />}>
-				<Wrap
-					className="wrap"
-					// 특정영역 외 클릭 시 즐겨찾기 숨기기
-					onClick={(e) => {
-						e.stopPropagation();
-						const target = e.target as HTMLElement;
-						const element = target.className;
+			<Wrap
+				className="wrap"
+				// 특정영역 외 클릭 시 즐겨찾기 숨기기
+				onClick={(e) => {
+					e.stopPropagation();
+					const target = e.target as HTMLElement;
+					const element = target.className;
 
-						if (
-							element ==
-								e.currentTarget?.querySelector(".LolSearchInput")?.className ||
-							element ==
-								e.currentTarget?.querySelector(".FavoriteSection")?.className
-						) {
-							favoriteSetOpen(true);
-						} else {
-							favoriteSetOpen(false);
-						}
-					}}
-				>
-					<Header />
+					if (
+						element ==
+							e.currentTarget?.querySelector(".LolSearchInput")?.className ||
+						element ==
+							e.currentTarget?.querySelector(".FavoriteSection")?.className
+					) {
+						favoriteSetOpen(true);
+					} else {
+						favoriteSetOpen(false);
+					}
+				}}
+			>
+				<Header />
 
-					<LolSearch open={favoriteOpen} />
+				<LolSearch open={favoriteOpen} />
 
-					{currentSearchKey && <SearchLol />}
-					{loginValue == true && !userInfo ? <SignUp /> : null}
+				{currentSearchKey && <SearchLol />}
+				{loginValue == true && !userInfo ? <SignUp /> : null}
+				<Suspense fallback={<Loading />}>
 					<YoutubeOpen />
-					<Footer />
-				</Wrap>
-			</Suspense>
+				</Suspense>
+
+				<Footer />
+			</Wrap>
 		</BrowserRouter>
 	);
 }
