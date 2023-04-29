@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { setLogLevel } from "firebase/firestore";
-import LolSearchResult from "../components/lol/search/LolSearchResult";
 import { userDataState, searchKeyState } from "../store/lol";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import React from "react";
@@ -10,6 +9,9 @@ import Loading from "../components/Loading";
 import { Suspense } from "react";
 
 const SearchLol = () => {
+	const LolSearchResult = React.lazy(
+		() => import("../components/lol/search/LolSearchResult")
+	);
 	const currentSearchKey = useRecoilValue(searchKeyState);
 	const riotApi = import.meta.env.VITE_RIOT_API_KEY;
 	const remote = axios.create();
