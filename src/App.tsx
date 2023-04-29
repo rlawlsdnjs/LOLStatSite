@@ -52,7 +52,7 @@ function App() {
 
 					<LolSearch open={favoriteOpen} />
 
-					{keywordSession == null ? null : <SearchLol />}
+					{currentSearchKey == null ? null : <SearchLol />}
 					{loginValue == true && !userInfo ? <SignUp /> : null}
 					<YoutubeOpen />
 					<Footer />
