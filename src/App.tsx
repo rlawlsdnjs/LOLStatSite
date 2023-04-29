@@ -25,8 +25,6 @@ function App() {
 	const LolKeyword = "LolKeyword";
 	const keywordSession = sessionStorage.getItem(LolKeyword);
 
-	const SearchLol = React.lazy(() => import("../src/service/SearchLol"));
-
 	return (
 		<BrowserRouter>
 			<Wrap
@@ -54,10 +52,10 @@ function App() {
 
 				<Suspense fallback={<Loading />}>
 					{currentSearchKey && <SearchLol />}
+					<YoutubeOpen />
 				</Suspense>
 
 				{loginValue == true && !userInfo ? <SignUp /> : null}
-				<YoutubeOpen />
 
 				<Footer />
 			</Wrap>
