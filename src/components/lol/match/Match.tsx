@@ -51,12 +51,17 @@ const UserMatch = () => {
 							let searchUser = match.info.participants.filter(
 								(user: any) => user.summonerName == currentSearchKey
 							);
+
+							console.log("검색유저", searchUser);
 							let blueTeam = match?.info?.participants?.filter(
 								(user: any) => user.teamId == 100
 							);
+
+							console.log("blueTeam", blueTeam);
 							let purpleTeam = match?.info?.participants?.filter(
 								(user: any) => user.teamId == 200
 							);
+							console.log("purpleTeam", purpleTeam);
 
 							return (
 								<>
