@@ -18,15 +18,12 @@ const RuneImg = (runes: any) => {
 		<>
 			<Rune>
 				<div className="w-16 rounded">
-					<img
-						className="icon"
-						src={`/public/assets/images/${rune01[0].icon}`}
-					></img>
+					<img className="icon" src={`/assets/images/${rune01[0].icon}`}></img>
 				</div>
 			</Rune>
 			<Rune>
 				<div className="w-16 rounded">
-					<img src={`/public/assets/images/${runesStyle02[0].icon}`}></img>
+					<img src={`assets/images/${runesStyle02[0].icon}`}></img>
 				</div>
 			</Rune>
 		</>
