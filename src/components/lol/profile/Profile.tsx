@@ -39,8 +39,8 @@ const Profile = () => {
 										style={{ maxWidth: "60px" }}
 										src={
 											user?.rankInfo == undefined
-												? `../../assets/icons/tier-base-icons/provisional.png`
-												: `/public/assets/icons/tier-base-icons/${user?.rankInfo?.tier}.png`
+												? `/assets/icons/tier-base-icons/provisional.png`
+												: `/assets/icons/tier-base-icons/${user?.rankInfo?.tier}.png`
 										}
 									></img>
 									{/* 전적, 승률 영역*/}
@@ -80,7 +80,7 @@ const Profile = () => {
 					</ProfileInfo>
 					<BackgroundProfile>
 						<img
-							src={`../../../../public/assets/images/champion/${mostChampName[0][1]}_0.jpg`}
+							src={`/assets/images/champion/${mostChampName[0][1]}_0.jpg`}
 						></img>
 					</BackgroundProfile>
 				</>
