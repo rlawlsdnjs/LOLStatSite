@@ -18,13 +18,6 @@ import LolSearch from "./LolSearch";
 import Loading from "../../Loading";
 
 const LolSearchResult = () => {
-	const currentMatch = useRecoilValue<any>(userDataState);
-	console.log("전체", currentMatch);
-	const [participants, setParticipants] = useState<any>([]);
-	useEffect(() => {
-		setParticipants(currentMatch.allMatch);
-	}, [currentMatch]);
-
 	// const currentMatchParticipants = useRecoilValue(
 	// 	currentMatchParticipantsState
 	// );
@@ -36,7 +29,7 @@ const LolSearchResult = () => {
 		<React.Suspense fallback={<Loading></Loading>}>
 			<ResultWrap>
 				<Profile />
-				{/* <UserMatch /> */}
+				<UserMatch />
 			</ResultWrap>
 		</React.Suspense>
 	);
