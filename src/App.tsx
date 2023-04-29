@@ -25,6 +25,8 @@ function App() {
 	const LolKeyword = "LolKeyword";
 	const keywordSession = sessionStorage.getItem(LolKeyword);
 
+	SearchLol();
+
 	return (
 		<BrowserRouter>
 			<Suspense fallback={<Loading />}>
@@ -52,7 +54,7 @@ function App() {
 
 					<LolSearch open={favoriteOpen} />
 
-					{currentSearchKey == null ? null : <SearchLol />}
+					{keywordSession == null ? null : <LolSearchResult />}
 					{loginValue == true && !userInfo ? <SignUp /> : null}
 					<YoutubeOpen />
 					<Footer />

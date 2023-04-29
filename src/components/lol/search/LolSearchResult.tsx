@@ -16,6 +16,7 @@ import { useMemo } from "react";
 import SearchLol from "../../../service/SearchLol";
 import LolSearch from "./LolSearch";
 import Loading from "../../Loading";
+import { Suspense } from "react";
 
 const LolSearchResult = () => {
 	// const currentMatchParticipants = useRecoilValue(
@@ -26,12 +27,12 @@ const LolSearchResult = () => {
 	// const currentUserMatch = useRecoilValue(currentUserMatchState);
 	// console.log(currentUserMatch);
 	return (
-		<React.Suspense fallback={<Loading></Loading>}>
+		<Suspense fallback={<Loading />}>
 			<ResultWrap>
 				<Profile />
 				<UserMatch />
 			</ResultWrap>
-		</React.Suspense>
+		</Suspense>
 	);
 };
 const aniSearch = keyframes`

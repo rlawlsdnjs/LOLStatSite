@@ -161,13 +161,13 @@ const SearchLol = () => {
 		}
 	}, [currentSearchKey]);
 
-	return (
-		<>
-			<React.Suspense fallback={<Loading />}>
-				{currentSearchKey == "null" ? null : <LolSearchResult />}
-			</React.Suspense>
-		</>
-	);
+	// return (
+	// 	<>
+	// 		<React.Suspense fallback={<Loading />}>
+	// 			{currentSearchKey == "null" ? null : <LolSearchResult />}
+	// 		</React.Suspense>
+	// 	</>
+	// );
 };
 
 export default SearchLol;
