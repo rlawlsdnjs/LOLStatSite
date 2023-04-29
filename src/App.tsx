@@ -25,8 +25,6 @@ function App() {
 	const LolKeyword = "LolKeyword";
 	const keywordSession = sessionStorage.getItem(LolKeyword);
 
-	SearchLol();
-
 	return (
 		<BrowserRouter>
 			<Suspense fallback={<Loading />}>
