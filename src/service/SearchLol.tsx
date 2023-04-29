@@ -14,9 +14,7 @@ const SearchLol = () => {
 	const riotApi = import.meta.env.VITE_RIOT_API_KEY;
 	const remote = axios.create();
 	const [lolUser, setLolUser] = useRecoilState<any>(userDataState);
-	const LolSearchResult = React.lazy(
-		() => import("../components/lol/search/LolSearchResult")
-	);
+
 	const lolAllData = async () => {
 		try {
 			const userUrl =
