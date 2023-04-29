@@ -6,7 +6,7 @@ import { userDataState, searchKeyState } from "../store/lol";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import React from "react";
 import Loading from "../components/Loading";
-import { Suspense } from "react";
+import { lazy, Suspense } from "react";
 import LolSearchResult from "../components/lol/search/LolSearchResult";
 
 const SearchLol = () => {
@@ -14,7 +14,9 @@ const SearchLol = () => {
 	const riotApi = import.meta.env.VITE_RIOT_API_KEY;
 	const remote = axios.create();
 	const [lolUser, setLolUser] = useRecoilState<any>(userDataState);
-
+	const LolSearchResult = React.lazy(
+		() => import("../components/lol/search/LolSearchResult")
+	);
 	const lolAllData = async () => {
 		try {
 			const userUrl =
@@ -161,7 +163,13 @@ const SearchLol = () => {
 		}
 	}, [currentSearchKey]);
 
-	return <>{currentSearchKey == "null" ? null : <LolSearchResult />}</>;
+	return (
+		<>
+			<Suspense fallback={<Loading />}>
+				{currentSearchKey == "null" ? null : <LolSearchResult />}{" "}
+			</Suspense>
+		</>
+	);
 };
 
 export default SearchLol;
