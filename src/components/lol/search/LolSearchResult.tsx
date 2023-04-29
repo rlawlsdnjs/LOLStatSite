@@ -24,12 +24,12 @@ const LolSearchResult = () => {
 	// );
 	// console.log(currentMatchParticipants);
 	const UserMatch = React.lazy(() => import("../match/Match"));
-	const currentUserMatch = useRecoilValue<any>(userDataState);
-	console.log(currentUserMatch);
+	const currentUserMatch = useRecoilValueLoadable<any>(userDataState);
+	console.log("loadlable", currentUserMatch);
 
 	return (
 		<Suspense fallback={<Loading />}>
-			<ResultWrap className={currentUserMatch.rankInfo.leagueId}>
+			<ResultWrap>
 				<Profile />
 				<UserMatch />
 			</ResultWrap>
