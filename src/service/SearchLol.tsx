@@ -157,8 +157,8 @@ const SearchLol = () => {
 			return;
 		} else {
 			sessionStorage.setItem(LolKeyword, currentSearchKey);
+			lolAllData();
 		}
-		lolAllData();
 	}, [currentSearchKey]);
 
 	return <>{currentSearchKey == "null" ? null : <LolSearchResult />}</>;
