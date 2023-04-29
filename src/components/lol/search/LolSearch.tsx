@@ -17,7 +17,6 @@ interface IOpen {
 	open: boolean;
 }
 const LolSearch = (props: IOpen) => {
-	const searchKey = useRecoilValue(searchKeyState);
 	const [userSearch, setUserSearch] = useState("");
 
 	const [lolSearch, setLolSearch] = useRecoilState(searchKeyState);
