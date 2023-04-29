@@ -48,20 +48,6 @@ const SearchLol = () => {
 				riotApi;
 			const champInfo = await remote.get(champInfoUrl);
 
-			const userPuu = {
-				data: `${userPuuId}`,
-			};
-			const matchOptions: RequestInit = {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(userPuu),
-			};
-
-			// serverless functions 요청
-			const userMatchList = await fetch("/api/lolUserMatch", matchOptions);
-			const userMatchListResult = await userMatchList.json();
-			console.log("serverlessPuu", userMatchListResult);
-
 			// promiseall로 기존 코드
 
 			// const matchArr: any = [];
@@ -96,7 +82,7 @@ const SearchLol = () => {
 				rankInfo: rankInfo.data[0],
 				matchInfo: matchInfo.data,
 				mostChampInfo: champInfo.data[0].championId,
-				allMatch: userMatchListResult,
+				puuID: userPuuId,
 			});
 			// const match = Object.values(lolUser?.matchInfo);
 

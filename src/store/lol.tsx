@@ -47,20 +47,27 @@ export const lolUserDataState = selector({
 	},
 });
 
-// export const userMatchState: any = selector({
-// 	key: "userMatchState",
-// 	get: async ({ get }) => {
-// 		const matchArr = get<any>(userDataState);
-// 		const matchValue = Object.values(matchArr.matchID);
-// 		return await Promise.all(matchValue)
-// 			.then((responses) => {
-// 				return responses;
-// 			})
-// 			.catch((error) => {
-// 				console.log(error);
-// 			});
-// 	},
-// });
+export const userMatchState: any = selector({
+	key: "userMatchState",
+	get: async ({ get }) => {
+		const userData = get<any>(userDataState);
+		const userPuu = {
+			data: `${userData.puuID}`,
+		};
+		const matchOptions: RequestInit = {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(userPuu),
+		};
+
+		// serverless functions 요청
+		const userMatchList = await fetch("/api/lolUserMatch", matchOptions);
+		const userMatchListResult = await userMatchList.json();
+		console.log("serverlessPuu", userMatchListResult);
+
+		return userMatchListResult;
+	},
+});
 // export const currentMatchParticipantsState: any = selector({
 // 	key: "currentMatchParticipantsState",
 // 	get: async ({ get }) => {
