@@ -15,6 +15,7 @@ import React from "react";
 import Loading from "../../Loading";
 const UserMatch = () => {
 	const currentMatch = useRecoilValue<any>(userDataState);
+	console.log("유저정보", currentMatch);
 	// const matchInfo = useRecoilValue<any>(userMatchState);
 	const currentSearchKey = useRecoilValue(searchKeyState);
 	const [lolSearch, setLolSearch] = useRecoilState(searchKeyState);
@@ -27,8 +28,7 @@ const UserMatch = () => {
 	};
 	useEffect(() => {
 		setMatchData(currentMatch.allMatch.matchData);
-		console.log("유저정보", currentMatch);
-	}, [currentMatch]);
+	}, []);
 
 	return (
 		<>
