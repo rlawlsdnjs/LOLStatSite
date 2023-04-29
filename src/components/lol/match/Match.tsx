@@ -21,7 +21,6 @@ const UserMatch = () => {
 	const [lolSearch, setLolSearch] = useRecoilState(searchKeyState);
 	const [matchData, setMatchData] = useState([]);
 	// const [userMatch, setUserMatch] = useState<any>([]);
-	let searchUser: any = [];
 
 	const keywordChange = (e: any) => {
 		e.preventDefault();
