@@ -28,7 +28,7 @@ const UserMatch = () => {
 	};
 	useEffect(() => {
 		setMatchData(currentMatch.allMatch.matchData);
-	}, []);
+	}, [currentMatch]);
 
 	return (
 		<>
