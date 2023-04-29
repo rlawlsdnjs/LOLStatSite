@@ -7,6 +7,7 @@ import { userDataState, searchKeyState } from "../store/lol";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import React from "react";
 import Loading from "../components/Loading";
+import { Suspense } from "react";
 
 const SearchLol = () => {
 	const currentSearchKey = useRecoilValue(searchKeyState);
@@ -161,7 +162,13 @@ const SearchLol = () => {
 		lolAllData();
 	}, [currentSearchKey]);
 
-	return <>{currentSearchKey == "null" ? null : <LolSearchResult />}</>;
+	return (
+		<>
+			<Suspense fallback={<Loading />}>
+				{currentSearchKey == "null" ? null : <LolSearchResult />}
+			</Suspense>
+		</>
+	);
 };
 
 export default SearchLol;
