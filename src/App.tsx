@@ -28,43 +28,43 @@ function App() {
 
 	return (
 		<BrowserRouter>
-			<Wrap
-				className="wrap"
-				// 특정영역 외 클릭 시 즐겨찾기 숨기기
-				onClick={(e) => {
-					e.stopPropagation();
-					const target = e.target as HTMLElement;
-					const element = target.className;
+			<React.Suspense fallback={<Loading />}>
+				<Wrap
+					className="wrap"
+					// 특정영역 외 클릭 시 즐겨찾기 숨기기
+					onClick={(e) => {
+						e.stopPropagation();
+						const target = e.target as HTMLElement;
+						const element = target.className;
 
-					if (
-						element ==
-							e.currentTarget?.querySelector(".LolSearchInput")?.className ||
-						element ==
-							e.currentTarget?.querySelector(".FavoriteSection")?.className
-					) {
-						favoriteSetOpen(true);
-					} else {
-						favoriteSetOpen(false);
-					}
-				}}
-			>
-				<Header />
+						if (
+							element ==
+								e.currentTarget?.querySelector(".LolSearchInput")?.className ||
+							element ==
+								e.currentTarget?.querySelector(".FavoriteSection")?.className
+						) {
+							favoriteSetOpen(true);
+						} else {
+							favoriteSetOpen(false);
+						}
+					}}
+				>
+					<Header />
 
-				<LolSearch open={favoriteOpen} />
-				{/* <React.Suspense fallback={<Loading />}>
+					<LolSearch open={favoriteOpen} />
+					{/* <React.Suspense fallback={<Loading />}>
 					<SearchLol />
 				</React.Suspense> */}
-				<React.Suspense fallback={<Loading />}>
 					{keywordSession == null ? null : <LolSearchResult />}
-				</React.Suspense>
-				<Routes>
-					<Route
-						path="/"
-						element={loginValue == true && !userInfo ? <SignUp /> : null}
-					/>
-				</Routes>
-				<Footer />
-			</Wrap>
+					<Routes>
+						<Route
+							path="/"
+							element={loginValue == true && !userInfo ? <SignUp /> : null}
+						/>
+					</Routes>
+					<Footer />
+				</Wrap>
+			</React.Suspense>
 		</BrowserRouter>
 	);
 }
