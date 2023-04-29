@@ -27,13 +27,16 @@ const LolSearchResult = () => {
 	const currentUserMatch = useRecoilValueLoadable<any>(userMatchState);
 	console.log("loadlable", currentUserMatch);
 
+	// 로딩 상태 처리
+	if (currentUserMatch.state === "loading") {
+		return <Loading></Loading>;
+	}
+
 	return (
-		<Suspense fallback={<Loading />}>
-			<ResultWrap>
-				<Profile />
-				<UserMatch />
-			</ResultWrap>
-		</Suspense>
+		<ResultWrap>
+			<Profile />
+			<UserMatch />
+		</ResultWrap>
 	);
 };
 const aniSearch = keyframes`
