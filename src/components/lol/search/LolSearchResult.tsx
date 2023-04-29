@@ -3,7 +3,7 @@ import {
 	searchKeyState,
 	userDataState,
 	lolUserDataState,
-	// userMatchState,
+	userMatchState,
 	// userMatchUrlState,
 	// currentMatchParticipantsState,
 	// currentUserMatchState,
@@ -24,14 +24,16 @@ const LolSearchResult = () => {
 	// 	currentMatchParticipantsState
 	// );
 	// console.log(currentMatchParticipants);
-	const currentUserMatch = useRecoilValueLoadable<any>(lolUserDataState);
+	const currentUserMatch = useRecoilValueLoadable<any>(userMatchState);
 	console.log("loadlable", currentUserMatch);
 
 	return (
-		<ResultWrap>
-			<Profile />
-			<UserMatch />
-		</ResultWrap>
+		<Suspense fallback={<Loading />}>
+			<ResultWrap>
+				<Profile />
+				<UserMatch />
+			</ResultWrap>
+		</Suspense>
 	);
 };
 const aniSearch = keyframes`
