@@ -16,6 +16,7 @@ import "./App.css";
 import "./tailwind.css";
 import LolSearchResult from "./components/lol/search/LolSearchResult";
 import { useEffect } from "react";
+import { Suspense } from "react";
 function App() {
 	const userInfo = useContext(AuthContext);
 	const loginValue = useRecoilValue(loginState);
@@ -28,7 +29,7 @@ function App() {
 
 	return (
 		<BrowserRouter>
-			<React.Suspense fallback={<Loading />}>
+			<Suspense fallback={<Loading />}>
 				<Wrap
 					className="wrap"
 					// 특정영역 외 클릭 시 즐겨찾기 숨기기
@@ -58,7 +59,7 @@ function App() {
 					<YoutubeOpen />
 					<Footer />
 				</Wrap>
-			</React.Suspense>
+			</Suspense>
 		</BrowserRouter>
 	);
 }
