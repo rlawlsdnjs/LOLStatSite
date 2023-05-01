@@ -11,20 +11,20 @@ export const YoutubeResult: any = selector({
 	key: "YoutubeResult",
 	get: async ({ get }) => {
 		const YoutubeSearchKey = get<any>(YoutubeSearchKeyState);
-		const youtubeParams = axios.create({
-			baseURL: "https://youtube.googleapis.com/youtube/v3",
-			params: { key: YoutubeAPI },
-		});
+		const youtubeKeyword = {
+			data: `${YoutubeSearchKeyState}`,
+		};
+		const youtubeOptions: RequestInit = {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(youtubeKeyword),
+		};
 
-		const searchYoutube = await youtubeParams.get("search", {
-			params: {
-				part: "snippet",
-				q: YoutubeSearchKey,
-				type: "video",
-				maxResults: 10,
-			},
-		});
+		// serverless functions 요청
+		const youtubeList = await fetch("/api/lolUserMatch", youtubeOptions);
+		const youtubeListResult = await youtubeList.json();
+		console.log("serverlessPuu", youtubeListResult);
 
-		return YoutubeSearchKey == "" ? null : searchYoutube.data.items;
+		return YoutubeSearchKey == "" ? null : youtubeListResult;
 	},
 });

@@ -550,9 +550,9 @@ const twMoreBtn = styled.input<any>`
 		transform:translate(-50%, -50%);
 		color:#000;
 	}
-	&::after{content: '▽'; }
+	&::after{content: '+'; }
 	&:checked  {
-		&::after{content: '△';}"
+		&::after{content: '-';}"
 	  }
 
 `;
