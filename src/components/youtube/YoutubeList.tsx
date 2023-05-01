@@ -10,14 +10,11 @@ import "swiper/css/navigation";
 import styled, { keyframes } from "styled-components";
 const YoutubeList = () => {
 	const youtubeSearchList: {} | any = useRecoilValueLoadable(YoutubeResult);
-	console.log("youtube", youtubeSearchList);
 
 	const [yotubeKeyword, setYotubeKeyword] = useState("");
 	const [youtubeSearch, setYoutubeSearch] = useRecoilState(
 		YoutubeSearchKeyState
 	);
-
-	console.log("youtubekey", youtubeSearch);
 
 	const changehKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
 		e.preventDefault();

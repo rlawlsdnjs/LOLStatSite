@@ -12,7 +12,7 @@ export const YoutubeResult: any = selector({
 	get: async ({ get }) => {
 		const YoutubeSearchKey = get<any>(YoutubeSearchKeyState);
 		const youtubeKeyword = {
-			data: `${YoutubeSearchKeyState}`,
+			data: `${YoutubeSearchKey}`,
 		};
 		const youtubeOptions: RequestInit = {
 			method: "POST",
