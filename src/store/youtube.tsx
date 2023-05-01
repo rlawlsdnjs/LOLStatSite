@@ -21,7 +21,7 @@ export const YoutubeResult: any = selector({
 		};
 
 		// serverless functions 요청
-		const youtubeList = await fetch("/api/lolUserMatch", youtubeOptions);
+		const youtubeList = await fetch("/api/youtubeList", youtubeOptions);
 		const youtubeListResult = await youtubeList.json();
 		console.log("serverlessPuu", youtubeListResult);
 

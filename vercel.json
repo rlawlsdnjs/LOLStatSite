@@ -5,6 +5,10 @@
     "api/lolUserMatch.ts": {
       "memory": 1024, 
       "maxDuration": 10 
+    },
+    "api/youtubeList.ts": {
+      "memory": 1024, 
+      "maxDuration": 10 
     }
   }
 
