@@ -53,6 +53,7 @@ function App() {
 
 				{loginValue == true && !userInfo ? <SignUp /> : null}
 
+				<YoutubeOpen />
 				<Footer />
 			</Wrap>
 		</BrowserRouter>
