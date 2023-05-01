@@ -7,7 +7,7 @@ import { URLSearchParamsInit } from 'react-router-dom';
 
 const BASE_URL = 'https://youtube.googleapis.com/youtube/v3';
 const KEY = `${process.env.VITE_YOUTUBE_API_KEY}`;
-export default async function getUserMatch(request: VercelRequest, response: VercelResponse) {
+export default async function getYoutubeSearch(request: VercelRequest, response: VercelResponse) {
   try {
 
     const { body } = request;

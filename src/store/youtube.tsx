@@ -21,10 +21,14 @@ export const YoutubeResult: any = selector({
 		};
 
 		// serverless functions 요청
-		const youtubeList = await fetch("/api/youtubeList", youtubeOptions);
-		const youtubeListResult = await youtubeList.json();
-		console.log("serverlessPuu", youtubeListResult);
+		if (YoutubeSearchKey == "") {
+			return;
+		} else {
+			const youtubeList = await fetch("/api/youtubeList", youtubeOptions);
+			const youtubeListResult = await youtubeList.json();
+			console.log("youtube", youtubeListResult);
 
-		return YoutubeSearchKey == "" ? null : youtubeListResult;
+			return youtubeListResult;
+		}
 	},
 });
