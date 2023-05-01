@@ -17,6 +17,8 @@ const YoutubeList = () => {
 		YoutubeSearchKeyState
 	);
 
+	console.log("youtubekey", youtubeSearch);
+
 	const changehKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
 		e.preventDefault();
 		setYotubeKeyword(e.target.value);
