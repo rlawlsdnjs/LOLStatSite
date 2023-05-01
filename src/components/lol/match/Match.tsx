@@ -544,7 +544,7 @@ const twMoreBtn = styled.input<any>`
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		font-size: 20px;
+		font-size: 25px;
 		left:50%;
 		top:50%;
 		transform:translate(-50%, -50%);
@@ -554,7 +554,7 @@ const twMoreBtn = styled.input<any>`
 	}
 	&::after{content: '+'; }
 	&:checked  {
-		&::after{content: '-';}"
+		&::after{content: '―';}"
 	  }
 
 `;
