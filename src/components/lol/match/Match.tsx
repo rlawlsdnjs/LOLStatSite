@@ -539,17 +539,18 @@ const twMoreBtn = styled.input<any>`
     -moz-appearance: inherit;
 	appearance: inherit; 
     opacity: 1;
-	-webkit-text-stroke: 1px #000;
-	color: transparent;
+
 	&::after {
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		font-size: 15px;
+		font-size: 20px;
 		left:50%;
 		top:50%;
 		transform:translate(-50%, -50%);
 		color:#000;
+		-webkit-text-stroke: 1px #000;
+		color: transparent;
 	}
 	&::after{content: '+'; }
 	&:checked  {
