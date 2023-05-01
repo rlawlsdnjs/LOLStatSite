@@ -42,7 +42,7 @@ const YoutubeList = () => {
 				></input>
 				<button onClick={keywordChange}>검색</button>
 			</div>
-			{/* {youtubeSearchList == null ? (
+			{youtubeSearchList.contents == undefined ? (
 				<NullArea>
 					<p>검색창에 YOUTUBE 영상을 검색 해보세요!</p>
 				</NullArea>
@@ -68,26 +68,28 @@ const YoutubeList = () => {
 								},
 							}}
 						>
-							{youtubeSearchList.map((video: any, index: number) => {
-								let videosUrl = `https://www.youtube.com/embed/${video.id.videoId}`;
-								return (
-									<SwiperSlide key={video.id.videoId} virtualIndex={index}>
-										<iframe
-											width="300"
-											height="180"
-											src={videosUrl}
-											title={`${video.snippet.title}`}
-											frameBorder="0"
-											allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-											allowFullScreen
-										></iframe>
-									</SwiperSlide>
-								);
-							})}
+							{youtubeSearchList.contents.result.items.map(
+								(video: any, index: number) => {
+									let videosUrl = `https://www.youtube.com/embed/${video.id.videoId}`;
+									return (
+										<SwiperSlide key={video.id.videoId} virtualIndex={index}>
+											<iframe
+												width="300"
+												height="180"
+												src={videosUrl}
+												title={`${video.snippet.title}`}
+												frameBorder="0"
+												allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+												allowFullScreen
+											></iframe>
+										</SwiperSlide>
+									);
+								}
+							)}
 						</Swiper>
 					</main>
 				</div>
-			)} */}
+			)}
 		</YoutubeArea>
 	);
 };
