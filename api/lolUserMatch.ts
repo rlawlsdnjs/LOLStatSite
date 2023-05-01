@@ -11,7 +11,6 @@ export default async function getUserMatch(request: VercelRequest, response: Ver
 
     const { body } = request;
     const matchId = body.data;
-    const { data } = matchId;
     const res = await fetch(`${URL_ASIA_RIOT}/lol/match/v5/matches/by-puuid/${matchId}/ids?start=0&count=15&${KEY}`);
     const result = await res.json().then((data) => data);
 
