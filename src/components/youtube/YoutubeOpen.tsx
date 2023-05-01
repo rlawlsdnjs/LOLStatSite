@@ -29,7 +29,7 @@ const aniBtn = keyframes`
 	}
 `;
 const YoutubeBtn = styled.button`
-	// animation: ${aniBtn} 0.5s 1s infinite alternate linear;
+	animation: ${aniBtn} 0.5s 1s infinite alternate linear;
 	margin-bottom: 3vw;
 	margin-right: 3vw;
 	position: absolute;
@@ -43,9 +43,6 @@ const YoutubeBtn = styled.button`
 	background: rgba(255, 255, 255, 0.9);
 	cursor: pointer;
 	box-shadow: 3px 3px 20px #000;
-	& img {
-		max-width: 5vw;
-	}
 `;
 const YoutubeSection = styled.div`
 	position: fixed;
