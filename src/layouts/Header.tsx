@@ -4,7 +4,6 @@ import { useRecoilState } from "recoil";
 import { loginState } from "../store/lol";
 import { AuthContext } from "../components/sign/context/authContext";
 import { useContext } from "react";
-import { SignUp } from "../components/sign/sign";
 import { signOut } from "firebase/auth";
 import { auth } from "../api/firebase";
 import Logo from "../../public/assets/images/logo.png";

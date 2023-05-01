@@ -1,9 +1,4 @@
-import { atom, selector, useRecoilValue } from "recoil";
-import SearchLol from "../service/SearchLol";
-import { RecoilValueReadOnly } from "recoil";
-import axios from "axios";
-import { useEffect } from "react";
-const riotApi = import.meta.env.VITE_RIOT_API_KEY;
+import { atom, selector } from "recoil";
 
 export const loginState = atom({
 	key: "loginState",

@@ -2,9 +2,7 @@ import { db, auth } from "../../../api/firebase";
 import { updateDoc, doc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { favoriteState, searchKeyState, loginState } from "../../../store/lol";
-import { useContext } from "react";
-import { AuthContext } from "../../sign/context/authContext";
+import { favoriteState, searchKeyState } from "../../../store/lol";
 import styled from "styled-components";
 const FavoriteBtn = (props: any) => {
 	const frankDocRef = doc(db, "LolUser", `${auth.currentUser?.email}`);

@@ -60,7 +60,7 @@ const LolSearch = (props: IOpen) => {
 					<input
 						className="LolSearchInput"
 						type="search"
-						placeholder="소환사명을 입력 해주세요."
+						placeholder="소환사명을 입력 해주세요(띄어쓰기 포함)"
 						onChange={changehId}
 						onKeyDown={handleOnKeyPress}
 					/>

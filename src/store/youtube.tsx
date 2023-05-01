@@ -1,6 +1,4 @@
 import { atom, selector } from "recoil";
-import axios from "axios";
-const YoutubeAPI = import.meta.env.VITE_YOUTUBE_API_KEY;
 
 export const YoutubeSearchKeyState = atom<string>({
 	key: "YoutubeSearchKeyState",

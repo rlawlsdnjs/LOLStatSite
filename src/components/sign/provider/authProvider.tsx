@@ -1,10 +1,7 @@
-//authProvider.tsx
 import { User } from "@firebase/auth";
 import { useEffect, useState } from "react";
 import { AuthContext } from "../context/authContext";
 import { auth } from "../../../api/firebase";
-import { loginState } from "../../../store/lol";
-import { useRecoilValue, useResetRecoilState, useRecoilState } from "recoil";
 
 interface Props {
 	children: React.ReactNode;

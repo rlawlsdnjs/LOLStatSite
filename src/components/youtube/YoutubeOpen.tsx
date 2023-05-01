@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { YoutubeResult } from "../../store/youtube";
 import YoutubeList from "./YoutubeList";

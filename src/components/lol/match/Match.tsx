@@ -539,7 +539,8 @@ const twMoreBtn = styled.input<any>`
     -moz-appearance: inherit;
 	appearance: inherit; 
     opacity: 1;
-
+	-webkit-text-stroke: 1px #000;
+	color: transparent;
 	&::after {
 		position: absolute;
 		top: 50%;

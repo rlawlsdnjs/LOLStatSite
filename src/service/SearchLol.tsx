@@ -1,12 +1,8 @@
-import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
-import { setLogLevel } from "firebase/firestore";
 import { userDataState, searchKeyState } from "../store/lol";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import React from "react";
-import Loading from "../components/Loading";
-import { lazy, Suspense } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+
 import LolSearchResult from "../components/lol/search/LolSearchResult";
 
 const SearchLol = () => {

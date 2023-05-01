@@ -1,31 +1,14 @@
-import { useRecoilValue, useRecoilValueLoadable } from "recoil";
-import {
-	searchKeyState,
-	userDataState,
-	lolUserDataState,
-	userMatchState,
-	// userMatchUrlState,
-	// currentMatchParticipantsState,
-	// currentUserMatchState,
-} from "../../../store/lol";
+import { useRecoilValueLoadable } from "recoil";
+import { userMatchState } from "../../../store/lol";
 import Profile from "../profile/Profile";
 import UserMatch from "../match/Match";
 import styled, { keyframes } from "styled-components";
 import tw from "tailwind-styled-components";
-import React, { useEffect, useState } from "react";
-import { useMemo } from "react";
-import SearchLol from "../../../service/SearchLol";
-import LolSearch from "./LolSearch";
+
 import Loading from "../../Loading";
-import { Suspense } from "react";
 
 const LolSearchResult = () => {
-	// const currentMatchParticipants = useRecoilValue(
-	// 	currentMatchParticipantsState
-	// );
-	// console.log(currentMatchParticipants);
 	const currentUserMatch = useRecoilValueLoadable<any>(userMatchState);
-	console.log("loadlable", currentUserMatch);
 
 	// 로딩 상태 처리
 	if (currentUserMatch.state === "loading") {
@@ -53,7 +36,7 @@ const twResultWrap = styled.div<any>`
 	max-height: 700px;
 	height: 75vh;
 	display: flex;
-	padding: 3rem;
+	padding: 1rem;
 	flex-wrap: wrap;
 	box-sizing: border-box;
 	background: rgbA(255, 255, 255, 0.9);
@@ -82,5 +65,7 @@ const ResultWrap = tw(twResultWrap)<any>`
   md:overflow-hidden
   w-full
   justify-evenly
+  lg:p-12
+
 `;
 export default LolSearchResult;

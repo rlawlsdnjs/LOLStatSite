@@ -1,5 +1,5 @@
-import { useRecoilValue, useRecoilValueLoadable } from "recoil";
-import { userDataState, lolUserDataState } from "../../../store/lol";
+import { useRecoilValue } from "recoil";
+import { lolUserDataState } from "../../../store/lol";
 import tw from "tailwind-styled-components";
 import styled from "styled-components";
 import FavoriteBtn from "../favorite/FavoriteBtn";
