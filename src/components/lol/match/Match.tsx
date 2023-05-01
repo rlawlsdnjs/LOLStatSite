@@ -1,9 +1,5 @@
-import { useRecoilValue, useRecoilValueLoadable } from "recoil";
-import {
-	searchKeyState,
-	userDataState,
-	userMatchState,
-} from "../../../store/lol";
+import { useRecoilValue } from "recoil";
+import { searchKeyState, userMatchState } from "../../../store/lol";
 import MatchDuration from "./MatchDuration";
 import GameMode from "./GameMode";
 import SpellImg from "./SpellImg";
@@ -11,13 +7,7 @@ import ItemList from "./ItemList";
 import { useRecoilState } from "recoil";
 import tw from "tailwind-styled-components";
 import RuneImg from "./RuneImg";
-import styled, { keyframes } from "styled-components";
-import axios from "axios";
-import { useState } from "react";
-import { useEffect } from "react";
-import React from "react";
-import Loading from "../../Loading";
-import { Suspense } from "react";
+import styled from "styled-components";
 const UserMatch = () => {
 	const currentMatch = useRecoilValue<any>(userMatchState);
 	console.log("유저정보", currentMatch);

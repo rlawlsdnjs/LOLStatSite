@@ -27,6 +27,7 @@ const Profile = () => {
 								border: "1px solid #000",
 							}}
 							src={`http://ddragon.leagueoflegends.com/cdn/13.5.1/img/profileicon/${user?.userInfo?.profileIconId}.png`}
+							alt="대표 아이콘 이미지"
 						></img>
 						{/* 유저 아이디 */}
 						<h3>{user.userInfo.name}</h3>
@@ -42,6 +43,7 @@ const Profile = () => {
 												? `/assets/icons/tier-base-icons/provisional.png`
 												: `/assets/icons/tier-base-icons/${user?.rankInfo?.tier}.png`
 										}
+										alt="랭크정보이미지"
 									></img>
 									{/* 전적, 승률 영역*/}
 									<div>
@@ -81,6 +83,7 @@ const Profile = () => {
 					<BackgroundProfile>
 						<img
 							src={`/assets/images/champion/${mostChampName[0][1]}_0.jpg`}
+							alt="모스트챔프이미지"
 						></img>
 					</BackgroundProfile>
 				</>
