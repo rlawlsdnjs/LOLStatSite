@@ -19,9 +19,7 @@ export default async function getYoutubeSearch(request: VercelRequest, response:
       });
   
       const res = await fetch(`${BASE_URL}/search?${params.toString()}`);
-
-  
-      const result = await res.json();
+      const result = await res.json().then((data) => data);
       response.status(200).json({
         result,
       });

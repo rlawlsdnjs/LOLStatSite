@@ -1,4 +1,4 @@
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilValueLoadable } from "recoil";
 import { useRecoilState } from "recoil";
 import { YoutubeResult } from "../../store/youtube";
 import { YoutubeSearchKeyState } from "../../store/youtube";
@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import styled, { keyframes } from "styled-components";
 const YoutubeList = () => {
-	const youtubeSearchList: [] | any = useRecoilValue(YoutubeResult);
+	const youtubeSearchList: {} | any = useRecoilValueLoadable(YoutubeResult);
 	console.log("youtube", youtubeSearchList);
 
 	const [yotubeKeyword, setYotubeKeyword] = useState("");
