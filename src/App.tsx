@@ -48,12 +48,14 @@ function App() {
 				}}
 			>
 				<Header />
+
 				<LolSearch open={favoriteOpen} />
 				{currentSearchKey && <SearchLol />}
 
 				{loginValue == true && !userInfo ? <SignUp /> : null}
-
-				<YoutubeOpen />
+				<Suspense fallback={<Loading />}>
+					<YoutubeOpen />
+				</Suspense>
 				<Footer />
 			</Wrap>
 		</BrowserRouter>
