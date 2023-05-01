@@ -29,7 +29,7 @@ const aniBtn = keyframes`
 	}
 `;
 const YoutubeBtn = styled.button`
-	animation: ${aniBtn} 0.5s 1s infinite alternate linear;
+	// animation: ${aniBtn} 0.5s 1s infinite alternate linear;
 	margin-bottom: 3vw;
 	margin-right: 3vw;
 	position: absolute;
