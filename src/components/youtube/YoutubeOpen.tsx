@@ -21,21 +21,25 @@ const YoutubeOpen = () => {
 };
 const aniBtn = keyframes`
 	from {
-		top:5px;
+		opacity:0.5;
 	}
 
 	to {
-		top:0px;
+		opacity:0.1;
 	}
 `;
 const YoutubeBtn = styled.button`
-	// animation: ${aniBtn} 1s 2s infinite alternate linear;
+	// animation: ${aniBtn} 0.5s 1s infinite alternate linear;
 	margin-bottom: 3vw;
 	margin-right: 3vw;
 	position: absolute;
 	border-radius: 50%;
 	padding: 10px;
-	top: -100%;
+	top: -95px;
+	right: 0;
+	width: 70px;
+	height: 70px;
+	display: block;
 	background: rgba(255, 255, 255, 0.9);
 	cursor: pointer;
 	box-shadow: 3px 3px 20px #000;
