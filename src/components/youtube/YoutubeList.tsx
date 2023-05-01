@@ -10,7 +10,7 @@ import "swiper/css/navigation";
 import styled, { keyframes } from "styled-components";
 const YoutubeList = () => {
 	const youtubeSearchList: [] | any = useRecoilValue(YoutubeResult);
-	console.log(youtubeSearchList);
+	console.log("youtube", youtubeSearchList);
 
 	const [yotubeKeyword, setYotubeKeyword] = useState("");
 	const [youtubeSearch, setYoutubeSearch] = useRecoilState(
@@ -33,62 +33,63 @@ const YoutubeList = () => {
 	};
 
 	return (
-		<YoutubeArea>
-			<div className="text-center pt-5 flex justify-center">
-				<input
-					onChange={changehKeyword}
-					onKeyDown={handleOnKeyPress}
-					placeholder="영상을 입력 해주세요."
-				></input>
-				<button onClick={keywordChange}>검색</button>
-			</div>
-			{youtubeSearchList == null ? (
-				<NullArea>
-					<p>검색창에 YOUTUBE 영상을 검색 해보세요!</p>
-				</NullArea>
-			) : (
-				<div className="max-w-screen-xl p-5 mx-auto">
-					<main>
-						<Swiper
-							spaceBetween={50}
-							slidesPerView={1.5}
-							onSlideChange={() => console.log("slide change")}
-							onSwiper={(swiper) => console.log(swiper)}
-							modules={[Navigation]}
-							navigation
-							breakpoints={{
-								480: {
-									slidesPerView: 1.5,
-								},
-								768: {
-									slidesPerView: 2.5,
-								},
-								1025: {
-									slidesPerView: 3.5,
-								},
-							}}
-						>
-							{youtubeSearchList.map((video: any, index: number) => {
-								let videosUrl = `https://www.youtube.com/embed/${video.id.videoId}`;
-								return (
-									<SwiperSlide key={video.id.videoId} virtualIndex={index}>
-										<iframe
-											width="300"
-											height="180"
-											src={videosUrl}
-											title={`${video.snippet.title}`}
-											frameBorder="0"
-											allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-											allowFullScreen
-										></iframe>
-									</SwiperSlide>
-								);
-							})}
-						</Swiper>
-					</main>
-				</div>
-			)}
-		</YoutubeArea>
+		// <YoutubeArea>
+		// 	<div className="text-center pt-5 flex justify-center">
+		// 		<input
+		// 			onChange={changehKeyword}
+		// 			onKeyDown={handleOnKeyPress}
+		// 			placeholder="영상을 입력 해주세요."
+		// 		></input>
+		// 		<button onClick={keywordChange}>검색</button>
+		// 	</div>
+		// 	{youtubeSearchList == null ? (
+		// 		<NullArea>
+		// 			<p>검색창에 YOUTUBE 영상을 검색 해보세요!</p>
+		// 		</NullArea>
+		// 	) : (
+		// 		<div className="max-w-screen-xl p-5 mx-auto">
+		// 			<main>
+		// 				<Swiper
+		// 					spaceBetween={50}
+		// 					slidesPerView={1.5}
+		// 					onSlideChange={() => console.log("slide change")}
+		// 					onSwiper={(swiper) => console.log(swiper)}
+		// 					modules={[Navigation]}
+		// 					navigation
+		// 					breakpoints={{
+		// 						480: {
+		// 							slidesPerView: 1.5,
+		// 						},
+		// 						768: {
+		// 							slidesPerView: 2.5,
+		// 						},
+		// 						1025: {
+		// 							slidesPerView: 3.5,
+		// 						},
+		// 					}}
+		// 				>
+		// 					{youtubeSearchList.map((video: any, index: number) => {
+		// 						let videosUrl = `https://www.youtube.com/embed/${video.id.videoId}`;
+		// 						return (
+		// 							<SwiperSlide key={video.id.videoId} virtualIndex={index}>
+		// 								<iframe
+		// 									width="300"
+		// 									height="180"
+		// 									src={videosUrl}
+		// 									title={`${video.snippet.title}`}
+		// 									frameBorder="0"
+		// 									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+		// 									allowFullScreen
+		// 								></iframe>
+		// 							</SwiperSlide>
+		// 						);
+		// 					})}
+		// 				</Swiper>
+		// 			</main>
+		// 		</div>
+		// 	)}
+		// </YoutubeArea>
+		<p>test</p>
 	);
 };
 
