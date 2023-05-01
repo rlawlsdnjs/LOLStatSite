@@ -10,15 +10,15 @@ export default async function getYoutubeSearch(request: VercelRequest, response:
 
     const { body } = request;
     const youtubeKeyword = body.data;
-    const params = ({
+    const params = new URLSearchParams({
         key: KEY,
         part: 'snippet',
         q: youtubeKeyword,
         type: 'video',
-        maxResults: 10,
+        maxResults: '10',
       });
   
-      const res = await fetch(`${BASE_URL}/search?${params.toString()}`);
+      const res = await fetch(`${BASE_URL}/search?${params}`);
       const result = await res.json().then((data) => data);
       response.status(200).json({
         result,
