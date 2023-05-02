@@ -11,14 +11,15 @@ const LolSearchResult = () => {
 	const currentUserMatch = useRecoilValueLoadable<any>(userMatchState);
 
 	// 로딩 상태 처리
-	return <Loading></Loading>;
-
-	return (
-		<ResultWrap>
-			<Profile />
-			<UserMatch />
-		</ResultWrap>
-	);
+	if (currentUserMatch.state === "loading") {
+		return <Loading />;
+	} else
+		return (
+			<ResultWrap>
+				<Profile />
+				<UserMatch />
+			</ResultWrap>
+		);
 };
 const aniSearch = keyframes`
 	from {
