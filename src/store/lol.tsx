@@ -58,88 +58,12 @@ export const userMatchState: any = selector({
 		// serverless functions 요청
 		const userMatchList = await fetch("/api/lolUserMatch", matchOptions);
 		const userMatchListResult = await userMatchList.json();
-		console.log("serverlessPuu", userMatchListResult);
 
 		return userMatchListResult;
 	},
 });
-// export const currentMatchParticipantsState: any = selector({
-// 	key: "currentMatchParticipantsState",
-// 	get: async ({ get }) => {
-// 		const currentUserMatch = get<any>(userDataState);
-// 		console.log("recoil", currentUserMatch);
-// 		return currentUserMatch?.allMatch.map((match: any) => {
-// 			return match?.data?.info?.participants;
-// 		});
-// 	},
-// });
-
-// export const currentUserMatchState: any = selector({
-// 	key: "currentUserMatchState",
-// 	get: ({ get }) => {
-// 		const currentSearchKey = get(searchKeyState);
-// 		const currentUserMatch = get<any>(currentMatchParticipantsState);
-// 		const gd: any = [];
-// 		const currentUserMatchInfo: any = currentUserMatch?.forEach(
-// 			(user: any, idx: number) => {
-// 				user.reduce((ac: any, name: any) => {
-// 					if (name.summonerName == currentSearchKey) {
-// 						gd.push(name);
-// 					}
-// 				});
-// 				return;
-// 			}
-// 		);
-
-// 		return gd;
-// 	},
-// });
 
 export const favoriteState = atom({
 	key: "favoriteState",
 	default: [],
 });
-
-// export const userMatchUrlState: any = selector({
-// 	key: "userMatchUrlState",
-// 	get: ({ get }) => {
-// 		const userMatchInfo = get<any>(userDataState);
-
-// 		const matchValue = Object.values(userMatchInfo.matchInfo);
-// 		console.log(matchValue);
-// 		const remote = axios.create();
-// 		const matchArr: any = [];
-
-// 		for (let i = 0, len = 20; i < len; i++) {
-// 			matchArr.push(
-// 				remote.get(`/api/lol/match/v5/matches/${matchValue[i]}`, {
-// 					headers: {
-// 						"X-Riot-Token": riotApi,
-// 					},
-// 				})
-// 			);
-// 		}
-
-// 		// async function fetchItems(match: any) {
-// 		//   match.map((item: any) => {
-// 		//     axios
-// 		//       .get(`/api/lol/match/v5/matches/${item}`, {
-// 		//         headers: {
-// 		//           "X-Riot-Token": riotApi,
-// 		//         },
-// 		//       })
-// 		//       .then((res) => {
-// 		//         console.log(res);
-// 		//       });
-// 		//   });
-
-// 		//   // const responses = await Promise.all(requests);
-// 		//   // const responses = await requests
-
-// 		//   // return console.log(responses.map(response => response));
-// 		// }
-// 		// fetchItems(match);
-
-// 		return matchArr;
-// 	},
-// });

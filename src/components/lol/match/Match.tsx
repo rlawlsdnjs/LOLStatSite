@@ -10,11 +10,8 @@ import RuneImg from "./RuneImg";
 import styled from "styled-components";
 const UserMatch = () => {
 	const currentMatch = useRecoilValue<any>(userMatchState);
-	console.log("유저정보", currentMatch);
-	// const matchInfo = useRecoilValue<any>(userMatchState);
 	const currentSearchKey = useRecoilValue(searchKeyState);
 	const [lolSearch, setLolSearch] = useRecoilState(searchKeyState);
-	// const [userMatch, setUserMatch] = useState<any>([]);
 
 	const keywordChange = (e: any) => {
 		e.preventDefault();
@@ -40,7 +37,6 @@ const UserMatch = () => {
 						let purpleTeam = match?.info?.participants?.filter(
 							(user: any) => user.teamId == 200
 						);
-						console.log("purpleTeam", purpleTeam);
 
 						return (
 							<>

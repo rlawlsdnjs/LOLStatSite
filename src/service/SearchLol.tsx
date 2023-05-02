@@ -42,34 +42,6 @@ const SearchLol = () => {
 				riotApi;
 			const champInfo = await remote.get(champInfoUrl);
 
-			// promiseall로 기존 코드
-
-			// const matchArr: any = [];
-			// const matchValue = Object.values(matchInfo.data);
-
-			// for (let i = 0, len = 20; i < len; i++) {
-			// 	matchArr.push(
-			// 		remote.get(`/api/lol/match/v5/matches/${matchValue[i]}`, {
-			// 			headers: {
-			// 				"X-Riot-Token": riotApi,
-			// 			},
-			// 		})
-			// 	);
-			// }
-			// console.log(matchArr);
-			// const allMatch: any = await Promise.all(matchArr)
-			// 	.then((responses) => {
-			// 		return responses;
-			// 	})
-			// 	.catch((error) => {
-			// 		console.log(error);
-			// 	});
-			// console.log("allmatch", allMatch);
-			// console.log(true);
-			// const participants = allMatch.map((match: any) => {
-			// 	return match.data.info.participants;
-			// });
-
 			setLolUser({
 				id: userInfo.data.id,
 				userInfo: userInfo.data,
@@ -78,56 +50,6 @@ const SearchLol = () => {
 				mostChampInfo: champInfo.data[0].championId,
 				puuID: userPuuId,
 			});
-			// const match = Object.values(lolUser?.matchInfo);
-
-			// 매치 별 정보
-			// const matchArr: any = [];
-			// console.log("match", Object.values(lolUser?.matchInfo));
-			// if (matchArr.length <= matchInfo.data.length) {
-			// 	for (let i = 0, len = 20; i < len; i++) {
-			// 		matchArr.push(
-			// 			remote.get(`/api/lol/match/v5/matches/${matchInfo.data[i]}`, {
-			// 				headers: {
-			// 					"X-Riot-Token": riotApi,
-			// 				},
-			// 			})
-			// 		);
-			// 	}
-			// 	console.log("배열푸쉬", matchArr);
-			// 	await Promise.all(matchArr)
-			// 		.then((responses: any) => {
-			// 			matchResult.push(responses);
-			// 			console.log("위결과", matchResult);
-			// 			if (matchResult.length != 0) {
-			// 				currentUser(matchResult);
-			// 			}
-			// 		})
-			// 		.catch((error) => {
-			// 			console.log(error);
-			// 		});
-
-			// 	return;
-			// }
-
-			// async function fetchItems(match: any) {
-			//   match.map((item: any) => {
-			//     axios
-			//       .get(`/api/lol/match/v5/matches/${item}`, {
-			//         headers: {
-			//           "X-Riot-Token": riotApi,
-			//         },
-			//       })
-			//       .then((res) => {
-			//         console.log(res);
-			//       });
-			//   });
-
-			//   // const responses = await Promise.all(requests);
-			//   // const responses = await requests
-
-			//   // return console.log(responses.map(response => response));
-			// }
-			// fetchItems(match);
 		} catch (error) {
 			console.log(`Error: ${error}`);
 		}

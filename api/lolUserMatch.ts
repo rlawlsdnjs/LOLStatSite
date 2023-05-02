@@ -19,7 +19,7 @@ export default async function getUserMatch(request: VercelRequest, response: Ver
     fetch(`${URL_ASIA_RIOT}/lol/match/v5/matches/${gameId}?${KEY}`)
      .then((res) => res.json()));
 
-     const matchData = await Promise.all(matchDetail).then((data) => data);;
+    const matchData = await Promise.all(matchDetail).then((data) => data);;
     response.status(200).json({
       matchData,
     });

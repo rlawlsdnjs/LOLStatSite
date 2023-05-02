@@ -11,9 +11,7 @@ const LolSearchResult = () => {
 	const currentUserMatch = useRecoilValueLoadable<any>(userMatchState);
 
 	// 로딩 상태 처리
-	if (currentUserMatch.state === "loading") {
-		return <Loading></Loading>;
-	}
+	return <Loading></Loading>;
 
 	return (
 		<ResultWrap>
