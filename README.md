@@ -58,12 +58,6 @@ League of Legend라는 게임의 전적 검색 기능과 동시에 게임 대기
 
 <br />
 
-### 💡 프로젝트 기획
-
--  <a href="https://www.notion.so/758fb5ce245c4fc3992062de48afcc87" target="_blank">노션</a>
-
-
-<br />
 
 ### 🎯 프로젝트 목표
 
