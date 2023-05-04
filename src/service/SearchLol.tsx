@@ -13,21 +13,6 @@ const SearchLol = () => {
 
 	// serverless functions 요청 소환사명 유무 확인
 
-	async () => {
-		const summoner = {
-			data: `${currentSearchKey}`,
-		};
-		const matchOptions: RequestInit = {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify(summoner),
-		};
-		const summonerFunc = await fetch("/api/lolSummonersCheck", matchOptions);
-		const summonerCheck = await summonerFunc.json();
-		console.log(summonerFunc);
-		console.log(summonerCheck);
-	};
-
 	const lolAllData = async () => {
 		try {
 			const userUrl =
@@ -77,6 +62,25 @@ const SearchLol = () => {
 			return;
 		} else {
 			sessionStorage.setItem(LolKeyword, currentSearchKey);
+
+			const summonerFunction = async () => {
+				const summoner = {
+					data: `${currentSearchKey}`,
+				};
+				const matchOptions: RequestInit = {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(summoner),
+				};
+				const summonerFunc = await fetch(
+					"/api/lolSummonersCheck",
+					matchOptions
+				);
+				const summonerCheck = await summonerFunc.json();
+				console.log(summonerFunc);
+				console.log(summonerCheck);
+			};
+			summonerFunction();
 			lolAllData();
 		}
 	}, [currentSearchKey]);
