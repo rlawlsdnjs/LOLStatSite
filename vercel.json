@@ -1,10 +1,6 @@
 {
   "rewrites": [{ "source": "/(.*)", "destination": "/" }],
   "functions": {
-    "api/lolSummonersCheck.ts": {
-      "memory": 1024, 
-      "maxDuration": 10 
-    },
     "api/lolUserMatch.ts": {
       "memory": 1024, 
       "maxDuration": 10 
