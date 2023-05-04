@@ -11,6 +11,23 @@ const SearchLol = () => {
 	const remote = axios.create();
 	const [lolUser, setLolUser] = useRecoilState<any>(userDataState);
 
+	// serverless functions 요청 소환사명 유무 확인
+
+	async () => {
+		const summoner = {
+			data: `${currentSearchKey}`,
+		};
+		const matchOptions: RequestInit = {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(summoner),
+		};
+		const summonerFunc = await fetch("/api/lolSummonersCheck", matchOptions);
+		const summonerCheck = await summonerFunc.json();
+		console.log(summonerFunc);
+		console.log(summonerCheck);
+	};
+
 	const lolAllData = async () => {
 		try {
 			const userUrl =
@@ -20,7 +37,6 @@ const SearchLol = () => {
 			const userInfo = await remote.get(userUrl);
 			const userAccountId = userInfo.data.accountId;
 			const userPuuId = userInfo.data.puuid;
-			console.log(userPuuId);
 			const userId = userInfo.data.id;
 			const userRankhUrl =
 				`https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/${userId}` +
