@@ -63,24 +63,6 @@ const SearchLol = () => {
 		} else {
 			sessionStorage.setItem(LolKeyword, currentSearchKey);
 
-			const summonerFunction = async () => {
-				const summoner = {
-					data: `${currentSearchKey}`,
-				};
-				const matchOptions: RequestInit = {
-					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify(summoner),
-				};
-				const summonerFunc = await fetch(
-					"/api/lolSummonersCheck",
-					matchOptions
-				);
-				const summonerCheck = await summonerFunc.json();
-				console.log(summonerFunc);
-				console.log(summonerCheck);
-			};
-			summonerFunction();
 			lolAllData();
 		}
 	}, [currentSearchKey]);
