@@ -71,8 +71,14 @@ const SearchLol = () => {
 					body: JSON.stringify(userName),
 				};
 				const SummonerName = await fetch("/api/lolNameCheck", matchOptions);
-				const summonerNameResult = await SummonerName.json();
-				return summonerNameResult.check;
+				const summonerNameResult = await SummonerName.text();
+				try {
+					const result = JSON.parse(summonerNameResult);
+					return result.check;
+				} catch (e) {
+					console.error(e);
+					return false;
+				}
 			}
 
 			async function funcSummonerName() {
