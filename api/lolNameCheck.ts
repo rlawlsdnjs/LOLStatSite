@@ -15,7 +15,6 @@ export default async function getUserName(request: VercelRequest, response: Verc
  
          
         if (res.ok) {
-            const data = await res.json();
             return { check: true };
         } else if (res.status === 404) {
             return { check: false };
