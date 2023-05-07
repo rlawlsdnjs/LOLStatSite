@@ -72,15 +72,15 @@ const SearchLol = () => {
 				};
 				const SummonerName = await fetch("/api/lolNameCheck", matchOptions);
 				const summonerNameResult = await SummonerName.json();
-				return summonerNameResult.Check;
+				return summonerNameResult.check;
 			}
 
 			async function funcSummonerName() {
 				const isTrue = await checkSummonerName(currentSearchKey);
 				console.log(isTrue);
-				// isTrue
-				// 	? lolAllData()
-				// 	: alert("소환사명을 확인해주세요.(띄어쓰기 포함)");
+				isTrue
+					? lolAllData()
+					: alert("소환사명을 확인해주세요.(띄어쓰기 포함)");
 			}
 			funcSummonerName();
 		}
