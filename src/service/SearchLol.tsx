@@ -77,9 +77,10 @@ const SearchLol = () => {
 
 			async function funcSummonerName() {
 				const isTrue = await checkSummonerName(currentSearchKey);
-				isTrue
-					? lolAllData()
-					: alert("소환사명을 확인해주세요.(띄어쓰기 포함)");
+				console.log(isTrue);
+				// isTrue
+				// 	? lolAllData()
+				// 	: alert("소환사명을 확인해주세요.(띄어쓰기 포함)");
 			}
 			funcSummonerName();
 		}
