@@ -64,14 +64,20 @@ const SearchLol = () => {
 			sessionStorage.setItem(LolKeyword, currentSearchKey);
 			// 소환사명 유무 존재
 			async function checkSummonerName(summonerName: string) {
-				try {
-					const userUrl = `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summonerName}?api_key=${riotApi}`;
-					const response = await axios.get(userUrl);
-					const { data } = response;
-					return true;
-				} catch (error) {
-					return false;
-				}
+				const userName = {
+					data: `${currentSearchKey}`,
+				};
+				const matchOptions: RequestInit = {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(userName),
+				};
+
+				// serverless functions 요청
+				const SummonerName = await fetch("/api/lolNameCheck", matchOptions);
+				const summonerNameResult = await SummonerName.json();
+
+				return summonerNameResult;
 			}
 			async function funcSummonerName() {
 				const currentSearchKey = "소환사명";

@@ -1,6 +1,10 @@
 {
   "rewrites": [{ "source": "/(.*)", "destination": "/" }],
   "functions": {
+    "api/lolNameCheck.ts": {
+      "memory": 1024, 
+      "maxDuration": 10 
+    },
     "api/lolUserMatch.ts": {
       "memory": 1024, 
       "maxDuration": 10 
@@ -9,7 +13,5 @@
       "memory": 1024, 
       "maxDuration": 10 
     }
-
   }
-
 }
