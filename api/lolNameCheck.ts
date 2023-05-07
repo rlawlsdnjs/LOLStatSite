@@ -7,17 +7,19 @@ const URL_KR_RIOT = 'https://kr.api.riotgames.com';
 
 const KEY = `api_key=${process.env.VITE_RIOT_API_KEY}`;
 export default async function getUserName(request: VercelRequest, response: VercelResponse) {
+    const { body } = request;
+    const summonerName = body.data;
+  
     try {
-      const { body } = request;
-      const summonerName = body.data;
       const res = await fetch(`${URL_KR_RIOT}/lol/summoner/v4/summoners/by-name/${summonerName}?${KEY}`);
       if (res.status === 404) {
-        return { check: false };
+        response.status(404).json({ check: false });
+      } else {
+        const data = await res.json();
+        response.json({ check: true });
       }
-      const data = await res.json();
-      return { check: true };
     } catch (err) {
       console.error(err);
-      return { check: false };
+      response.status(500).json({ check: false });
     }
-}
+  }
