@@ -65,7 +65,7 @@ const SearchLol = () => {
 			// 소환사명 유무 존재
 			async function checkSummonerName(summonerName: string) {
 				const userName = {
-					data: `${currentSearchKey}`,
+					data: `${summonerName}`,
 				};
 				const matchOptions: RequestInit = {
 					method: "POST",
@@ -77,10 +77,9 @@ const SearchLol = () => {
 				const SummonerName = await fetch("/api/lolNameCheck", matchOptions);
 				const summonerNameResult = await SummonerName.json();
 
-				return summonerNameResult;
+				return summonerNameResult.Check;
 			}
 			async function funcSummonerName() {
-				const currentSearchKey = "소환사명";
 				const isTrue = await checkSummonerName(currentSearchKey);
 				isTrue
 					? lolAllData()
