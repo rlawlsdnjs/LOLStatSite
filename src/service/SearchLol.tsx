@@ -62,7 +62,23 @@ const SearchLol = () => {
 			return;
 		} else {
 			sessionStorage.setItem(LolKeyword, currentSearchKey);
-
+			// 소환사명 유무 존재
+			async function checkSummonerName(summonerName: string) {
+				try {
+					const userUrl = `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summonerName}?api_key=${riotApi}`;
+					const response = await axios.get(userUrl);
+					const { data } = response;
+					return true;
+				} catch (error) {
+					return false;
+				}
+			}
+			async function exampleUsage() {
+				const currentSearchKey = "소환사명";
+				const isTrue = await checkSummonerName(currentSearchKey);
+				console.log(isTrue);
+			}
+			exampleUsage();
 			lolAllData();
 		}
 	}, [currentSearchKey]);
