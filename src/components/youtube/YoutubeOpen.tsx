@@ -12,7 +12,11 @@ const YoutubeOpen = () => {
 	const youtubeSearch = useRecoilValue(YoutubeResult);
 	return (
 		<YoutubeSection>
-			<YoutubeBtn onClick={openYoutube}>
+			<YoutubeBtn
+				onClick={openYoutube}
+				role="button"
+				aria-label="Youtube 검색창 on/off 버튼"
+			>
 				<img src={YoutubeLogo} />
 			</YoutubeBtn>
 			{youtubeOpen && <YoutubeList />}

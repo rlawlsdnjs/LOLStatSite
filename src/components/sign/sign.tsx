@@ -12,6 +12,8 @@ import { db } from "../../api/firebase";
 import { setDoc, doc, updateDoc } from "firebase/firestore";
 import { getDocs } from "firebase/firestore";
 import Logo from "../../../public/assets/images/logo.png";
+import { loginState } from "../../store/lol";
+import { useRecoilState } from "recoil";
 
 export const SignUp = () => {
 	const user = auth.currentUser;
@@ -19,8 +21,13 @@ export const SignUp = () => {
 	const [email, setEmail] = useState("");
 	const [pwd, setPwd] = useState("");
 	const [nick, setNick] = useState("");
+	const [sign, setSign] = useRecoilState<boolean>(loginState);
 
 	const [isCreate, setIsCreate] = useState(false);
+	const closeSign = (e: React.MouseEvent<HTMLDivElement>) => {
+		e.preventDefault();
+		setSign(false);
+	};
 	const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
 		e.preventDefault();
 		setEmail(e.target.value);
@@ -59,8 +66,6 @@ export const SignUp = () => {
 		if (e.target.value != pwd) {
 			setPwCheck(false);
 		} else setPwCheck(true);
-
-		console.log(pwCheck);
 	};
 
 	const handleSubmit = (e: React.FormEvent) => {
@@ -73,7 +78,6 @@ export const SignUp = () => {
 					updateProfile(profile.user, {
 						displayName: nick,
 					});
-					console.log(profile);
 
 					setDoc(doc(db, "LolUser", `${email}`), {
 						id: email,
@@ -87,8 +91,7 @@ export const SignUp = () => {
 		} else {
 			signInWithEmailAndPassword(auth, email, pwd)
 				.then(() => {
-					alert("로그인 성공");
-					// setLogin(true);
+					alert("로그인이 완료되었습니다.");
 				})
 				.catch((e) => {
 					alert("아이디와 비밀번호를 확인해주세요.");
@@ -101,6 +104,14 @@ export const SignUp = () => {
 			{!userInfo ? (
 				<Sign>
 					<SignForm onSubmit={handleSubmit}>
+						<Close
+							onClick={closeSign}
+							role="button"
+							aria-label="로그인창 닫기 버튼"
+						>
+							x
+						</Close>
+
 						<div className="text-center pb-5">
 							<img
 								src={Logo}
@@ -186,7 +197,16 @@ const Sign = styled.div`
 	height: 100%;
 	background: rgba(0, 0, 0, 0.8);
 `;
-
+const Close = styled.div`
+	background: none;
+	padding: 0;
+	position: absolute;
+	top: 30px;
+	right: 30px;
+	-webkit-text-stroke: 1px #fff;
+	color: transparent;
+	font-size: 30px;
+`;
 const SignForm = styled.form`
 	position: absolute;
 	left: 50%;
