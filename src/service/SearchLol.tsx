@@ -64,24 +64,19 @@ const SearchLol = () => {
 			sessionStorage.setItem(LolKeyword, currentSearchKey);
 			// 소환사명 유무 존재
 			async function checkSummonerName(summonerName: string) {
-				const userName = {
-					data: `${summonerName}`,
-				};
+				const userName = { data: summonerName };
 				const matchOptions: RequestInit = {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify(userName),
 				};
-
-				// serverless functions 요청
 				const SummonerName = await fetch("/api/lolNameCheck", matchOptions);
 				const summonerNameResult = await SummonerName.json();
-
 				return summonerNameResult.Check;
 			}
+
 			async function funcSummonerName() {
 				const isTrue = await checkSummonerName(currentSearchKey);
-				console.log(isTrue);
 				isTrue
 					? lolAllData()
 					: alert("소환사명을 확인해주세요.(띄어쓰기 포함)");
