@@ -12,14 +12,16 @@ export default async function getUserName(request: VercelRequest, response: Verc
       const { body } = request;
       const summonerName = body.data;
       const res = await fetch(`${URL_KR_RIOT}/lol/summoner/v4/summoners/by-name/${summonerName}?${KEY}`);
-      if (response.statusCode === 200) {
-          if (res.status === 404) {
-              return { check: false };
-            }
+ 
+         
+        if (res.ok) {
             const data = await res.json();
-            
             return { check: true };
-      }
+        } else if (res.status === 404) {
+            return { check: false };
+        } else {
+            return { check: false };
+        }
   
     } catch (err) {
       return { check: false };
