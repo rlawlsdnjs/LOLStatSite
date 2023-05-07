@@ -19,7 +19,7 @@ export default async function getUserName(request: VercelRequest, response: Verc
         response.json({ check: true });
       }
     } catch (err) {
-      console.error(err);
       response.status(500).json({ check: false });
+      return response.json({ check: false });
     }
   }

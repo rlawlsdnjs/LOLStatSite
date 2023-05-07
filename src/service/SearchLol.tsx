@@ -62,7 +62,7 @@ const SearchLol = () => {
 			return;
 		} else {
 			sessionStorage.setItem(LolKeyword, currentSearchKey);
-			// 소환사명 유무 존재
+			// 소환사명 유무 존재 확인
 			async function checkSummonerName(summonerName: string) {
 				const userName = { data: `${summonerName}` };
 				console.log(`currentname`, summonerName);
@@ -77,14 +77,12 @@ const SearchLol = () => {
 					const result = JSON.parse(summonerNameResult);
 					return result.check;
 				} catch (e) {
-					console.error(e);
 					return false;
 				}
 			}
 
 			async function funcSummonerName() {
 				const isTrue = await checkSummonerName(currentSearchKey);
-				console.log(isTrue);
 				isTrue
 					? lolAllData()
 					: alert("소환사명을 확인해주세요.(띄어쓰기 포함)");
