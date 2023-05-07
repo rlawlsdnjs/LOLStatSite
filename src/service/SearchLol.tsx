@@ -64,7 +64,7 @@ const SearchLol = () => {
 			sessionStorage.setItem(LolKeyword, currentSearchKey);
 			// 소환사명 유무 존재
 			async function checkSummonerName(summonerName: string) {
-				const userName = { data: summonerName };
+				const userName = { data: `${summonerName}` };
 				const matchOptions: RequestInit = {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
